@@ -1,0 +1,9 @@
+E:\Training\DonationApp\App\Sln_DonationApp\DALC\bin\Debug\netcoreapp3.1\DALC.deps.json
+E:\Training\DonationApp\App\Sln_DonationApp\DALC\bin\Debug\netcoreapp3.1\DALC.dll
+E:\Training\DonationApp\App\Sln_DonationApp\DALC\bin\Debug\netcoreapp3.1\DALC.pdb
+E:\Training\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.csprojAssemblyReference.cache
+E:\Training\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.AssemblyInfoInputs.cache
+E:\Training\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.AssemblyInfo.cs
+E:\Training\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.csproj.CoreCompileInputs.cache
+E:\Training\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.dll
+E:\Training\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.pdb
