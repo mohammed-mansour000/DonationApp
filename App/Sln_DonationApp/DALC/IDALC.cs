@@ -26,8 +26,8 @@ namespace DALC
             public string COUNTRY { get; set; }
             public string CITY { get; set; }
             public string STREET { get; set; }
-            public Double LATIDUTE { get; set; }
-            public Double LANGITUDE { get; set; }
+            public decimal LATIDUTE { get; set; }
+            public decimal LANGITUDE { get; set; }
 
         }
 
@@ -53,6 +53,19 @@ namespace DALC
             public Item ITEM { get; set; }
 
         }
+
+        public partial class Item
+        {
+            public Int32? ITEM_ID { get; set; }
+            public string NAME { get; set; }
+            public string DESCRIPTION { get; set; }
+            public bool? IS_ACTIVE { get; set; }
+            public Category CATAGORY { get; set; }
+            public DateTime ENTRY_DATE { get; set; }
+
+        }
+
+
 
 
         #endregion
