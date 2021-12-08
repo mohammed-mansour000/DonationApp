@@ -454,19 +454,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Bashar\\.nuget\\packages\\": {}
+    "C:\\Users\\Hamzi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bashar\\OneDrive\\Documents\\GitHub\\DonationApp\\App\\Sln_DonationApp\\DALC\\DALC.csproj",
+      "projectUniqueName": "E:\\Training\\DonationApp\\App\\Sln_DonationApp\\DALC\\DALC.csproj",
       "projectName": "DALC",
-      "projectPath": "C:\\Users\\Bashar\\OneDrive\\Documents\\GitHub\\DonationApp\\App\\Sln_DonationApp\\DALC\\DALC.csproj",
-      "packagesPath": "C:\\Users\\Bashar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bashar\\OneDrive\\Documents\\GitHub\\DonationApp\\App\\Sln_DonationApp\\DALC\\obj\\",
+      "projectPath": "E:\\Training\\DonationApp\\App\\Sln_DonationApp\\DALC\\DALC.csproj",
+      "packagesPath": "C:\\Users\\Hamzi\\.nuget\\packages\\",
+      "outputPath": "E:\\Training\\DonationApp\\App\\Sln_DonationApp\\DALC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Bashar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Hamzi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -512,7 +512,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.209\\RuntimeIdentifierGraph.json"
       }
     }
   }

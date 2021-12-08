@@ -10,7 +10,6 @@ namespace TestingApp
         {
             DALC.DALC oDALC = new DALC.DALC();
 
-<<<<<<< HEAD
             //List<Item> items = oDALC.GET_ITEMS();
             //foreach (Item i in items)
             //{
@@ -25,16 +24,16 @@ namespace TestingApp
             //    Console.WriteLine(i.CATAGORY.ENTRY_DATE);
 
             //}
-            Item i=oDALC.GET_ITEM_BY_ID(3);
-            Console.WriteLine(i.ITEM_ID);
-            Console.WriteLine(i.NAME);
-            Console.WriteLine(i.DESCRIPTION);
-            Console.WriteLine(i.IS_ACTIVE);
-            Console.WriteLine(i.ENTRY_DATE);
-            Console.WriteLine(i.CATAGORY.CATAGORY_ID);
-            Console.WriteLine(i.CATAGORY.NAME);
-            Console.WriteLine(i.CATAGORY.DESCRIPTION);
-            Console.WriteLine(i.CATAGORY.ENTRY_DATE);
+            //Item i=oDALC.GET_ITEM_BY_ID(3);
+            //Console.WriteLine(i.ITEM_ID);
+            //Console.WriteLine(i.NAME);
+            //Console.WriteLine(i.DESCRIPTION);
+            //Console.WriteLine(i.IS_ACTIVE);
+            //Console.WriteLine(i.ENTRY_DATE);
+            //Console.WriteLine(i.CATAGORY.CATAGORY_ID);
+            //Console.WriteLine(i.CATAGORY.NAME);
+            //Console.WriteLine(i.CATAGORY.DESCRIPTION);
+            //Console.WriteLine(i.CATAGORY.ENTRY_DATE);
 
             //Category c = new Category();
             //Console.WriteLine("press -1 if you are need to add ");
@@ -46,7 +45,6 @@ namespace TestingApp
             //c.ENTRY_DATE = DateTime.Now;
             //oDALC.EDIT_CATEGORY(c);
 
-=======
 
             //User user = oDALC.GET_USER_BY_USER_ID(2);
             //User userTest = new User();
@@ -83,7 +81,6 @@ namespace TestingApp
             //oDALC.EDIT_ADDRESS(addressTest);
 
             //List<Address> address = oDALC.GET_ADDRESS_BY_COUNTRY("PALESTINE");
->>>>>>> a5e4f768008877c5f5e4959aa2db505a4b89d873
         }
     }
 }
