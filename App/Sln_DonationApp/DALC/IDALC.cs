@@ -54,6 +54,19 @@ namespace DALC
 
         }
 
+        public partial class Item
+        {
+            public Int32? ITEM_ID { get; set; }
+            public string NAME { get; set; }
+            public string DESCRIPTION { get; set; }
+            public bool? IS_ACTIVE { get; set; }
+            public Category CATAGORY { get; set; }
+            public DateTime ENTRY_DATE { get; set; }
+
+        }
+
+
+
         #endregion
 
     }
