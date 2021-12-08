@@ -57,7 +57,7 @@ namespace DALC
         public User GET_USER_BY_USER_ID(long USER_ID)
         {
             string query = "UPG_GET_USER_BY_USER_ID";
-            User oUser= new User();
+            User oUser = new User();
 
             using (SqlConnection _con = new SqlConnection(this.ConnectionString))
             {
