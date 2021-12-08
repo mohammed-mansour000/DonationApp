@@ -20,7 +20,7 @@ namespace DALC
             public DateTime ENTRY_DATE { get; set; }
         }
 
-        public partial class ADDRESS
+        public partial class Address
         {
             public Int32? ADDRESS_ID { get; set; }
             public string COUNTRY { get; set; }
@@ -37,6 +37,21 @@ namespace DALC
             public string NAME { get; set; }
             public string DESCRIPTION { get; set; }
             public DateTime ENTRY_DATE { get; set; }
+        }
+
+        public partial class Donation
+        {
+            public long? DONATION_ID { get; set; }
+            public string COLOR { get; set; }
+            public string SIZE { get; set; }
+            public int QUANTITY { get; set; }
+            public bool? IS_SHIPPED { get; set; }
+            public DateTime SHIP_DATE { get; set; }
+            public DateTime ENTRY_DATE { get; set; }
+            public Address ADDRESS { get; set; }
+            public User USER { get; set; }
+            public Item ITEM { get; set; }
+
         }
 
         #endregion
