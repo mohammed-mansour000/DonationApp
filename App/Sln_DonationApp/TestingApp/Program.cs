@@ -11,6 +11,9 @@ namespace TestingApp
             DALC.DALC oDALC = new DALC.DALC();
 
             List<User> users = oDALC.Get_Users();
+            foreach (User u  in users) {
+                Console.WriteLine(u.FIRST_NAME);
+            }
         }
     }
 }

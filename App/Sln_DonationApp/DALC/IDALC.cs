@@ -18,5 +18,6 @@ namespace DALC
             public bool? IS_ACTIVE { get; set; }
             public DateTime ENTRY_DATE { get; set; }
         }
+
     }
 }
