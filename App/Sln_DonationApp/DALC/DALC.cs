@@ -9,7 +9,7 @@ namespace DALC
 {
     public class DALC
     {
-        string ConnectionString = @"Data Source=DESKTOP-FI4HSGV\MANSURSQL;Initial Catalog=DonationAppDB;Integrated Security=True";
+        string ConnectionString = @"Data Source=DESKTOP-S5F8T01\SQLEXPRESS;Initial Catalog=DonationAppDB;Integrated Security=True";
 
         #region Get Users
         public List<User> Get_Users()

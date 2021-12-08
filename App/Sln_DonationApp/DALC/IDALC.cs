@@ -20,6 +20,17 @@ namespace DALC
             public DateTime ENTRY_DATE { get; set; }
         }
 
+        public partial class ADDRESS
+        {
+            public Int32? ADDRESS_ID { get; set; }
+            public string COUNTRY { get; set; }
+            public string CITY { get; set; }
+            public string STREET { get; set; }
+            public Double LATIDUTE { get; set; }
+            public Double LANGITUDE { get; set; }
+
+        }
+
         public partial class Category
         {
             public Int32? CATEGORY_ID { get; set; }

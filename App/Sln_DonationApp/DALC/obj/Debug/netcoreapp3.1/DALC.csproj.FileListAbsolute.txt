@@ -7,3 +7,13 @@ E:\Training\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.As
 E:\Training\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.csproj.CoreCompileInputs.cache
 E:\Training\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.dll
 E:\Training\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.pdb
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\DALC\bin\Debug\netcoreapp3.1\DALC.deps.json
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\DALC\bin\Debug\netcoreapp3.1\DALC.dll
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\DALC\bin\Debug\netcoreapp3.1\DALC.pdb
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.csproj.AssemblyReference.cache
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.AssemblyInfoInputs.cache
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.AssemblyInfo.cs
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.csproj.CoreCompileInputs.cache
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.dll
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\DALC\obj\Debug\netcoreapp3.1\DALC.pdb
