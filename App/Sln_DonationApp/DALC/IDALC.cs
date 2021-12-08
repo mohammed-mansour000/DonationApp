@@ -26,8 +26,8 @@ namespace DALC
             public string COUNTRY { get; set; }
             public string CITY { get; set; }
             public string STREET { get; set; }
-            public Double LATIDUTE { get; set; }
-            public Double LANGITUDE { get; set; }
+            public decimal LATIDUTE { get; set; }
+            public decimal LANGITUDE { get; set; }
 
         }
 
@@ -64,6 +64,7 @@ namespace DALC
             public DateTime ENTRY_DATE { get; set; }
 
         }
+
 
 
 
