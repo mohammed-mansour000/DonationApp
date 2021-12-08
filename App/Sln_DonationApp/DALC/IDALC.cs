@@ -6,6 +6,7 @@ namespace DALC
 {
     public class IDALC
     {
+        #region Entities
         public partial class User
         {
             public long? USER_ID { get; set; }
@@ -18,5 +19,16 @@ namespace DALC
             public bool? IS_ACTIVE { get; set; }
             public DateTime ENTRY_DATE { get; set; }
         }
+
+        public partial class Category
+        {
+            public Int32? CATEGORY_ID { get; set; }
+            public string NAME { get; set; }
+            public string DESCRIPTION { get; set; }
+            public DateTime ENTRY_DATE { get; set; }
+        }
+
+        #endregion
+
     }
 }

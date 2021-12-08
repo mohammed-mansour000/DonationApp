@@ -46,11 +46,12 @@ namespace DALC
                         }
                     }
                 }
-                #endregion
+                
             }
 
             return oList;
         }
+        #endregion
 
     }
 }
