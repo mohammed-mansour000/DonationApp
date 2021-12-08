@@ -26,12 +26,6 @@ C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\Testin
 C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\TestingApp.runtimeconfig.dev.json
 C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\TestingApp.dll
 C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\TestingApp.pdb
-C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
-C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
-C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
-C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
-C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\DALC.dll
 C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\DALC.pdb
 C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\obj\Debug\netcoreapp3.1\TestingApp.csproj.AssemblyReference.cache
@@ -43,3 +37,9 @@ C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\Testin
 C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\obj\Debug\netcoreapp3.1\TestingApp.dll
 C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\obj\Debug\netcoreapp3.1\TestingApp.pdb
 C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\obj\Debug\netcoreapp3.1\TestingApp.genruntimeconfig.cache
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

@@ -33,7 +33,7 @@ namespace DALC
 
         public partial class Category
         {
-            public Int32? CATEGORY_ID { get; set; }
+            public Int32? CATAGORY_ID { get; set; }
             public string NAME { get; set; }
             public string DESCRIPTION { get; set; }
             public DateTime ENTRY_DATE { get; set; }
