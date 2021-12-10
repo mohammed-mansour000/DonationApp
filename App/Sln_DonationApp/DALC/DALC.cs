@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Dynamic;
+using System.Linq;
 using static DALC.IDALC;
 
 namespace DALC
 {
     public class DALC
     {
-        string ConnectionString = @"Data Source=DESKTOP-S5F8T01\SQLEXPRESS;Initial Catalog=DonationAppDB;Integrated Security=True";
+        string ConnectionString = @"Data Source=DESKTOP-FI4HSGV\MANSURSQL;Initial Catalog=DonationAppDB;Integrated Security=True";
 
         #region Get Users
         public List<User> Get_Users()
@@ -447,7 +448,6 @@ namespace DALC
         }
         #endregion
 
-
         #region Get Catagory
         public List<Category> Get_Category()
         {
@@ -475,7 +475,10 @@ namespace DALC
                             oCatagory.NAME = item["NAME"].ToString();
                             oCatagory.DESCRIPTION = item["DESCRIPTION"].ToString();
                             oCatagory.ENTRY_DATE = Convert.ToDateTime(item["ENTRY_DATE"]);
-
+                            oCatagory.UPLOAD_FILE = new UploadFile();
+                            oCatagory.UPLOAD_FILE.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+                            oCatagory.UPLOAD_FILE.FILE_NAME = item["FILE_NAME"].ToString();
+                            oCatagory.UPLOAD_FILE.ENTRY_DATE = Convert.ToDateTime(item["FILE_ENTRY_DATE"]);
                             oList.Add(oCatagory);
                         }
                     }
@@ -485,6 +488,7 @@ namespace DALC
 
             return oList;
         }
+
 
 
         #endregion Get Catagory
@@ -518,7 +522,10 @@ namespace DALC
                             c.NAME = item["NAME"].ToString();
                             c.DESCRIPTION = item["DESCRIPTION"].ToString();
                             c.ENTRY_DATE = Convert.ToDateTime(item["ENTRY_DATE"]);
-
+                            c.UPLOAD_FILE = new UploadFile();
+                            c.UPLOAD_FILE.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+                            c.UPLOAD_FILE.FILE_NAME = item["FILE_NAME"].ToString();
+                            c.UPLOAD_FILE.ENTRY_DATE = Convert.ToDateTime(item["FILE_ENTRY_DATE"]);
 
                         }
                     }
@@ -554,7 +561,6 @@ namespace DALC
 
         }
         #endregion
-
 
         #region Edit Catagory
         public void EDIT_CATEGORY(Category category)
@@ -619,11 +625,17 @@ namespace DALC
                             oItem.DESCRIPTION = item["ItemDescription"].ToString();
                             oItem.ENTRY_DATE = Convert.ToDateTime(item["ItemEntryDate"]);
                             oItem.IS_ACTIVE = (bool?)item["IS_ACTIVE"];
+
                             oItem.CATAGORY = new Category();
                             oItem.CATAGORY.CATAGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
                             oItem.CATAGORY.NAME = item["CatagoryName"].ToString();
                             oItem.CATAGORY.DESCRIPTION = item["CatagoryDescription"].ToString();
                             oItem.CATAGORY.ENTRY_DATE = Convert.ToDateTime(item["CatagoryEntryDate"]);
+
+                            oItem.UPLOAD_FILE = new UploadFile();
+                            oItem.UPLOAD_FILE.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+                            oItem.UPLOAD_FILE.FILE_NAME = item["FILE_NAME"].ToString();
+                            oItem.UPLOAD_FILE.ENTRY_DATE = Convert.ToDateTime(item["UPLOAD_FILE_ENTRY_DATE"]);
 
                             oList.Add(oItem);
                         }
@@ -636,7 +648,7 @@ namespace DALC
         }
 
 
-        #endregion Get Catagory
+        #endregion
 
         #region Get Item By Id
         public Item GET_ITEM_BY_ID(Int32 iId)
@@ -675,6 +687,11 @@ namespace DALC
                             oItem.CATAGORY.ENTRY_DATE = Convert.ToDateTime(item["CatagoryEntryDate"]);
 
 
+                            oItem.UPLOAD_FILE = new UploadFile();
+                            oItem.UPLOAD_FILE.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+                            oItem.UPLOAD_FILE.FILE_NAME = item["FILE_NAME"].ToString();
+                            oItem.UPLOAD_FILE.ENTRY_DATE = Convert.ToDateTime(item["UPLOAD_FILE_ENTRY_DATE"]);
+
                         }
                     }
                 }
@@ -682,6 +699,938 @@ namespace DALC
             }
 
             return oItem;
+        }
+        #endregion
+
+        #region Get Item By Category Id
+        public List<Item> GET_ITEM_BY_CATEGORY_ID(Int32 cId)
+        {
+
+            string query = "UPG_GET_ITEMS_BY_CATEGORY_ID";
+            List<Item> oList = new List<Item>();
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+
+                    _cmd.Parameters.Add("CATAGORY_ID", SqlDbType.Int);
+                    _cmd.Parameters["CATAGORY_ID"].Value = cId;
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter _dap = new SqlDataAdapter(_cmd);
+                    _dap.Fill(dt);
+
+
+                    if (dt.Rows != null)
+                    {
+                        foreach (DataRow item in dt.Rows)
+                        {
+                            Item oItem = new Item();
+                            oItem.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
+                            oItem.NAME = item["ItemName"].ToString();
+                            oItem.DESCRIPTION = item["ItemDescription"].ToString();
+                            oItem.ENTRY_DATE = Convert.ToDateTime(item["ItemEntryDate"]);
+                            oItem.IS_ACTIVE = (bool?)item["IS_ACTIVE"];
+                            oItem.CATAGORY = new Category();
+                            oItem.CATAGORY.CATAGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
+                            oItem.CATAGORY.NAME = item["CatagoryName"].ToString();
+                            oItem.CATAGORY.DESCRIPTION = item["CatagoryDescription"].ToString();
+                            oItem.CATAGORY.ENTRY_DATE = Convert.ToDateTime(item["CatagoryEntryDate"]);
+
+
+                            oItem.UPLOAD_FILE = new UploadFile();
+                            oItem.UPLOAD_FILE.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+                            oItem.UPLOAD_FILE.FILE_NAME = item["FILE_NAME"].ToString();
+                            oItem.UPLOAD_FILE.ENTRY_DATE = Convert.ToDateTime(item["UPLOAD_FILE_ENTRY_DATE"]);
+
+                            oList.Add(oItem);
+                        }
+                    }
+                }
+
+            }
+
+            return oList;
+        }
+        #endregion
+
+        #region Get Item By Name
+        public Item GET_ITEM_BY_Name(String name)
+        {
+
+            string query = "UPG_GET_ITEM_BY_NAME";
+            Item oItem = new Item();
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+
+                    _cmd.Parameters.Add("ITEM_NAME", SqlDbType.NVarChar);
+                    _cmd.Parameters["ITEM_NAME"].Value = name;
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter _dap = new SqlDataAdapter(_cmd);
+                    _dap.Fill(dt);
+
+
+                    if (dt.Rows != null)
+                    {
+                        foreach (DataRow item in dt.Rows)
+                        {
+                            oItem.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
+                            oItem.NAME = item["ItemName"].ToString();
+                            oItem.DESCRIPTION = item["ItemDescription"].ToString();
+                            oItem.ENTRY_DATE = Convert.ToDateTime(item["ItemEntryDate"]);
+                            oItem.IS_ACTIVE = (bool?)item["IS_ACTIVE"];
+                            oItem.CATAGORY = new Category();
+                            oItem.CATAGORY.CATAGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
+                            oItem.CATAGORY.NAME = item["CatagoryName"].ToString();
+                            oItem.CATAGORY.DESCRIPTION = item["CatagoryDescription"].ToString();
+                            oItem.CATAGORY.ENTRY_DATE = Convert.ToDateTime(item["CatagoryEntryDate"]);
+
+
+                            oItem.UPLOAD_FILE = new UploadFile();
+                            oItem.UPLOAD_FILE.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+                            oItem.UPLOAD_FILE.FILE_NAME = item["FILE_NAME"].ToString();
+                            oItem.UPLOAD_FILE.ENTRY_DATE = Convert.ToDateTime(item["UPLOAD_FILE_ENTRY_DATE"]);
+
+
+                        }
+                    }
+                }
+
+            }
+
+            return oItem;
+        }
+        #endregion
+
+        #region delete Item
+        public void DELETE_Item(Int32 cId)
+        {
+
+            string query = "UPG_DELETE_ITEM";
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+                    _cmd.CommandType = CommandType.StoredProcedure;
+
+                    _cmd.Parameters.Add("ITEM_ID", SqlDbType.Int);
+                    _cmd.Parameters["ITEM_ID"].Value = cId;
+
+                    _con.Open();
+                    _cmd.ExecuteNonQuery();
+                    _con.Close();
+                }
+
+            }
+
+        }
+        #endregion
+
+        #region EDIT_ITEM
+        public void EDIT_ITEM(Item i_Item)
+        {
+            string query = "UPG_EDIT_ITEM";
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+
+                    _cmd.Parameters.Add("ITEM_ID", SqlDbType.Int);
+                    _cmd.Parameters["ITEM_ID"].Value = i_Item.ITEM_ID;
+
+                    _cmd.Parameters.Add("NAME", SqlDbType.NVarChar);
+                    _cmd.Parameters["NAME"].Value = i_Item.NAME;
+
+                    _cmd.Parameters.Add("DESCRIPTION", SqlDbType.NVarChar);
+                    _cmd.Parameters["DESCRIPTION"].Value = i_Item.DESCRIPTION;
+
+                    _cmd.Parameters.Add("ENTRY_DATE", SqlDbType.DateTime);
+                    _cmd.Parameters["ENTRY_DATE"].Value = i_Item.ENTRY_DATE;
+
+                    _cmd.Parameters.Add("IS_ACTIVE", SqlDbType.Bit);
+                    _cmd.Parameters["IS_ACTIVE"].Value = i_Item.IS_ACTIVE;
+
+                    _cmd.Parameters.Add("CATAGORY_ID", SqlDbType.Int);
+                    _cmd.Parameters["CATAGORY_ID"].Value = i_Item.CATAGORY.CATAGORY_ID;
+
+                    _con.Open();
+                    _cmd.ExecuteNonQuery();
+                    _con.Close();
+
+                }
+
+            }
+
+        }
+        #endregion
+
+        #region Get Donation
+        public List<Donation> GET_DONATIONS()
+        {
+            string query = "UPG_GET_DONATIONS";
+            List<Donation> oList = new List<Donation>();
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter _dap = new SqlDataAdapter(_cmd);
+                    _dap.Fill(dt);
+
+
+                    if (dt.Rows != null)
+                    {
+                        foreach (DataRow item in dt.Rows)
+                        {
+                            Donation oDonation = new Donation();
+
+                            oDonation.DONATION_ID = Convert.ToInt64(item["DONATION_ID"]);
+                            oDonation.COLOR = item["COLOR"].ToString();
+                            oDonation.SIZE = item["SIZE"].ToString();
+                            oDonation.IS_SHIPPED = (bool?)item["IS_SHIPPED"];
+                            oDonation.SHIP_DATE = Convert.ToDateTime(item["SHIP_DATE"]);
+                            oDonation.QUANTITY = (int)item["QUANTITY"];
+                            oDonation.ENTRY_DATE = Convert.ToDateTime(item["DON_ENTRY_DATE"]);
+
+                            oDonation.ADDRESS = new Address();
+                            oDonation.ADDRESS.ADDRESS_ID = Convert.ToInt32(item["ADDRESS_ID"]);
+                            oDonation.ADDRESS.COUNTRY = item["COUNTRY"].ToString();
+                            oDonation.ADDRESS.CITY = item["CITY"].ToString();
+                            oDonation.ADDRESS.STREET = item["STREET"].ToString();
+                            oDonation.ADDRESS.LATIDUTE = (decimal)item["LATIDUTE"];
+                            oDonation.ADDRESS.LANGITUDE = (decimal)item["LANGITUDE"];
+
+                            oDonation.USER = new User();
+                            oDonation.USER.USER_ID = Convert.ToInt64(item["USER_ID"]);
+                            oDonation.USER.FIRST_NAME= item["FIRST_NAME"].ToString();
+                            oDonation.USER.LAST_NAME = item["LAST_NAME"].ToString();
+                            oDonation.USER.EMAIL = item["EMAIL"].ToString();
+                            oDonation.USER.PHONE= item["PHONE"].ToString();
+                            oDonation.USER.IS_ACTIVE = (bool?)item["USER_IS_ACTIVE"];
+                            oDonation.USER.USER_TYPE_CODE = item["USER_TYPE_CODE"].ToString();
+                            oDonation.USER.ENTRY_DATE = Convert.ToDateTime(item["USER_ENTRY_DATE"]);
+
+                            oDonation.ITEM = new Item();
+                            oDonation.ITEM.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
+                            oDonation.ITEM.NAME = item["ITEM_NAME"].ToString();
+                            oDonation.ITEM.DESCRIPTION = item["ITEM_DESC"].ToString();
+                            oDonation.ITEM.IS_ACTIVE = (bool?)item["ITEM_IS_ACTIVE"];
+                            oDonation.ITEM.ENTRY_DATE = Convert.ToDateTime(item["ITEM_ENTRY_DATE"]);
+
+                            UploadFile upl = new UploadFile();
+                            upl.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+                            upl.FILE_NAME = item["FILE_NAME"].ToString();
+                            upl.ENTRY_DATE = Convert.ToDateTime(item["UPLOAD_FILE_ENTRY_DATE"]);
+
+                            if (oList.Count > 0)
+                            {
+                                var lastItem = oList.Last();
+                                if (lastItem.DONATION_ID == oDonation.DONATION_ID)
+                                {
+                                    lastItem.UPLOADED_FILES.Add(upl);
+                                }
+                                else
+                                {
+                                    oDonation.UPLOADED_FILES = new List<UploadFile>();
+                                    oDonation.UPLOADED_FILES.Add(upl);
+                                    oList.Add(oDonation);
+                                }
+
+                            }
+                            else
+                            {
+                                oDonation.UPLOADED_FILES = new List<UploadFile>();
+                                oDonation.UPLOADED_FILES.Add(upl);
+                                oList.Add(oDonation);
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            return oList;
+        }
+        #endregion
+
+        #region GET_DONATION_BY_DONATION_ID
+        public Donation GET_DONATION_BY_DONATION_ID(Int32 DONATION_ID)
+        {
+            string query = "UPG_GET_DONATION_BY_DONATION_ID";
+            Donation oDonation = new Donation();
+            oDonation.UPLOADED_FILES = new List<UploadFile>();
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+
+                    _cmd.Parameters.Add("DONATION_ID", SqlDbType.Int);
+                    _cmd.Parameters["DONATION_ID"].Value = DONATION_ID;
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter _dap = new SqlDataAdapter(_cmd);
+                    _dap.Fill(dt);
+
+
+                    if (dt.Rows != null)
+                    {
+                        foreach (DataRow item in dt.Rows)
+                        {
+
+                            oDonation.DONATION_ID = Convert.ToInt64(item["DONATION_ID"]);
+                            oDonation.COLOR = item["COLOR"].ToString();
+                            oDonation.SIZE = item["SIZE"].ToString();
+                            oDonation.IS_SHIPPED = (bool?)item["IS_SHIPPED"];
+                            oDonation.SHIP_DATE = Convert.ToDateTime(item["SHIP_DATE"]);
+                            oDonation.QUANTITY = (int)item["QUANTITY"];
+                            oDonation.ENTRY_DATE = Convert.ToDateTime(item["DON_ENTRY_DATE"]);
+
+                            oDonation.ADDRESS = new Address();
+                            oDonation.ADDRESS.ADDRESS_ID = Convert.ToInt32(item["ADDRESS_ID"]);
+                            oDonation.ADDRESS.COUNTRY = item["COUNTRY"].ToString();
+                            oDonation.ADDRESS.CITY = item["CITY"].ToString();
+                            oDonation.ADDRESS.STREET = item["STREET"].ToString();
+                            oDonation.ADDRESS.LATIDUTE = (decimal)item["LATIDUTE"];
+                            oDonation.ADDRESS.LANGITUDE = (decimal)item["LANGITUDE"];
+
+                            oDonation.USER = new User();
+                            oDonation.USER.USER_ID = Convert.ToInt64(item["USER_ID"]);
+                            oDonation.USER.FIRST_NAME = item["FIRST_NAME"].ToString();
+                            oDonation.USER.LAST_NAME = item["LAST_NAME"].ToString();
+                            oDonation.USER.PHONE = item["PHONE"].ToString();
+                            oDonation.USER.EMAIL = item["EMAIL"].ToString();
+                            oDonation.USER.IS_ACTIVE = (bool?)item["USER_IS_ACTIVE"];
+                            oDonation.USER.USER_TYPE_CODE = item["USER_TYPE_CODE"].ToString();
+                            oDonation.USER.ENTRY_DATE = Convert.ToDateTime(item["USER_ENTRY_DATE"]);
+
+                            oDonation.ITEM = new Item();
+                            oDonation.ITEM.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
+                            oDonation.ITEM.NAME = item["ITEM_NAME"].ToString();
+                            oDonation.ITEM.DESCRIPTION = item["ITEM_DESC"].ToString();
+                            oDonation.ITEM.IS_ACTIVE = (bool?)item["ITEM_IS_ACTIVE"];
+                            oDonation.ITEM.ENTRY_DATE = Convert.ToDateTime(item["ITEM_ENTRY_DATE"]);
+
+                            UploadFile upl = new UploadFile();
+                            upl.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+                            upl.FILE_NAME = item["FILE_NAME"].ToString();
+                            upl.ENTRY_DATE = Convert.ToDateTime(item["UPLOAD_FILE_ENTRY_DATE"]);
+
+                            oDonation.UPLOADED_FILES.Add(upl);
+
+                        }
+                    }
+                }
+
+            }
+
+            return oDonation;
+        }
+        #endregion
+
+        #region GET_DONATION_BY_USER_ID
+        public List<Donation> GET_DONATION_BY_USER_ID(Int32 USER_ID)
+        {
+            string query = "UPG_GET_DONATION_BY_USER_ID";
+            List<Donation> oList = new List<Donation>();
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+
+                    _cmd.Parameters.Add("USER_ID", SqlDbType.Int);
+                    _cmd.Parameters["USER_ID"].Value = USER_ID;
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter _dap = new SqlDataAdapter(_cmd);
+                    _dap.Fill(dt);
+
+
+                    if (dt.Rows != null)
+                    {
+                        foreach (DataRow item in dt.Rows)
+                        {
+                            Donation oDonation = new Donation();
+
+                            oDonation.DONATION_ID = Convert.ToInt64(item["DONATION_ID"]);
+                            oDonation.COLOR = item["COLOR"].ToString();
+                            oDonation.SIZE = item["SIZE"].ToString();
+                            oDonation.IS_SHIPPED = (bool?)item["IS_SHIPPED"];
+                            oDonation.SHIP_DATE = Convert.ToDateTime(item["SHIP_DATE"]);
+                            oDonation.QUANTITY = (int)item["QUANTITY"];
+                            oDonation.ENTRY_DATE = Convert.ToDateTime(item["DON_ENTRY_DATE"]);
+
+                            oDonation.ADDRESS = new Address();
+                            oDonation.ADDRESS.ADDRESS_ID = Convert.ToInt32(item["ADDRESS_ID"]);
+                            oDonation.ADDRESS.COUNTRY = item["COUNTRY"].ToString();
+                            oDonation.ADDRESS.CITY = item["CITY"].ToString();
+                            oDonation.ADDRESS.STREET = item["STREET"].ToString();
+                            oDonation.ADDRESS.LATIDUTE = (decimal)item["LATIDUTE"];
+                            oDonation.ADDRESS.LANGITUDE = (decimal)item["LANGITUDE"];
+
+                            oDonation.USER = new User();
+                            oDonation.USER.USER_ID = Convert.ToInt64(item["USER_ID"]);
+                            oDonation.USER.FIRST_NAME = item["FIRST_NAME"].ToString();
+                            oDonation.USER.LAST_NAME = item["LAST_NAME"].ToString();
+                            oDonation.USER.EMAIL = item["EMAIL"].ToString();
+                            oDonation.USER.PHONE = item["PHONE"].ToString();
+                            oDonation.USER.IS_ACTIVE = (bool?)item["USER_IS_ACTIVE"];
+                            oDonation.USER.USER_TYPE_CODE = item["USER_TYPE_CODE"].ToString();
+                            oDonation.USER.ENTRY_DATE = Convert.ToDateTime(item["USER_ENTRY_DATE"]);
+
+                            oDonation.ITEM = new Item();
+                            oDonation.ITEM.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
+                            oDonation.ITEM.NAME = item["ITEM_NAME"].ToString();
+                            oDonation.ITEM.DESCRIPTION = item["ITEM_DESC"].ToString();
+                            oDonation.ITEM.IS_ACTIVE = (bool?)item["ITEM_IS_ACTIVE"];
+                            oDonation.ITEM.ENTRY_DATE = Convert.ToDateTime(item["ITEM_ENTRY_DATE"]);
+
+                            UploadFile upl = new UploadFile();
+                            upl.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+                            upl.FILE_NAME = item["FILE_NAME"].ToString();
+                            upl.ENTRY_DATE = Convert.ToDateTime(item["UPLOAD_FILE_ENTRY_DATE"]);
+
+                            if (oList.Count > 0)
+                            {
+                                var lastItem = oList.Last();
+                                if (lastItem.DONATION_ID == oDonation.DONATION_ID)
+                                {
+                                    lastItem.UPLOADED_FILES.Add(upl);
+                                }
+                                else
+                                {
+                                    oDonation.UPLOADED_FILES = new List<UploadFile>();
+                                    oDonation.UPLOADED_FILES.Add(upl);
+                                    oList.Add(oDonation);
+                                }
+
+                            }
+                            else
+                            {
+                                oDonation.UPLOADED_FILES = new List<UploadFile>();
+                                oDonation.UPLOADED_FILES.Add(upl);
+                                oList.Add(oDonation);
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            return oList;
+        }
+        #endregion
+
+        #region GET_DONATION_BY_ITEM_ID
+        public List<Donation> GET_DONATION_BY_ITEM_ID(Int32 ITEM_ID)
+        {
+            string query = "UPG_GET_DONATION_BY_ITEM_ID";
+            List<Donation> oList = new List<Donation>();
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+
+                    _cmd.Parameters.Add("ITEM_ID", SqlDbType.Int);
+                    _cmd.Parameters["ITEM_ID"].Value = ITEM_ID;
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter _dap = new SqlDataAdapter(_cmd);
+                    _dap.Fill(dt);
+
+
+                    if (dt.Rows != null)
+                    {
+                        foreach (DataRow item in dt.Rows)
+                        {
+                            Donation oDonation = new Donation();
+
+                            oDonation.DONATION_ID = Convert.ToInt64(item["DONATION_ID"]);
+                            oDonation.COLOR = item["COLOR"].ToString();
+                            oDonation.SIZE = item["SIZE"].ToString();
+                            oDonation.IS_SHIPPED = (bool?)item["IS_SHIPPED"];
+                            oDonation.SHIP_DATE = Convert.ToDateTime(item["SHIP_DATE"]);
+                            oDonation.QUANTITY = (int)item["QUANTITY"];
+                            oDonation.ENTRY_DATE = Convert.ToDateTime(item["DON_ENTRY_DATE"]);
+
+                            oDonation.ADDRESS = new Address();
+                            oDonation.ADDRESS.ADDRESS_ID = Convert.ToInt32(item["ADDRESS_ID"]);
+                            oDonation.ADDRESS.COUNTRY = item["COUNTRY"].ToString();
+                            oDonation.ADDRESS.CITY = item["CITY"].ToString();
+                            oDonation.ADDRESS.STREET = item["STREET"].ToString();
+                            oDonation.ADDRESS.LATIDUTE = (decimal)item["LATIDUTE"];
+                            oDonation.ADDRESS.LANGITUDE = (decimal)item["LANGITUDE"];
+
+                            oDonation.USER = new User();
+                            oDonation.USER.USER_ID = Convert.ToInt64(item["USER_ID"]);
+                            oDonation.USER.FIRST_NAME = item["FIRST_NAME"].ToString();
+                            oDonation.USER.LAST_NAME = item["LAST_NAME"].ToString();
+                            oDonation.USER.EMAIL = item["EMAIL"].ToString();
+                            oDonation.USER.PHONE = item["PHONE"].ToString();
+                            oDonation.USER.IS_ACTIVE = (bool?)item["USER_IS_ACTIVE"];
+                            oDonation.USER.USER_TYPE_CODE = item["USER_TYPE_CODE"].ToString();
+                            oDonation.USER.ENTRY_DATE = Convert.ToDateTime(item["USER_ENTRY_DATE"]);
+
+                            oDonation.ITEM = new Item();
+                            oDonation.ITEM.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
+                            oDonation.ITEM.NAME = item["ITEM_NAME"].ToString();
+                            oDonation.ITEM.DESCRIPTION = item["ITEM_DESC"].ToString();
+                            oDonation.ITEM.IS_ACTIVE = (bool?)item["ITEM_IS_ACTIVE"];
+                            oDonation.ITEM.ENTRY_DATE = Convert.ToDateTime(item["ITEM_ENTRY_DATE"]);
+
+                            UploadFile upl = new UploadFile();
+                            upl.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+                            upl.FILE_NAME = item["FILE_NAME"].ToString();
+                            upl.ENTRY_DATE = Convert.ToDateTime(item["UPLOAD_FILE_ENTRY_DATE"]);
+
+                            if (oList.Count > 0)
+                            {
+                                var lastItem = oList.Last();
+                                if (lastItem.DONATION_ID == oDonation.DONATION_ID)
+                                {
+                                    lastItem.UPLOADED_FILES.Add(upl);
+                                }
+                                else
+                                {
+                                    oDonation.UPLOADED_FILES = new List<UploadFile>();
+                                    oDonation.UPLOADED_FILES.Add(upl);
+                                    oList.Add(oDonation);
+                                }
+
+                            }
+                            else
+                            {
+                                oDonation.UPLOADED_FILES = new List<UploadFile>();
+                                oDonation.UPLOADED_FILES.Add(upl);
+                                oList.Add(oDonation);
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            return oList;
+        }
+        #endregion
+
+        #region GET_DONATION_BY_ADDRESS_ID
+        public List<Donation> GET_DONATION_BY_ADDRESS_ID(Int32 ADDRESS_ID)
+        {
+            string query = "UPG_GET_DONATION_BY_ADDRESS_ID";
+            List<Donation> oList = new List<Donation>();
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+
+                    _cmd.Parameters.Add("ADDRESS_ID", SqlDbType.Int);
+                    _cmd.Parameters["ADDRESS_ID"].Value = ADDRESS_ID;
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter _dap = new SqlDataAdapter(_cmd);
+                    _dap.Fill(dt);
+
+
+                    if (dt.Rows != null)
+                    {
+                        foreach (DataRow item in dt.Rows)
+                        {
+                            Donation oDonation = new Donation();
+
+                            oDonation.DONATION_ID = Convert.ToInt64(item["DONATION_ID"]);
+                            oDonation.COLOR = item["COLOR"].ToString();
+                            oDonation.SIZE = item["SIZE"].ToString();
+                            oDonation.IS_SHIPPED = (bool?)item["IS_SHIPPED"];
+                            oDonation.SHIP_DATE = Convert.ToDateTime(item["SHIP_DATE"]);
+                            oDonation.QUANTITY = (int)item["QUANTITY"];
+                            oDonation.ENTRY_DATE = Convert.ToDateTime(item["DON_ENTRY_DATE"]);
+
+                            oDonation.ADDRESS = new Address();
+                            oDonation.ADDRESS.ADDRESS_ID = Convert.ToInt32(item["ADDRESS_ID"]);
+                            oDonation.ADDRESS.COUNTRY = item["COUNTRY"].ToString();
+                            oDonation.ADDRESS.CITY = item["CITY"].ToString();
+                            oDonation.ADDRESS.STREET = item["STREET"].ToString();
+                            oDonation.ADDRESS.LATIDUTE = (decimal)item["LATIDUTE"];
+                            oDonation.ADDRESS.LANGITUDE = (decimal)item["LANGITUDE"];
+
+                            oDonation.USER = new User();
+                            oDonation.USER.USER_ID = Convert.ToInt64(item["USER_ID"]);
+                            oDonation.USER.FIRST_NAME = item["FIRST_NAME"].ToString();
+                            oDonation.USER.LAST_NAME = item["LAST_NAME"].ToString();
+                            oDonation.USER.EMAIL = item["EMAIL"].ToString();
+                            oDonation.USER.PHONE = item["PHONE"].ToString();
+                            oDonation.USER.IS_ACTIVE = (bool?)item["USER_IS_ACTIVE"];
+                            oDonation.USER.USER_TYPE_CODE = item["USER_TYPE_CODE"].ToString();
+                            oDonation.USER.ENTRY_DATE = Convert.ToDateTime(item["USER_ENTRY_DATE"]);
+
+                            oDonation.ITEM = new Item();
+                            oDonation.ITEM.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
+                            oDonation.ITEM.NAME = item["ITEM_NAME"].ToString();
+                            oDonation.ITEM.DESCRIPTION = item["ITEM_DESC"].ToString();
+                            oDonation.ITEM.IS_ACTIVE = (bool?)item["ITEM_IS_ACTIVE"];
+                            oDonation.ITEM.ENTRY_DATE = Convert.ToDateTime(item["ITEM_ENTRY_DATE"]);
+
+                            UploadFile upl = new UploadFile();
+                            upl.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+                            upl.FILE_NAME = item["FILE_NAME"].ToString();
+                            upl.ENTRY_DATE = Convert.ToDateTime(item["UPLOAD_FILE_ENTRY_DATE"]);
+
+                            if (oList.Count > 0)
+                            {
+                                var lastItem = oList.Last();
+                                if (lastItem.DONATION_ID == oDonation.DONATION_ID)
+                                {
+                                    lastItem.UPLOADED_FILES.Add(upl);
+                                }
+                                else
+                                {
+                                    oDonation.UPLOADED_FILES = new List<UploadFile>();
+                                    oDonation.UPLOADED_FILES.Add(upl);
+                                    oList.Add(oDonation);
+                                }
+
+                            }
+                            else
+                            {
+                                oDonation.UPLOADED_FILES = new List<UploadFile>();
+                                oDonation.UPLOADED_FILES.Add(upl);
+                                oList.Add(oDonation);
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            return oList;
+        }
+        #endregion
+
+        #region GET_DONATION_BY_IS_SHIPPED
+        public List<Donation> GET_DONATION_BY_IS_SHIPPED()
+        {
+            string query = "UPG_GET_DONATION_BY_IS_SHIPPED";
+            List<Donation> oList = new List<Donation>();
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter _dap = new SqlDataAdapter(_cmd);
+                    _dap.Fill(dt);
+
+
+                    if (dt.Rows != null)
+                    {
+                        foreach (DataRow item in dt.Rows)
+                        {
+                            Donation oDonation = new Donation();
+
+                            oDonation.DONATION_ID = Convert.ToInt64(item["DONATION_ID"]);
+                            oDonation.COLOR = item["COLOR"].ToString();
+                            oDonation.SIZE = item["SIZE"].ToString();
+                            oDonation.IS_SHIPPED = (bool?)item["IS_SHIPPED"];
+                            oDonation.SHIP_DATE = Convert.ToDateTime(item["SHIP_DATE"]);
+                            oDonation.QUANTITY = (int)item["QUANTITY"];
+                            oDonation.ENTRY_DATE = Convert.ToDateTime(item["DON_ENTRY_DATE"]);
+
+                            oDonation.ADDRESS = new Address();
+                            oDonation.ADDRESS.ADDRESS_ID = Convert.ToInt32(item["ADDRESS_ID"]);
+                            oDonation.ADDRESS.COUNTRY = item["COUNTRY"].ToString();
+                            oDonation.ADDRESS.CITY = item["CITY"].ToString();
+                            oDonation.ADDRESS.STREET = item["STREET"].ToString();
+                            oDonation.ADDRESS.LATIDUTE = (decimal)item["LATIDUTE"];
+                            oDonation.ADDRESS.LANGITUDE = (decimal)item["LANGITUDE"];
+
+                            oDonation.USER = new User();
+                            oDonation.USER.USER_ID = Convert.ToInt64(item["USER_ID"]);
+                            oDonation.USER.FIRST_NAME = item["FIRST_NAME"].ToString();
+                            oDonation.USER.LAST_NAME = item["LAST_NAME"].ToString();
+                            oDonation.USER.EMAIL = item["EMAIL"].ToString();
+                            oDonation.USER.PHONE = item["PHONE"].ToString();
+                            oDonation.USER.IS_ACTIVE = (bool?)item["USER_IS_ACTIVE"];
+                            oDonation.USER.USER_TYPE_CODE = item["USER_TYPE_CODE"].ToString();
+                            oDonation.USER.ENTRY_DATE = Convert.ToDateTime(item["USER_ENTRY_DATE"]);
+
+                            oDonation.ITEM = new Item();
+                            oDonation.ITEM.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
+                            oDonation.ITEM.NAME = item["ITEM_NAME"].ToString();
+                            oDonation.ITEM.DESCRIPTION = item["ITEM_DESC"].ToString();
+                            oDonation.ITEM.IS_ACTIVE = (bool?)item["ITEM_IS_ACTIVE"];
+                            oDonation.ITEM.ENTRY_DATE = Convert.ToDateTime(item["ITEM_ENTRY_DATE"]);
+
+                            UploadFile upl = new UploadFile();
+                            upl.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+                            upl.FILE_NAME = item["FILE_NAME"].ToString();
+                            upl.ENTRY_DATE = Convert.ToDateTime(item["UPLOAD_FILE_ENTRY_DATE"]);
+
+                            if (oList.Count > 0)
+                            {
+                                var lastItem = oList.Last();
+                                if (lastItem.DONATION_ID == oDonation.DONATION_ID)
+                                {
+                                    lastItem.UPLOADED_FILES.Add(upl);
+                                }
+                                else
+                                {
+                                    oDonation.UPLOADED_FILES = new List<UploadFile>();
+                                    oDonation.UPLOADED_FILES.Add(upl);
+                                    oList.Add(oDonation);
+                                }
+
+                            }
+                            else
+                            {
+                                oDonation.UPLOADED_FILES = new List<UploadFile>();
+                                oDonation.UPLOADED_FILES.Add(upl);
+                                oList.Add(oDonation);
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            return oList;
+        }
+        #endregion
+
+        #region GET_DONATION_BY_IS_NOT_SHIPPED
+        public List<Donation> GET_DONATION_BY_IS_NOT_SHIPPED()
+        {
+            string query = "UPG_GET_DONATION_BY_IS_NOT_SHIPPED";
+            List<Donation> oList = new List<Donation>();
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter _dap = new SqlDataAdapter(_cmd);
+                    _dap.Fill(dt);
+
+
+                    if (dt.Rows != null)
+                    {
+                        foreach (DataRow item in dt.Rows)
+                        {
+                            Donation oDonation = new Donation();
+
+                            oDonation.DONATION_ID = Convert.ToInt64(item["DONATION_ID"]);
+                            oDonation.COLOR = item["COLOR"].ToString();
+                            oDonation.SIZE = item["SIZE"].ToString();
+                            oDonation.IS_SHIPPED = (bool?)item["IS_SHIPPED"];
+                            oDonation.SHIP_DATE = Convert.ToDateTime(item["SHIP_DATE"]);
+                            oDonation.QUANTITY = (int)item["QUANTITY"];
+                            oDonation.ENTRY_DATE = Convert.ToDateTime(item["DON_ENTRY_DATE"]);
+
+                            oDonation.ADDRESS = new Address();
+                            oDonation.ADDRESS.ADDRESS_ID = Convert.ToInt32(item["ADDRESS_ID"]);
+                            oDonation.ADDRESS.COUNTRY = item["COUNTRY"].ToString();
+                            oDonation.ADDRESS.CITY = item["CITY"].ToString();
+                            oDonation.ADDRESS.STREET = item["STREET"].ToString();
+                            oDonation.ADDRESS.LATIDUTE = (decimal)item["LATIDUTE"];
+                            oDonation.ADDRESS.LANGITUDE = (decimal)item["LANGITUDE"];
+
+                            oDonation.USER = new User();
+                            oDonation.USER.USER_ID = Convert.ToInt64(item["USER_ID"]);
+                            oDonation.USER.FIRST_NAME = item["FIRST_NAME"].ToString();
+                            oDonation.USER.LAST_NAME = item["LAST_NAME"].ToString();
+                            oDonation.USER.EMAIL = item["EMAIL"].ToString();
+                            oDonation.USER.PHONE = item["PHONE"].ToString();
+                            oDonation.USER.IS_ACTIVE = (bool?)item["USER_IS_ACTIVE"];
+                            oDonation.USER.USER_TYPE_CODE = item["USER_TYPE_CODE"].ToString();
+                            oDonation.USER.ENTRY_DATE = Convert.ToDateTime(item["USER_ENTRY_DATE"]);
+
+                            oDonation.ITEM = new Item();
+                            oDonation.ITEM.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
+                            oDonation.ITEM.NAME = item["ITEM_NAME"].ToString();
+                            oDonation.ITEM.DESCRIPTION = item["ITEM_DESC"].ToString();
+                            oDonation.ITEM.IS_ACTIVE = (bool?)item["ITEM_IS_ACTIVE"];
+                            oDonation.ITEM.ENTRY_DATE = Convert.ToDateTime(item["ITEM_ENTRY_DATE"]);
+
+                            UploadFile upl = new UploadFile();
+                            upl.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+                            upl.FILE_NAME = item["FILE_NAME"].ToString();
+                            upl.ENTRY_DATE = Convert.ToDateTime(item["UPLOAD_FILE_ENTRY_DATE"]);
+
+                            if (oList.Count > 0)
+                            {
+                                var lastItem = oList.Last();
+                                if (lastItem.DONATION_ID == oDonation.DONATION_ID)
+                                {
+                                    lastItem.UPLOADED_FILES.Add(upl);
+                                }
+                                else
+                                {
+                                    oDonation.UPLOADED_FILES = new List<UploadFile>();
+                                    oDonation.UPLOADED_FILES.Add(upl);
+                                    oList.Add(oDonation);
+                                }
+
+                            }
+                            else
+                            {
+                                oDonation.UPLOADED_FILES = new List<UploadFile>();
+                                oDonation.UPLOADED_FILES.Add(upl);
+                                oList.Add(oDonation);
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            return oList;
+        }
+        #endregion
+
+        #region EDIT_DONATION
+        public void EDIT_DONATION(Donation i_Donation)
+        {
+            string query = "UPG_EDIT_DONATION";
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+
+                    _cmd.Parameters.Add("DONATION_ID", SqlDbType.Int);
+                    _cmd.Parameters["DONATION_ID"].Value = i_Donation.DONATION_ID;
+
+                    _cmd.Parameters.Add("SHIPPED_DATE", SqlDbType.DateTime);
+                    _cmd.Parameters["SHIPPED_DATE"].Value = i_Donation.SHIP_DATE;
+
+                    _cmd.Parameters.Add("ENTRY_DATE", SqlDbType.Date);
+                    _cmd.Parameters["ENTRY_DATE"].Value = i_Donation.ENTRY_DATE;
+
+                    _cmd.Parameters.Add("COLOR", SqlDbType.NVarChar);
+                    _cmd.Parameters["COLOR"].Value = i_Donation.COLOR;
+
+                    _cmd.Parameters.Add("SIZE", SqlDbType.NVarChar);
+                    _cmd.Parameters["SIZE"].Value = i_Donation.SIZE;
+
+                    _cmd.Parameters.Add("QUANTITY", SqlDbType.Int);
+                    _cmd.Parameters["QUANTITY"].Value = i_Donation.QUANTITY;
+                    
+                    _cmd.Parameters.Add("IS_SHIPPED", SqlDbType.Bit);
+                    _cmd.Parameters["IS_SHIPPED"].Value = i_Donation.IS_SHIPPED;
+
+                    _cmd.Parameters.Add("USER_ID", SqlDbType.Int);
+                    _cmd.Parameters["USER_ID"].Value = i_Donation.USER.USER_ID;
+
+                    _cmd.Parameters.Add("ADDRESS_ID", SqlDbType.Int);
+                    _cmd.Parameters["ADDRESS_ID"].Value = i_Donation.ADDRESS.ADDRESS_ID;
+
+                    _cmd.Parameters.Add("ITEM_ID", SqlDbType.Int);
+                    _cmd.Parameters["ITEM_ID"].Value = i_Donation.ITEM.ITEM_ID;
+
+                    _con.Open();
+                    _cmd.ExecuteNonQuery();
+                    _con.Close();
+
+                }
+
+            }
+
+        }
+        #endregion
+
+        #region DELETE_DONATION
+        public void DELETE_DONATION(Int32 DONATION_ID)
+        {
+            string query = "UPG_DELETE_DONATION_BY_DONATION_ID";
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+
+                    _cmd.Parameters.Add("DONATION_ID", SqlDbType.Int);
+                    _cmd.Parameters["DONATION_ID"].Value = DONATION_ID;
+
+                    _con.Open();
+                    _cmd.ExecuteNonQuery();
+                    _con.Close();
+
+                }
+
+            }
+
+        }
+        #endregion
+
+        #region SHIP_DONATION
+        public void SHIP_DONATION(Int32 DONATION_ID)
+        {
+            string query = "UPG_SHIP_DONATION";
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+
+                    _cmd.Parameters.Add("DONATION_ID", SqlDbType.Int);
+                    _cmd.Parameters["DONATION_ID"].Value = DONATION_ID;
+
+                    _con.Open();
+                    _cmd.ExecuteNonQuery();
+                    _con.Close();
+
+                }
+
+            }
+
         }
         #endregion
 

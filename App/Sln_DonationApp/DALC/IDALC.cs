@@ -37,6 +37,7 @@ namespace DALC
             public string NAME { get; set; }
             public string DESCRIPTION { get; set; }
             public DateTime ENTRY_DATE { get; set; }
+            public UploadFile? UPLOAD_FILE { get; set; }
         }
 
         public partial class Donation
@@ -51,6 +52,7 @@ namespace DALC
             public Address ADDRESS { get; set; }
             public User USER { get; set; }
             public Item ITEM { get; set; }
+            public List<UploadFile>? UPLOADED_FILES { get; set; }
 
         }
 
@@ -62,12 +64,20 @@ namespace DALC
             public bool? IS_ACTIVE { get; set; }
             public Category CATAGORY { get; set; }
             public DateTime ENTRY_DATE { get; set; }
+            public UploadFile? UPLOAD_FILE { get; set; }
 
         }
 
+        public partial class UploadFile
+        {
+            public Int32? UPLOADED_FILE_ID { get; set; }
+            public string FILE_NAME { get; set; }
+            public Int32? CATEGORY_ID { get; set; }
+            public Int32? ITEM_ID { get; set; }
+            public Int32? DONATION_ID { get; set; }
+            public DateTime ENTRY_DATE { get; set; }
 
-
-
+        }
         #endregion
 
     }
