@@ -43,21 +43,21 @@ namespace TestingApp
             //Console.WriteLine("enter your desc");
             //c.DESCRIPTION = Console.ReadLine();
             //c.ENTRY_DATE = DateTime.Now;
-            //oDALC.EDIT_CATEGORY(c);
+            //int dd = oDALC.EDIT_CATEGORY(c);
 
 
             //User user = oDALC.GET_USER_BY_USER_ID(2);
             //User userTest = new User();
-            //userTest.USER_ID = 7;
-            //userTest.FIRST_NAME = "besho update";
-            //userTest.LAST_NAME = "al sayyed";
-            //userTest.EMAIL = "besho@gmail.com";
-            //userTest.PASSWORD = "besho123";
+            //userTest.USER_ID = -1;
+            //userTest.FIRST_NAME = "test output ";
+            //userTest.LAST_NAME = "test output ";
+            //userTest.EMAIL = "besho@test output .com";
+            //userTest.PASSWORD = "123";
             //userTest.PHONE = "8182828";
             //userTest.ENTRY_DATE = DateTime.Today;
             //userTest.IS_ACTIVE = true;
             //userTest.USER_TYPE_CODE = "001";
-            //oDALC.UPG_EDIT_USER(userTest);
+            //long user_id = oDALC.EDIT_USER(userTest);
 
 
             //List<User> users = oDALC.Get_Users();
@@ -72,15 +72,35 @@ namespace TestingApp
             //Address oaddress = oDALC.GET_ADDRESS_BY_ADDRESS_ID(1);
 
             //Address addressTest = new Address();
-            //addressTest.ADDRESS_ID = -1;
-            //addressTest.COUNTRY = "TO BE DELETED";
+            //addressTest.ADDRESS_ID = 1;
+            //addressTest.COUNTRY = "TEST UPDATED";
             //addressTest.CITY = "bet la7em";
             //addressTest.STREET = "abo l jeez";
             //addressTest.LATIDUTE = 5.444m;
             //addressTest.LANGITUDE = 25.444m;
-            //oDALC.EDIT_ADDRESS(addressTest);
+            //int dd = oDALC.EDIT_ADDRESS(addressTest);
 
             //List<Address> address = oDALC.GET_ADDRESS_BY_COUNTRY("PALESTINE");
+
+
+            Donation donation = new Donation();
+            donation.DONATION_ID = -1;
+            donation.COLOR = "YELOW";
+            donation.QUANTITY = 5;
+            donation.SIZE = "LLS";
+            donation.SHIP_DATE = DateTime.Today.AddDays(13);
+            donation.ENTRY_DATE = DateTime.Today;
+            donation.IS_SHIPPED = false;
+
+            donation.ADDRESS = new Address();
+            donation.ADDRESS.ADDRESS_ID = 3;
+            donation.ITEM = new Item();
+            donation.ITEM.ITEM_ID = 1;
+            donation.USER = new User();
+            donation.USER.USER_ID = 2;
+            int ss = oDALC.EDIT_DONATION(donation);
+
+            //List<Donation> donation = oDALC.GET_DONATION_BY_IS_NOT_SHIPPED();
         }
     }
 }

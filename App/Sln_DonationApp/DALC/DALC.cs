@@ -99,9 +99,10 @@ namespace DALC
         #endregion
 
         #region EDIT_USER
-        public void EDIT_USER(User i_User)
+        public Int32 EDIT_USER(User i_User)
         {
             string query = "UPG_EDIT_USER";
+            Int32 RETURNED_USER_ID;
 
             using (SqlConnection _con = new SqlConnection(this.ConnectionString))
             {
@@ -111,7 +112,11 @@ namespace DALC
 
                     _cmd.CommandType = CommandType.StoredProcedure;
 
+                    //_cmd.Parameters.Add("USER_ID", SqlDbType.Int);
+                    //_cmd.Parameters["USER_ID"].Value = i_User.USER_ID;
+
                     _cmd.Parameters.Add("USER_ID", SqlDbType.Int);
+                    _cmd.Parameters["USER_ID"].Direction = ParameterDirection.InputOutput;
                     _cmd.Parameters["USER_ID"].Value = i_User.USER_ID;
 
                     _cmd.Parameters.Add("FIRST_NAME", SqlDbType.NVarChar);
@@ -139,13 +144,17 @@ namespace DALC
                     _cmd.Parameters["USER_TYPE_CODE"].Value = i_User.USER_TYPE_CODE;
 
                     _con.Open();
+
                     _cmd.ExecuteNonQuery();
+                    RETURNED_USER_ID = (Int32)_cmd.Parameters["USER_ID"].Value;
+
                     _con.Close();
+
 
                 }
 
             }
-
+            return RETURNED_USER_ID;
         }
         #endregion
 
@@ -335,10 +344,10 @@ namespace DALC
         #endregion
 
         #region EDIT_ADDRESS
-        public void EDIT_ADDRESS(Address i_Address)
+        public Int32 EDIT_ADDRESS(Address i_Address)
         {
             string query = "UPG_EDIT_ADDRESS";
-
+            Int32 RETURNED_ADDRESS_ID;
             using (SqlConnection _con = new SqlConnection(this.ConnectionString))
             {
                 using (SqlCommand _cmd = new SqlCommand(query, _con))
@@ -348,6 +357,7 @@ namespace DALC
                     _cmd.CommandType = CommandType.StoredProcedure;
 
                     _cmd.Parameters.Add("ADDRESS_ID", SqlDbType.Int);
+                    _cmd.Parameters["ADDRESS_ID"].Direction = ParameterDirection.InputOutput;
                     _cmd.Parameters["ADDRESS_ID"].Value = i_Address.ADDRESS_ID;
 
                     _cmd.Parameters.Add("CITY", SqlDbType.NVarChar);
@@ -367,13 +377,16 @@ namespace DALC
 
 
                     _con.Open();
+
                     _cmd.ExecuteNonQuery();
+                    RETURNED_ADDRESS_ID = (Int32)_cmd.Parameters["ADDRESS_ID"].Value;
+
                     _con.Close();
 
                 }
 
             }
-
+            return RETURNED_ADDRESS_ID;
         }
         #endregion
 
@@ -563,10 +576,11 @@ namespace DALC
         #endregion
 
         #region Edit Catagory
-        public void EDIT_CATEGORY(Category category)
+        public Int32 EDIT_CATEGORY(Category category)
         {
 
             string query = "UPG_EDIT_CATEGORY";
+            Int32 RETURNED_CATEGORY_ID;
 
             using (SqlConnection _con = new SqlConnection(this.ConnectionString))
             {
@@ -575,6 +589,7 @@ namespace DALC
                     _cmd.CommandType = CommandType.StoredProcedure;
 
                     _cmd.Parameters.Add("@CATEGORY_ID", SqlDbType.Int);
+                    _cmd.Parameters["@CATEGORY_ID"].Direction = ParameterDirection.InputOutput;
                     _cmd.Parameters["@CATEGORY_ID"].Value = category.CATAGORY_ID;
 
                     _cmd.Parameters.Add("@NAME", SqlDbType.NVarChar);
@@ -587,12 +602,15 @@ namespace DALC
                     _cmd.Parameters["@ENTRY_DATE"].Value = category.ENTRY_DATE;
 
                     _con.Open();
+
                     _cmd.ExecuteNonQuery();
+                    RETURNED_CATEGORY_ID = (Int32)_cmd.Parameters["@CATEGORY_ID"].Value;
+
                     _con.Close();
                 }
 
             }
-
+            return RETURNED_CATEGORY_ID;
         }
 
         #endregion
@@ -835,9 +853,10 @@ namespace DALC
         #endregion
 
         #region EDIT_ITEM
-        public void EDIT_ITEM(Item i_Item)
+        public Int32 EDIT_ITEM(Item i_Item)
         {
             string query = "UPG_EDIT_ITEM";
+            Int32 RETURNED_ITEM_ID;
 
             using (SqlConnection _con = new SqlConnection(this.ConnectionString))
             {
@@ -848,6 +867,7 @@ namespace DALC
                     _cmd.CommandType = CommandType.StoredProcedure;
 
                     _cmd.Parameters.Add("ITEM_ID", SqlDbType.Int);
+                    _cmd.Parameters["ITEM_ID"].Direction = ParameterDirection.InputOutput;
                     _cmd.Parameters["ITEM_ID"].Value = i_Item.ITEM_ID;
 
                     _cmd.Parameters.Add("NAME", SqlDbType.NVarChar);
@@ -866,13 +886,16 @@ namespace DALC
                     _cmd.Parameters["CATAGORY_ID"].Value = i_Item.CATAGORY.CATAGORY_ID;
 
                     _con.Open();
+
                     _cmd.ExecuteNonQuery();
+                    RETURNED_ITEM_ID = (Int32)_cmd.Parameters["ITEM_ID"].Value;
+
                     _con.Close();
 
                 }
 
             }
-
+            return RETURNED_ITEM_ID;
         }
         #endregion
 
@@ -1527,9 +1550,10 @@ namespace DALC
         #endregion
 
         #region EDIT_DONATION
-        public void EDIT_DONATION(Donation i_Donation)
+        public Int32 EDIT_DONATION(Donation i_Donation)
         {
             string query = "UPG_EDIT_DONATION";
+            Int32 RETURNED_DONATION_ID;
 
             using (SqlConnection _con = new SqlConnection(this.ConnectionString))
             {
@@ -1540,6 +1564,7 @@ namespace DALC
                     _cmd.CommandType = CommandType.StoredProcedure;
 
                     _cmd.Parameters.Add("DONATION_ID", SqlDbType.Int);
+                    _cmd.Parameters["DONATION_ID"].Direction = ParameterDirection.InputOutput;
                     _cmd.Parameters["DONATION_ID"].Value = i_Donation.DONATION_ID;
 
                     _cmd.Parameters.Add("SHIPPED_DATE", SqlDbType.DateTime);
@@ -1570,13 +1595,16 @@ namespace DALC
                     _cmd.Parameters["ITEM_ID"].Value = i_Donation.ITEM.ITEM_ID;
 
                     _con.Open();
+
                     _cmd.ExecuteNonQuery();
+                    RETURNED_DONATION_ID = (Int32)_cmd.Parameters["DONATION_ID"].Value;
+
                     _con.Close();
 
                 }
 
             }
-
+            return RETURNED_DONATION_ID;
         }
         #endregion
 
@@ -1633,6 +1661,351 @@ namespace DALC
 
         }
         #endregion
+
+        #region Get UPLOADED_FILE
+        public List<UploadFile> GET_UPLOADED_FILE()
+        {
+            string query = "UPG_GET_UPLOADED_FILES";
+            List<UploadFile> oList = new List<UploadFile>();
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter _dap = new SqlDataAdapter(_cmd);
+                    _dap.Fill(dt);
+
+
+                    if (dt.Rows != null)
+                    {
+                        foreach (DataRow item in dt.Rows)
+                        {
+                            UploadFile uploadFile = new UploadFile();
+                            uploadFile.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+
+                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            {
+                                uploadFile.DONATION_ID = Convert.ToInt32(item["DONATION_ID"]);
+                            }
+                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            {
+                                uploadFile.CATEGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
+                            }
+                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            {
+                                uploadFile.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
+                            }
+
+                            uploadFile.FILE_NAME = item["FILE_NAME"].ToString();
+                            uploadFile.ENTRY_DATE = Convert.ToDateTime(item["ENTRY_DATE"]);
+
+
+                            oList.Add(uploadFile);
+                        }
+                    }
+                }
+
+            }
+
+            return oList;
+        }
+
+
+        #endregion GET_UPLOADED_FILE
+
+        #region Get UPLOADED_FILE_BY_ID
+        public UploadFile GET_UPLOADED_FILE_BY_ID(int uId)
+        {
+            string query = "UPG_GET_UPLOADED_FILE_BY_UPLOADED_FILE_ID";
+
+            UploadFile uploadFile = new UploadFile();
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+                    _cmd.Parameters.Add("UPLOADED_FILE_ID", SqlDbType.Int);
+                    _cmd.Parameters["UPLOADED_FILE_ID"].Value = uId;
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter _dap = new SqlDataAdapter(_cmd);
+                    _dap.Fill(dt);
+
+
+                    if (dt.Rows != null)
+                    {
+                        foreach (DataRow item in dt.Rows)
+                        {
+                            uploadFile.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+
+                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            {
+                                uploadFile.DONATION_ID = Convert.ToInt32(item["DONATION_ID"]);
+                            }
+                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            {
+                                uploadFile.CATEGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
+                            }
+                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            {
+                                uploadFile.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
+                            }
+
+                            uploadFile.FILE_NAME = item["FILE_NAME"].ToString();
+                            uploadFile.ENTRY_DATE = Convert.ToDateTime(item["ENTRY_DATE"]);
+
+
+                        }
+                    }
+                }
+
+            }
+
+            return uploadFile;
+        }
+
+
+        #endregion GET_UPLOADED_FILE
+
+        #region Get UPLOADED_FILE_BY_ITEM_ID
+        public UploadFile GET_UPLOADED_FILE_BY_ITEM_ID(int uId)
+        {
+            string query = "UPG_GET_UPLOADED_FILE_BY_ITEM_ID";
+
+            UploadFile uploadFile = new UploadFile();
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+                    _cmd.Parameters.Add("ITEM_ID", SqlDbType.Int);
+                    _cmd.Parameters["ITEM_ID"].Value = uId;
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter _dap = new SqlDataAdapter(_cmd);
+                    _dap.Fill(dt);
+
+
+                    if (dt.Rows != null)
+                    {
+                        foreach (DataRow item in dt.Rows)
+                        {
+                            uploadFile.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+
+                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            {
+                                uploadFile.DONATION_ID = Convert.ToInt32(item["DONATION_ID"]);
+                            }
+                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            {
+                                uploadFile.CATEGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
+                            }
+                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            {
+                                uploadFile.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
+                            }
+
+                            uploadFile.FILE_NAME = item["FILE_NAME"].ToString();
+                            uploadFile.ENTRY_DATE = Convert.ToDateTime(item["ENTRY_DATE"]);
+
+
+                        }
+                    }
+                }
+
+            }
+
+            return uploadFile;
+        }
+
+
+        #endregion UPLOADED_FILE_BY_ITEM_ID
+
+        #region Get UPLOADED_FILE_BY_CATEGORY_ID
+        public UploadFile GET_UPLOADED_FILE_BY_CATEGORY_ID(int uId)
+        {
+            string query = "UPG_GET_UPLOADED_FILE_BY_CATEGORY_ID";
+
+            UploadFile uploadFile = new UploadFile();
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+                    _cmd.Parameters.Add("CATEGORY_ID", SqlDbType.Int);
+                    _cmd.Parameters["CATEGORY_ID"].Value = uId;
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter _dap = new SqlDataAdapter(_cmd);
+                    _dap.Fill(dt);
+
+
+                    if (dt.Rows != null)
+                    {
+                        foreach (DataRow item in dt.Rows)
+                        {
+                            uploadFile.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+
+                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            {
+                                uploadFile.DONATION_ID = Convert.ToInt32(item["DONATION_ID"]);
+                            }
+                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            {
+                                uploadFile.CATEGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
+                            }
+                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            {
+                                uploadFile.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
+                            }
+
+                            uploadFile.FILE_NAME = item["FILE_NAME"].ToString();
+                            uploadFile.ENTRY_DATE = Convert.ToDateTime(item["ENTRY_DATE"]);
+
+
+                        }
+                    }
+                }
+
+            }
+
+            return uploadFile;
+        }
+
+
+        #endregion UPLOADED_FILE_BY_CATEGORY_ID
+
+        #region Get UPLOADED_FILE_BY_DONATION_ID
+        public List<UploadFile> GET_UPLOADED_FILE_BY_DONATION_ID(Int32 uId)
+        {
+            string query = "UPG_GET_UPLOADED_FILE_BY_DONATION_ID";
+
+            List<UploadFile> oList = new List<UploadFile>();
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+                    _cmd.Parameters.Add("DONATION_ID", SqlDbType.Int);
+                    _cmd.Parameters["DONATION_ID"].Value = uId;
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter _dap = new SqlDataAdapter(_cmd);
+                    _dap.Fill(dt);
+
+
+                    if (dt.Rows != null)
+                    {
+                        foreach (DataRow item in dt.Rows)
+                        {
+                            UploadFile uploadFile = new UploadFile();
+                            uploadFile.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
+
+                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            {
+                                uploadFile.DONATION_ID = Convert.ToInt32(item["DONATION_ID"]);
+                            }
+                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            {
+                                uploadFile.CATEGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
+                            }
+                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            {
+                                uploadFile.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
+                            }
+
+                            uploadFile.FILE_NAME = item["FILE_NAME"].ToString();
+                            uploadFile.ENTRY_DATE = Convert.ToDateTime(item["ENTRY_DATE"]);
+
+
+                            oList.Add(uploadFile);
+                        }
+                    }
+                }
+
+            }
+
+            return oList;
+        }
+
+
+        #endregion UPLOADED_FILE_BY_DONATION_ID
+
+        #region delete UPLOADED_FILE_BY_ID
+        public void DELETE_UPLOADED_FILE(Int32 cId)
+        {
+
+            string query = "UPG_DELETE_UPLOADED_FILES";
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+                    _cmd.CommandType = CommandType.StoredProcedure;
+
+                    _cmd.Parameters.Add("UPLOADED_FILE_ID", SqlDbType.Int);
+                    _cmd.Parameters["UPLOADED_FILE_ID"].Value = cId;
+
+                    _con.Open();
+                    _cmd.ExecuteNonQuery();
+                    _con.Close();
+                }
+
+            }
+
+        }
+        #endregion
+
+        #region EDIT_UPLOADED_FILE
+        public void EDIT_UPLOADED_FILE(UploadFile uploadFile)
+        {
+            string query = "UPG_EDIT_UPLOADED_FILES";
+
+            using (SqlConnection _con = new SqlConnection(this.ConnectionString))
+            {
+                using (SqlCommand _cmd = new SqlCommand(query, _con))
+                {
+
+
+                    _cmd.CommandType = CommandType.StoredProcedure;
+
+                    _cmd.Parameters.Add("UPLOADED_FILE_ID", SqlDbType.Int);
+                    _cmd.Parameters["UPLOADED_FILE_ID"].Value = uploadFile.UPLOADED_FILE_ID;
+
+                    _cmd.Parameters.Add("FILE_NAME", SqlDbType.NVarChar);
+                    _cmd.Parameters["FILE_NAME"].Value = uploadFile.FILE_NAME;
+
+                    _cmd.Parameters.Add("ENTRY_DATE", SqlDbType.DateTime);
+                    _cmd.Parameters["ENTRY_DATE"].Value = uploadFile.ENTRY_DATE;
+
+                    _cmd.Parameters.Add("CATEGORY_ID", SqlDbType.Int);
+                    _cmd.Parameters["CATEGORY_ID"].Value = uploadFile.CATEGORY_ID;
+
+                    _cmd.Parameters.Add("DONATION_ID", SqlDbType.Int);
+                    _cmd.Parameters["DONATION_ID"].Value = uploadFile.DONATION_ID;
+
+                    _cmd.Parameters.Add("ITEM_ID", SqlDbType.Int);
+                    _cmd.Parameters["ITEM_ID"].Value = uploadFile.ITEM_ID;
+
+                    _con.Open();
+                    _cmd.ExecuteNonQuery();
+                    _con.Close();
+
+                }
+
+            }
+
+        }
+        #endregion
+
 
     }
 }
