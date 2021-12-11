@@ -10,7 +10,7 @@ namespace DALC
 {
     public class DALC
     {
-        string ConnectionString = @"Data Source=DESKTOP-FI4HSGV\MANSURSQL;Initial Catalog=DonationAppDB;Integrated Security=True";
+        public string ConnectionString = "";
 
         #region Get Users
         public List<User> Get_Users()
@@ -185,7 +185,7 @@ namespace DALC
         }
         #endregion
 
-        #region DELETE_USER_BY_USER_ID
+        #region DECATIVATE_USER_BY_USER_ID
         public void DECATIVATE_USER_BY_USER_ID(long USER_ID)
         {
             string query = "UPG_DECATIVATE_USER_BY_USER_ID";
