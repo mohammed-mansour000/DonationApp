@@ -6,7 +6,7 @@ namespace BLC
 {
     public class BLC
     {
-        string ConnectionString = @"Data Source=DESKTOP-FI4HSGV\MANSURSQL;Initial Catalog=DonationAppDB;Integrated Security=True";
+        public string ConnectionString = "";
 
         #region Get_Users
         public List<User> Get_Users()
@@ -16,6 +16,7 @@ namespace BLC
             List<User> oUsers = new List<User>();
             oUsers = oDalc.Get_Users();
             
+            if(oUsers.Count == 0) { throw new Exception("There are no Users"); }
             return oUsers;
         }
         #endregion
