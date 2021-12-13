@@ -8,7 +8,7 @@ namespace TestingApp
     {
         static void Main(string[] args)
         {
-            DALC.DALC oDALC = new DALC.DALC();
+            BLC.BLC oBLC = new BLC.BLC();
 
             //List<Item> items = oDALC.GET_ITEMS();
             //foreach (Item i in items)
@@ -57,7 +57,7 @@ namespace TestingApp
             //userTest.ENTRY_DATE = DateTime.Today;
             //userTest.IS_ACTIVE = true;
             //userTest.USER_TYPE_CODE = "001";
-            //long user_id = oDALC.EDIT_USER(userTest);
+            //long user_id = oBLC.EDIT_USER(userTest);
 
 
             //List<User> users = oDALC.Get_Users();
@@ -70,37 +70,61 @@ namespace TestingApp
             //List<Address> address = oDALC.GET_ADDRESS();
 
             //Address oaddress = oDALC.GET_ADDRESS_BY_ADDRESS_ID(1);
-
-            //Address addressTest = new Address();
-            //addressTest.ADDRESS_ID = 1;
-            //addressTest.COUNTRY = "TEST UPDATED";
-            //addressTest.CITY = "bet la7em";
-            //addressTest.STREET = "abo l jeez";
-            //addressTest.LATIDUTE = 5.444m;
-            //addressTest.LANGITUDE = 25.444m;
-            //int dd = oDALC.EDIT_ADDRESS(addressTest);
+            //try
+            //{
+            //    Address addressTest = new Address();
+            //    addressTest.ADDRESS_ID = -1;
+            //    addressTest.COUNTRY = "TEST INSERT";
+            //    addressTest.CITY = "bet la7em";
+            //    addressTest.STREET = "abo l jeez";
+            //    addressTest.LATIDUTE = 5.444m;
+            //    addressTest.LANGITUDE = 25.444m;
+            //    int dd = oBLC.EDIT_ADDRESS(addressTest);
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
 
             //List<Address> address = oDALC.GET_ADDRESS_BY_COUNTRY("PALESTINE");
 
+            //try
+            //{
+            //    Donation donation = new Donation();
+            //    donation.DONATION_ID = 0;
+            //    donation.COLOR = "YELOW";
+            //    donation.QUANTITY = 5;
+            //    donation.SIZE = "LLS";
+            //    donation.SHIP_DATE = DateTime.Today.AddDays(13);
+            //    donation.IS_SHIPPED = false;
 
-            Donation donation = new Donation();
-            donation.DONATION_ID = -1;
-            donation.COLOR = "YELOW";
-            donation.QUANTITY = 5;
-            donation.SIZE = "LLS";
-            donation.SHIP_DATE = DateTime.Today.AddDays(13);
-            donation.ENTRY_DATE = DateTime.Today;
-            donation.IS_SHIPPED = false;
-
-            donation.ADDRESS = new Address();
-            donation.ADDRESS.ADDRESS_ID = 3;
-            donation.ITEM = new Item();
-            donation.ITEM.ITEM_ID = 1;
-            donation.USER = new User();
-            donation.USER.USER_ID = 2;
-            int ss = oDALC.EDIT_DONATION(donation);
+            //    donation.ADDRESS = new Address();
+            //    donation.ADDRESS.ADDRESS_ID = 3;
+            //    donation.ITEM = new Item();
+            //    donation.ITEM.ITEM_ID = 1;
+            //    donation.USER = new User();
+            //    donation.USER.USER_ID = 2;
+            //    int ss = oBLC.EDIT_DONATION(donation);
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //}
 
             //List<Donation> donation = oDALC.GET_DONATION_BY_IS_NOT_SHIPPED();
+            //Address oo = oBLC.GET_ADDRESS_BY_ADDRESS_ID(2);
+            //try
+            //{
+            //    User ouser = oBLC.GET_USER_BY_EMAIL_AND_PASSWORD("EMAIL", "233");
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message); 
+            //}
+
+            //List<Donation> S = oBLC.GET_DONATION_BY_IS_NOT_SHIPPED();
+            //oBLC.SHIP_DONATION(1003);
+            oBLC.DELETE_CATEGORY(2);
         }
     }
 }

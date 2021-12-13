@@ -1965,9 +1965,10 @@ namespace DALC
         #endregion
 
         #region EDIT_UPLOADED_FILE
-        public void EDIT_UPLOADED_FILE(UploadFile uploadFile)
+        public Int32 EDIT_UPLOADED_FILE(UploadFile uploadFile)
         {
             string query = "UPG_EDIT_UPLOADED_FILES";
+            int RETURNED_UPLOADED_FILE_ID;
 
             using (SqlConnection _con = new SqlConnection(this.ConnectionString))
             {
@@ -1978,6 +1979,7 @@ namespace DALC
                     _cmd.CommandType = CommandType.StoredProcedure;
 
                     _cmd.Parameters.Add("UPLOADED_FILE_ID", SqlDbType.Int);
+                    _cmd.Parameters["UPLOADED_FILE_ID"].Direction = ParameterDirection.InputOutput;
                     _cmd.Parameters["UPLOADED_FILE_ID"].Value = uploadFile.UPLOADED_FILE_ID;
 
                     _cmd.Parameters.Add("FILE_NAME", SqlDbType.NVarChar);
@@ -1997,12 +1999,13 @@ namespace DALC
 
                     _con.Open();
                     _cmd.ExecuteNonQuery();
+                    RETURNED_UPLOADED_FILE_ID = (Int32)_cmd.Parameters["UPLOADED_FILE_ID"].Value;
                     _con.Close();
 
                 }
 
             }
-
+            return RETURNED_UPLOADED_FILE_ID;
         }
         #endregion
 
