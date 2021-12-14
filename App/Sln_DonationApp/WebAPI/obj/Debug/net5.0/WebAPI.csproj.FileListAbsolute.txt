@@ -41,3 +41,6 @@ E:\Training\DonationApp\App\Sln_DonationApp\WebAPI\obj\Debug\net5.0\WebAPI.dll
 E:\Training\DonationApp\App\Sln_DonationApp\WebAPI\obj\Debug\net5.0\ref\WebAPI.dll
 E:\Training\DonationApp\App\Sln_DonationApp\WebAPI\obj\Debug\net5.0\WebAPI.pdb
 E:\Training\DonationApp\App\Sln_DonationApp\WebAPI\obj\Debug\net5.0\WebAPI.genruntimeconfig.cache
+E:\Training\DonationApp\App\Sln_DonationApp\WebAPI\bin\Debug\net5.0\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\Training\DonationApp\App\Sln_DonationApp\WebAPI\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+E:\Training\DonationApp\App\Sln_DonationApp\WebAPI\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll

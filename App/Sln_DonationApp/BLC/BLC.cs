@@ -1,5 +1,10 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Intrinsics.X86;
+using System.Security.Cryptography;
+using System.Text;
 using static DALC.IDALC;
 
 namespace BLC
@@ -7,6 +12,12 @@ namespace BLC
     public class BLC
     {
         public string ConnectionString = "";
+
+        public IConfiguration _config;
+        public BLC(IConfiguration config)
+        {
+            _config = config;
+        }
 
         #region Get_Users
         public List<User> Get_Users()
@@ -31,6 +42,8 @@ namespace BLC
             User oUser = new User();
             oUser = oDalc.GET_USER_BY_USER_ID(USER_ID);
 
+            if (oUser.USER_ID == null) { throw new Exception("User doesn't exist"); }
+
             return oUser;
         }
         #endregion
@@ -42,6 +55,15 @@ namespace BLC
 
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
+
+            if (!string.IsNullOrEmpty(i_User.PASSWORD))
+            {
+                var encrypted = EncryptString(i_User.PASSWORD, _config["Key"]);
+               // Console.WriteLine(encrypted);
+                i_User.PASSWORD = encrypted;
+            }
+
+
             int RETURNED_USER_ID = oDalc.EDIT_USER(i_User);
 
             return RETURNED_USER_ID;
@@ -77,8 +99,17 @@ namespace BLC
             oDalc.ConnectionString = this.ConnectionString;
 
             User oUSER = new User();
-            oUSER = oDalc.GET_USER_BY_EMAIL_AND_PASSWORD(EMAIL, PASSWORD);
-            if(oUSER.USER_ID == null) { throw new Exception("Email or Password is incorrect"); }
+            oUSER = oDalc.GET_USER_BY_EMAIL_AND_PASSWORD(EMAIL);
+
+            if(oUSER.USER_ID == null) { throw new Exception("Email is incorrect"); }
+
+            var decrypted = DecryptString(oUSER.PASSWORD, _config["Key"]);
+
+            if (decrypted != PASSWORD) { throw new Exception("Password is incorrect"); }
+
+            oUSER.PASSWORD = null;
+
+           // Console.WriteLine(decrypted);
 
             return oUSER;
         }
@@ -93,6 +124,8 @@ namespace BLC
             List<Address> oADDRESSES = new List<Address>();
             oADDRESSES = oDalc.GET_ADDRESS();
 
+            if (oADDRESSES.Count == 0) { throw new Exception("There are no Addresses"); }
+            
             return oADDRESSES;
         }
         #endregion
@@ -107,6 +140,8 @@ namespace BLC
 
             Address oADDRESS = new Address();
             oADDRESS = oDalc.GET_ADDRESS_BY_ADDRESS_ID(ADDRESS_ID);
+
+            if (oADDRESS.ADDRESS_ID == null) { throw new Exception("Address doesn't exist"); }
 
             return oADDRESS;
         }
@@ -514,5 +549,74 @@ namespace BLC
             return RETURNED_UPLOADED_FILE_ID;
         }
         #endregion
+
+        #region EncryptString
+        public static string EncryptString(string text, string keyString)
+        {
+            var key = Encoding.UTF8.GetBytes(keyString);
+
+            using (var aesAlg = System.Security.Cryptography.Aes.Create())
+            {
+                using (var encryptor = aesAlg.CreateEncryptor(key, aesAlg.IV))
+                {
+                    using (var msEncrypt = new MemoryStream())
+                    {
+                        using (var csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
+                        using (var swEncrypt = new StreamWriter(csEncrypt))
+                        {
+                            swEncrypt.Write(text);
+                        }
+
+                        var iv = aesAlg.IV;
+
+                        var decryptedContent = msEncrypt.ToArray();
+
+                        var result = new byte[iv.Length + decryptedContent.Length];
+
+                        Buffer.BlockCopy(iv, 0, result, 0, iv.Length);
+                        Buffer.BlockCopy(decryptedContent, 0, result, iv.Length, decryptedContent.Length);
+
+                        return Convert.ToBase64String(result);
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region DecryptString
+        public static string DecryptString(string cipherText, string keyString)
+        {
+            var fullCipher = Convert.FromBase64String(cipherText);
+
+            var iv = new byte[16];
+            var cipher = new byte[16];
+
+            Buffer.BlockCopy(fullCipher, 0, iv, 0, iv.Length);
+            Buffer.BlockCopy(fullCipher, iv.Length, cipher, 0, iv.Length);
+            var key = Encoding.UTF8.GetBytes(keyString);
+
+            using (var aesAlg = System.Security.Cryptography.Aes.Create())
+            {
+                using (var decryptor = aesAlg.CreateDecryptor(key, iv))
+                {
+                    string result;
+                    using (var msDecrypt = new MemoryStream(cipher))
+                    {
+                        using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                        {
+                            using (var srDecrypt = new StreamReader(csDecrypt))
+                            {
+                                result = srDecrypt.ReadToEnd();
+                            }
+                        }
+                    }
+
+                    return result;
+                }
+            }
+        }
+        #endregion
+
+
     }
 }

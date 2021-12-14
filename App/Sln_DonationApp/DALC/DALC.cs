@@ -213,7 +213,7 @@ namespace DALC
         #endregion
 
         #region GET_USER_BY_EMAIL_AND_PASSWORD
-        public User GET_USER_BY_EMAIL_AND_PASSWORD(string EMAIL, string PASSWORD)
+        public User GET_USER_BY_EMAIL_AND_PASSWORD(string EMAIL)
         {
             string query = "UPG_GET_USER_BY_EMAIL_AND_PASSWORD";
             User oUser = new User();
@@ -229,8 +229,8 @@ namespace DALC
                     _cmd.Parameters.Add("EMAIL", SqlDbType.NVarChar);
                     _cmd.Parameters["EMAIL"].Value = EMAIL;
 
-                    _cmd.Parameters.Add("PASSWORD", SqlDbType.NVarChar);
-                    _cmd.Parameters["PASSWORD"].Value = PASSWORD;
+                    //_cmd.Parameters.Add("PASSWORD", SqlDbType.NVarChar);
+                    //_cmd.Parameters["PASSWORD"].Value = PASSWORD;
 
                     DataTable dt = new DataTable();
                     SqlDataAdapter _dap = new SqlDataAdapter(_cmd);
@@ -247,6 +247,7 @@ namespace DALC
                             oUser.LAST_NAME = item["LAST_NAME"].ToString();
                             oUser.EMAIL = item["EMAIL"].ToString();
                             oUser.PHONE = item["PHONE"].ToString();
+                            oUser.PASSWORD = item["PASSWORD"].ToString();
                             oUser.USER_TYPE_CODE = item["USER_TYPE_CODE"].ToString();
                             oUser.IS_ACTIVE = (bool?)item["IS_ACTIVE"];
                             oUser.ENTRY_DATE = Convert.ToDateTime(item["ENTRY_DATE"]);

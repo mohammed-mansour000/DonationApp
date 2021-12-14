@@ -8,7 +8,7 @@ namespace TestingApp
     {
         static void Main(string[] args)
         {
-            BLC.BLC oBLC = new BLC.BLC();
+            //BLC.BLC oBLC = new BLC.BLC();
 
             //List<Item> items = oDALC.GET_ITEMS();
             //foreach (Item i in items)
@@ -46,12 +46,12 @@ namespace TestingApp
             //int dd = oDALC.EDIT_CATEGORY(c);
 
 
-            //User user = oDALC.GET_USER_BY_USER_ID(2);
+            //User user = object.GET_USER_BY_USER_ID(2);
             //User userTest = new User();
             //userTest.USER_ID = -1;
             //userTest.FIRST_NAME = "test output ";
             //userTest.LAST_NAME = "test output ";
-            //userTest.EMAIL = "besho@test output .com";
+            //userTest.EMAIL = "ttest crypt";
             //userTest.PASSWORD = "123";
             //userTest.PHONE = "8182828";
             //userTest.ENTRY_DATE = DateTime.Today;
@@ -62,7 +62,8 @@ namespace TestingApp
 
             //List<User> users = oDALC.Get_Users();
 
-            //User user = oDALC.GET_USER_BY_EMAIL_AND_PASSWORD("besho@gmail.com", "besho123");
+            // User user = oBLC.GET_USER_BY_EMAIL_AND_PASSWORD("ttest crypt", "123");
+            //$2b$13$Ds8JOuEwjT / P9PrSYix4N.HWxOjdK7wVe827NZixlFw35lzIornKC
             //foreach (User u  in users) {
             //    Console.WriteLine(u.FIRST_NAME);
             //}
@@ -124,7 +125,7 @@ namespace TestingApp
 
             //List<Donation> S = oBLC.GET_DONATION_BY_IS_NOT_SHIPPED();
             //oBLC.SHIP_DONATION(1003);
-            oBLC.DELETE_CATEGORY(2);
+            //oBLC.GET_USER_BY_EMAIL_AND_PASSWORD("EMAIL", "233");
         }
     }
 }

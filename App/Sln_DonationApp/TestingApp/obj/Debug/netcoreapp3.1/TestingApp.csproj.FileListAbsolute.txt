@@ -43,3 +43,5 @@ C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\Testin
 C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+E:\Training\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\BLC.dll
+E:\Training\DonationApp\App\Sln_DonationApp\TestingApp\bin\Debug\netcoreapp3.1\BLC.pdb

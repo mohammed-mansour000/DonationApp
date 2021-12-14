@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DALC", "DALC\DALC.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestingApp", "TestingApp\TestingApp.csproj", "{E68B67EC-FEF1-4677-83FD-7026261AD516}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLC", "BLC\BLC.csproj", "{96FDEEB0-9340-49D7-8D9C-BD375A5F067D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLC", "BLC\BLC.csproj", "{96FDEEB0-9340-49D7-8D9C-BD375A5F067D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{C6BE181F-1899-46FF-BFC5-C62E7905AE91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{96FDEEB0-9340-49D7-8D9C-BD375A5F067D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96FDEEB0-9340-49D7-8D9C-BD375A5F067D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96FDEEB0-9340-49D7-8D9C-BD375A5F067D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6BE181F-1899-46FF-BFC5-C62E7905AE91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6BE181F-1899-46FF-BFC5-C62E7905AE91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6BE181F-1899-46FF-BFC5-C62E7905AE91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6BE181F-1899-46FF-BFC5-C62E7905AE91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
