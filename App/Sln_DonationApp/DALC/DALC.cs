@@ -505,7 +505,7 @@ namespace DALC
 
 
 
-        #endregion Get Catagory
+        #endregion
 
         #region Get Catagory By Id
         public Category GET_CATEGORY_BY_ID(Int32 cId)
@@ -639,6 +639,7 @@ namespace DALC
                         foreach (DataRow item in dt.Rows)
                         {
                             Item oItem = new Item();
+
                             oItem.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
                             oItem.NAME = item["ItemName"].ToString();
                             oItem.DESCRIPTION = item["ItemDescription"].ToString();
@@ -776,16 +777,17 @@ namespace DALC
         #endregion
 
         #region Get Item By Name
-        public Item GET_ITEM_BY_Name(String name)
+        public List<Item> GET_ITEM_BY_Name(String name)
         {
 
             string query = "UPG_GET_ITEM_BY_NAME";
-            Item oItem = new Item();
+            List<Item> oList = new List<Item>();
 
             using (SqlConnection _con = new SqlConnection(this.ConnectionString))
             {
                 using (SqlCommand _cmd = new SqlCommand(query, _con))
                 {
+
 
                     _cmd.Parameters.Add("ITEM_NAME", SqlDbType.NVarChar);
                     _cmd.Parameters["ITEM_NAME"].Value = name;
@@ -800,6 +802,8 @@ namespace DALC
                     {
                         foreach (DataRow item in dt.Rows)
                         {
+                            Item oItem = new Item();
+
                             oItem.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
                             oItem.NAME = item["ItemName"].ToString();
                             oItem.DESCRIPTION = item["ItemDescription"].ToString();
@@ -817,14 +821,14 @@ namespace DALC
                             oItem.UPLOAD_FILE.FILE_NAME = item["FILE_NAME"].ToString();
                             oItem.UPLOAD_FILE.ENTRY_DATE = Convert.ToDateTime(item["UPLOAD_FILE_ENTRY_DATE"]);
 
-
+                            oList.Add(oItem);
                         }
                     }
                 }
 
             }
 
-            return oItem;
+            return oList;
         }
         #endregion
 
@@ -1692,11 +1696,11 @@ namespace DALC
                             {
                                 uploadFile.DONATION_ID = Convert.ToInt32(item["DONATION_ID"]);
                             }
-                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            if (!string.IsNullOrEmpty(item["CATEGORY_ID"].ToString()))
                             {
                                 uploadFile.CATEGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
                             }
-                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            if (!string.IsNullOrEmpty(item["ITEM_ID"].ToString()))
                             {
                                 uploadFile.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
                             }
@@ -1716,7 +1720,7 @@ namespace DALC
         }
 
 
-        #endregion GET_UPLOADED_FILE
+        #endregion
 
         #region Get UPLOADED_FILE_BY_ID
         public UploadFile GET_UPLOADED_FILE_BY_ID(int uId)
@@ -1748,11 +1752,11 @@ namespace DALC
                             {
                                 uploadFile.DONATION_ID = Convert.ToInt32(item["DONATION_ID"]);
                             }
-                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            if (!string.IsNullOrEmpty(item["CATEGORY_ID"].ToString()))
                             {
                                 uploadFile.CATEGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
                             }
-                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            if (!string.IsNullOrEmpty(item["ITEM_ID"].ToString()))
                             {
                                 uploadFile.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
                             }
@@ -1771,7 +1775,7 @@ namespace DALC
         }
 
 
-        #endregion GET_UPLOADED_FILE
+        #endregion
 
         #region Get UPLOADED_FILE_BY_ITEM_ID
         public UploadFile GET_UPLOADED_FILE_BY_ITEM_ID(int uId)
@@ -1803,11 +1807,11 @@ namespace DALC
                             {
                                 uploadFile.DONATION_ID = Convert.ToInt32(item["DONATION_ID"]);
                             }
-                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            if (!string.IsNullOrEmpty(item["CATEGORY_ID"].ToString()))
                             {
                                 uploadFile.CATEGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
                             }
-                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            if (!string.IsNullOrEmpty(item["ITEM_ID"].ToString()))
                             {
                                 uploadFile.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
                             }
@@ -1826,7 +1830,7 @@ namespace DALC
         }
 
 
-        #endregion UPLOADED_FILE_BY_ITEM_ID
+        #endregion
 
         #region Get UPLOADED_FILE_BY_CATEGORY_ID
         public UploadFile GET_UPLOADED_FILE_BY_CATEGORY_ID(int uId)
@@ -1858,11 +1862,11 @@ namespace DALC
                             {
                                 uploadFile.DONATION_ID = Convert.ToInt32(item["DONATION_ID"]);
                             }
-                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            if (!string.IsNullOrEmpty(item["CATEGORY_ID"].ToString()))
                             {
                                 uploadFile.CATEGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
                             }
-                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            if (!string.IsNullOrEmpty(item["ITEM_ID"].ToString()))
                             {
                                 uploadFile.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
                             }
@@ -1914,11 +1918,11 @@ namespace DALC
                             {
                                 uploadFile.DONATION_ID = Convert.ToInt32(item["DONATION_ID"]);
                             }
-                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            if (!string.IsNullOrEmpty(item["CATEGORY_ID"].ToString()))
                             {
                                 uploadFile.CATEGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
                             }
-                            if (!string.IsNullOrEmpty(item["DONATION_ID"].ToString()))
+                            if (!string.IsNullOrEmpty(item["ITEM_ID"].ToString()))
                             {
                                 uploadFile.ITEM_ID = Convert.ToInt32(item["ITEM_ID"]);
                             }

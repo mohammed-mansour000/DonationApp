@@ -175,11 +175,15 @@ namespace BLC
         #region GET_ADDRESS_BY_COUNTRY
         public List<Address> GET_ADDRESS_BY_COUNTRY(string COUNTRY)
         {
+            if (COUNTRY == null) { throw new Exception("Country can't be null or empty"); }
+
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
 
             List<Address> oADDRESSES = new List<Address>();
             oADDRESSES = oDalc.GET_ADDRESS_BY_COUNTRY(COUNTRY);
+
+            if (oADDRESSES.Count == 0) { throw new Exception("There are no Addresses"); }
 
             return oADDRESSES;
         }
@@ -193,6 +197,8 @@ namespace BLC
             List<Donation> oDonations = new List<Donation>(); ;
             oDonations = oDalc.GET_DONATIONS();
 
+            if (oDonations.Count == 0) { throw new Exception("There are no Donations"); }
+            
             return oDonations;
         }
         #endregion
@@ -206,6 +212,8 @@ namespace BLC
             oDalc.ConnectionString = this.ConnectionString;
             Donation oDonation = new Donation(); ;
             oDonation = oDalc.GET_DONATION_BY_DONATION_ID(DONATION_ID);
+
+            if (oDonation.DONATION_ID == null) { throw new Exception("Donation doesn't exist"); }
 
             return oDonation;
         }
@@ -222,6 +230,8 @@ namespace BLC
             List<Donation> oDonations = new List<Donation>(); ;
             oDonations = oDalc.GET_DONATION_BY_USER_ID(USER_ID);
 
+            if (oDonations.Count == 0) { throw new Exception("There are no Donations"); }
+
             return oDonations;
         }
         #endregion
@@ -236,6 +246,8 @@ namespace BLC
 
             List<Donation> oDonations = new List<Donation>(); ;
             oDonations = oDalc.GET_DONATION_BY_ITEM_ID(ITEM_ID);
+
+            if (oDonations.Count == 0) { throw new Exception("There are no Donations"); }
 
             return oDonations;
         }
@@ -252,6 +264,8 @@ namespace BLC
             List<Donation> oDonations = new List<Donation>();
             oDonations = oDalc.GET_DONATION_BY_ADDRESS_ID(ADDRESS_ID);
 
+            if (oDonations.Count == 0) { throw new Exception("There are no Donations"); }
+
             return oDonations;
         }
         #endregion
@@ -264,6 +278,8 @@ namespace BLC
 
             List<Donation> oDonations = new List<Donation>(); ;
             oDonations = oDalc.GET_DONATION_BY_IS_SHIPPED();
+
+            if (oDonations.Count == 0) { throw new Exception("There are no Donations"); }
 
             return oDonations;
         }
@@ -278,6 +294,8 @@ namespace BLC
             List<Donation> oDonations = new List<Donation>(); ;
             oDonations = oDalc.GET_DONATION_BY_IS_NOT_SHIPPED();
 
+            if (oDonations.Count == 0) { throw new Exception("There are no Donations"); }
+
             return oDonations;
         }
         #endregion
@@ -288,6 +306,7 @@ namespace BLC
             if (i_Donation.DONATION_ID == null || i_Donation.DONATION_ID == 0) { throw new Exception("Primary key can't be null or empty"); }
             if (i_Donation.USER.USER_ID == null || i_Donation.USER.USER_ID == 0) { throw new Exception("Foreign key USER_ID can't be null or empty"); }
             if (i_Donation.ITEM.ITEM_ID == null || i_Donation.ITEM.ITEM_ID == 0) { throw new Exception("Foreign key ITEM_ID can't be null or empty"); }
+            if (i_Donation.ADDRESS.ADDRESS_ID == null || i_Donation.ITEM.ITEM_ID == 0) { throw new Exception("Foreign key ADDRESS_ID can't be null or empty"); }
 
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
@@ -313,6 +332,8 @@ namespace BLC
         #region SHIP_DONATION
         public void SHIP_DONATION(Int32 DONATION_ID)
         {
+            if (DONATION_ID == null || DONATION_ID == 0) { throw new Exception("Primary key can't be null or empty"); }
+
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
             oDalc.SHIP_DONATION(DONATION_ID);
@@ -324,8 +345,11 @@ namespace BLC
         {
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
+
             List<Item> oItems = new List<Item>();
             oItems = oDalc.GET_ITEMS();
+
+            if (oItems.Count == 0) { throw new Exception("There are no items"); }
 
             return oItems;
         }
@@ -335,10 +359,15 @@ namespace BLC
         #region GET_ITEM_BY_ID
         public Item GET_ITEM_BY_ID(Int32 iId)
         {
+            if (iId == null || iId == 0) { throw new Exception("Primary key can't be null or empty"); }
+
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
+
             Item oItem = new Item();
             oItem = oDalc.GET_ITEM_BY_ID(iId);
+
+            if (oItem.ITEM_ID == null) { throw new Exception("Item doesn't exist"); }
 
             return oItem;
         }
@@ -348,10 +377,14 @@ namespace BLC
         #region GET_ITEM_BY_CATEGORY_ID
         public List<Item> GET_ITEM_BY_CATEGORY_ID(Int32 iId)
         {
+            if (iId == null || iId == 0) { throw new Exception("Primary key can't be null or empty"); }
+
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
             List<Item> oItems = new List<Item>();
             oItems = oDalc.GET_ITEM_BY_CATEGORY_ID(iId);
+
+            if (oItems.Count == 0) { throw new Exception("Item doesn't exist"); }
 
             return oItems;
         }
@@ -359,12 +392,14 @@ namespace BLC
         #endregion
 
         #region GET_ITEM_BY_NAME
-        public Item GET_ITEM_BY_NAME(string name)
+        public List<Item> GET_ITEM_BY_NAME(string name)
         {
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
-            Item oItem = new Item();
+            List<Item> oItem = new List<Item>();
             oItem = oDalc.GET_ITEM_BY_Name(name);
+
+            if (oItem.Count == 0) { throw new Exception("Item doesn't exist"); }
 
             return oItem;
         }
@@ -410,19 +445,26 @@ namespace BLC
             List<UploadFile> oUploadedFiles = new List<UploadFile>();
             oUploadedFiles = oDalc.GET_UPLOADED_FILE();
 
+            if (oUploadedFiles.Count == 0) { throw new Exception("There are no Uploaded Files"); }
+
             return oUploadedFiles;
         }
 
         #endregion
 
+
         #region Get UPLOADED_FILE_BY_ID
 
         public UploadFile GET_UPLOADED_FILE_BY_ID(int uId)
         {
+            if (uId == null || uId == 0) { throw new Exception("Primary key can't be null or empty"); }
+
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
             UploadFile oUploadedFiles = new UploadFile();
             oUploadedFiles = oDalc.GET_UPLOADED_FILE_BY_ID(uId);
+
+            if (oUploadedFiles.UPLOADED_FILE_ID == null) { throw new Exception("File doesn't exist"); }
 
             return oUploadedFiles;
         }
@@ -433,23 +475,32 @@ namespace BLC
 
         public UploadFile GET_UPLOADED_FILE_BY_CATEGORY_ID(int uId)
         {
+            if (uId == null || uId == 0) { throw new Exception("value can't be null or empty"); }
+
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
             UploadFile oUploadedFiles = new UploadFile();
             oUploadedFiles = oDalc.GET_UPLOADED_FILE_BY_CATEGORY_ID(uId);
+
+            if (oUploadedFiles.UPLOADED_FILE_ID == null) { throw new Exception("File doesn't exist"); }
 
             return oUploadedFiles;
         }
 
         #endregion
 
+
         #region Get GET_UPLOADED_FILE_BY_ITEM_ID
         public UploadFile GET_UPLOADED_FILE_BY_ITEM_ID(int uId)
         {
+            if (uId == null || uId == 0) { throw new Exception("value can't be null or empty"); }
+
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
             UploadFile oUploadedFiles = new UploadFile();
             oUploadedFiles = oDalc.GET_UPLOADED_FILE_BY_ITEM_ID(uId);
+
+            if (oUploadedFiles.UPLOADED_FILE_ID == null) { throw new Exception("File doesn't exist"); }
 
             return oUploadedFiles;
         }
@@ -459,10 +510,14 @@ namespace BLC
         #region GET_UPLOADED_FILE_BY_DONATION_ID
         public List<UploadFile> GET_UPLOADED_FILE_BY_DONATION_ID(int uId)
         {
+            if (uId == null || uId == 0) { throw new Exception("value can't be null or empty"); }
+
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
             List<UploadFile> oUploadedFiles = new List<UploadFile>();
             oUploadedFiles = oDalc.GET_UPLOADED_FILE_BY_DONATION_ID(uId);
+
+            if (oUploadedFiles.Count == 0) { throw new Exception("File doesn't exist"); }
 
             return oUploadedFiles;
         }
@@ -481,6 +536,7 @@ namespace BLC
         }
 
         #endregion
+
 
         #region EDIT_UPLOADED_FILE
         public Int32 EDIT_UPLOADED_FILE(UploadFile uploadFile)
@@ -505,6 +561,8 @@ namespace BLC
             List<Category> oCategory = new List<Category>();
             oCategory = oDalc.Get_Category();
 
+            if (oCategory.Count == 0) { throw new Exception("There are no Categories"); }
+
             return oCategory;
         }
 
@@ -514,10 +572,14 @@ namespace BLC
 
         public Category GET_CATEGORY_BY_ID(int uId)
         {
+            if (uId == null || uId == 0) { throw new Exception("Primary key can't be null or empty"); }
+
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
             Category oCategory = new Category();
             oCategory = oDalc.GET_CATEGORY_BY_ID(uId);
+
+            if (oCategory.CATAGORY_ID == null) { throw new Exception("Category doesn't exist"); }
 
             return oCategory;
         }
