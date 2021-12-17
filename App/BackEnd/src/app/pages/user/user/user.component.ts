@@ -46,7 +46,7 @@ export class UserComponent implements OnInit {
     // })
   }
 
-  update(employeeId: string){
+  update(user_id: number){
     // this.fireService.updateEmployee(employeeId, this.form.value).then(res =>{
 
     // }).catch(err => {
@@ -54,7 +54,7 @@ export class UserComponent implements OnInit {
     // })
   }
 
-  delete(user_id: string){
+  delete(user_id: number){
     if(confirm("are you sure?")){
       console.log(user_id)
     }
@@ -82,5 +82,9 @@ export class UserComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.Get_Users_Subscription.unsubscribe();
-    }
+  }
+
+  activateUser(user_id:number, IS_ACTIVE:Boolean){
+     
+  }
 }

@@ -32,6 +32,9 @@ export class MainService {
 
   }
 
+
+  
+
   Handle_Exception(msg: string) {
     if ((msg != null) && (msg !== '')) {
       this.ShowMessage(msg , 3000);
