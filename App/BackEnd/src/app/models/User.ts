@@ -13,5 +13,4 @@ export interface User{
 export interface Result_Get_Users{
     users: User[];
     errorMsg: string;
-
 }
