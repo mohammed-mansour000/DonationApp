@@ -88,6 +88,7 @@ namespace WebAPI.Controllers
             Result_DELETE_USER_BY_USER_ID oResult_DELETE_USER_BY_USER_ID = new Result_DELETE_USER_BY_USER_ID();
             try
             {
+                Console.WriteLine(Convert.ToInt32(USER_ID) + " from api");
                 _blc.DELETE_USER_BY_USER_ID(USER_ID);
                 oResult_DELETE_USER_BY_USER_ID.Msg = "User Deleted!!";
                 return oResult_DELETE_USER_BY_USER_ID;
@@ -101,13 +102,23 @@ namespace WebAPI.Controllers
 
         [Route("DECATIVATE_USER_BY_USER_ID")]
         [HttpPost]
-        public Result_DECATIVATE_USER_BY_USER_ID DECATIVATE_USER_BY_USER_ID(long USER_ID)
+        public Result_DECATIVATE_USER_BY_USER_ID DECATIVATE_USER_BY_USER_ID(long USER_ID, int Is_Active)
         {
             Result_DECATIVATE_USER_BY_USER_ID oResult_DECATIVATE_USER_BY_USER_ID = new Result_DECATIVATE_USER_BY_USER_ID();
             try
             {
-                _blc.DECATIVATE_USER_BY_USER_ID(USER_ID);
-                oResult_DECATIVATE_USER_BY_USER_ID.Msg = "User Deactivated!!";
+                _blc.DECATIVATE_USER_BY_USER_ID(USER_ID, Is_Active);
+                if (Is_Active == 0)
+                {
+
+                    oResult_DECATIVATE_USER_BY_USER_ID.Msg = "User Deactivated!!";
+
+                }
+                else
+                {
+                    oResult_DECATIVATE_USER_BY_USER_ID.Msg = "User activated!!";
+
+                }
                 return oResult_DECATIVATE_USER_BY_USER_ID;
             }
             catch (Exception e)

@@ -46,7 +46,7 @@ export class UserComponent implements OnInit {
     // })
   }
 
-  update(employeeId: string){
+  update(user: User){
     // this.fireService.updateEmployee(employeeId, this.form.value).then(res =>{
 
     // }).catch(err => {
@@ -54,17 +54,40 @@ export class UserComponent implements OnInit {
     // })
   }
 
-  delete(user_id: string){
+  Edit(){
+    this.mainService.editUser(this.form.value)
+    .subscribe(
+      res => {
+        if(res != null){
+          console.log(res)
+        }
+      }
+    );
+  }
+
+  delete(user_id: number){
     if(confirm("are you sure?")){
-      console.log(user_id)
+      console.log(user_id);
+      this.mainService.deleteUser(user_id)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.getUsers();
+        }
+      );
     }
   }
 
   formInit(data: User | null): void {
     this.form = this.fb.group({
-      FIRST_NAME: new FormControl([data ? data.FIRST_NAME: '', Validators.required]).value,
-      LAST_NAME: new FormControl([data ? data.LAST_NAME: '', Validators.required]).value,
-      EMAIL: new FormControl([data ? data.EMAIL: '', Validators.required]).value,
+      USER_ID: new FormControl([data ? data.USER_ID : -1, Validators.required]).value,
+      PHONE: new FormControl([data ? data.USER_ID : "ASDASD", Validators.required]).value,
+      USER_TYPE_CODE: new FormControl([data ? data.USER_ID : "ASDASD", Validators.required]).value,
+      IS_ACTIVE: new FormControl([0, Validators.required]).value,
+      PASSWORD: new FormControl([data ? data.USER_ID : "ASDASD", Validators.required]).value,
+      FIRST_NAME: new FormControl([data ? data.FIRST_NAME : '', Validators.required]).value,
+      LAST_NAME: new FormControl([data ? data.LAST_NAME : '', Validators.required]).value,
+      EMAIL: new FormControl([data ? data.EMAIL : '', Validators.required]).value,
     })
 
     console.log(this.form.value)
