@@ -24,10 +24,12 @@ export class MainService {
 
   getUsers(): Observable<User[]> {
     return this.apiCaller.get<Result_Get_Users>(`${this.BASE_URL}/Get_Users`)
+
     .pipe(map(response => { this.Handle_Exception(response.errorMsg);
        return response.users;
       })
     );
+
   }
 
   Handle_Exception(msg: string) {
@@ -37,7 +39,6 @@ export class MainService {
   }
 
   ShowMessage(message: string, d: number = 1000) {
-    //this.snackBar.open(message, '', {duration: d});
-	alert(message);
+	  alert(message);
   }
 }
