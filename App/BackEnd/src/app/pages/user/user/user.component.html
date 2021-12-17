@@ -31,10 +31,8 @@
                     </div>
                </div>
                <div class="card-footer text-center">
-                <!-- <button class="btn btn-info btn-sm" (click)="openModal(popup, employee.id)">edit</button> -->
-                <button class="btn btn-info btn-sm text-white" >edit</button>
-                <!-- <button class="btn btn-danger btn-sm ml-2 mt-lg-0 mt-md-2" (click)="delete(employee.id)">delete</button> -->
-                <button class="btn btn-danger btn-sm ms-2 mt-lg-0 mt-md-2" >delete</button>
+                <button class="btn btn-info btn-sm text-white" (click)="openModal(popup, user)">edit</button>
+                <button class="btn btn-danger btn-sm ms-2 mt-lg-0 mt-md-2" (click)="delete(user.USER_ID)">delete</button>
             </div>
             </div>
             
@@ -50,26 +48,22 @@
     <div class="modal-body">
         <form [formGroup]="form">
             <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
+                <label for="exampleInputEmail1">First Name</label>
                 <input type="text" class="form-control" formControlName="FIRST_NAME">
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Age</label>
-                <input type="number" class="form-control" formControlName="LAST_NAME">
+                <label for="exampleInputPassword1">Last Name</label>
+                <input type="text" class="form-control" formControlName="LAST_NAME">
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Address</label>
+                <label for="exampleInputPassword1">Email</label>
                 <input type="text" class="form-control" formControlName="EMAIL">
               </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-sm p-2 mr-2"
+              <div class="text-center p-3">
+                <button type="submit" class="btn btn-primary btn-sm p-2 ms-2"
                     [disabled]="!form.valid"
-                    >Save</button>
-                <button type="submit" class="btn btn-secondary  btn-sm p-2 mr-2" (click)="d()">Cancel</button>
-                <!-- <button type="submit" class="btn btn-primary btn-sm p-2 mr-2"
-                    [disabled]="!form.valid"
-                    (click)="employeeDetails ? update(employeeDetails.id) : add(); d()">Save</button>
-                <button type="submit" class="btn btn-secondary  btn-sm p-2 mr-2" (click)="d()">Cancel</button> -->
+                    (click)="user ? update(user.USER_ID) : add(); d()">Save</button>
+                <button type="submit" class="btn btn-secondary  btn-sm p-2 ms-2" (click)="d()">Cancel</button>
               </div>
               
         </form>

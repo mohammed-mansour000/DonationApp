@@ -3,7 +3,7 @@ import { MainService } from './../../../services/main.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
@@ -15,7 +15,8 @@ export class UserComponent implements OnInit {
   Get_Users_Subscription = new Subscription();
   users: User[] = [];
   form!: FormGroup;
-  user?: User;
+  user?: User | null;
+
   constructor(
               private mainService: MainService,
               private modalService: NgbModal,
@@ -36,17 +37,42 @@ export class UserComponent implements OnInit {
     )
   }
 
-  formInit(data: User): void {
-    this.form = this.fb.group({
-      name: [data ? data.FIRST_NAME: '', Validators.required],
-      age: [data ? data.LAST_NAME: '', Validators.required],
-      address: [data ? data.EMAIL: '', Validators.required],
-    })
+  
+  add(){
+    // this.fireService.addEmployee(this.form.value).then(res =>{
+    //   alert("employee added");
+    // }).catch(err => {
+    //   console.log(err)
+    // })
   }
 
-  openModal(content: TemplateRef<any>, employeeId: any){
-    //this.employeeDetails = this.employeeList.find((e: Employee) => e.id === employeeId);
-    //this.formInit(this.employeeDetails); 
+  update(employeeId: string){
+    // this.fireService.updateEmployee(employeeId, this.form.value).then(res =>{
+
+    // }).catch(err => {
+    //   console.log(err)
+    // })
+  }
+
+  delete(user_id: string){
+    if(confirm("are you sure?")){
+      console.log(user_id)
+    }
+  }
+
+  formInit(data: User | null): void {
+    this.form = this.fb.group({
+      FIRST_NAME: new FormControl([data ? data.FIRST_NAME: '', Validators.required]).value,
+      LAST_NAME: new FormControl([data ? data.LAST_NAME: '', Validators.required]).value,
+      EMAIL: new FormControl([data ? data.EMAIL: '', Validators.required]).value,
+    })
+
+    console.log(this.form.value)
+  }
+
+  openModal(content: TemplateRef<any>, o_user: User | null){
+    this.user = o_user
+    this.formInit(this.user); 
     this.modalService.open(content, { backdrop: 'static', centered: true });
   }
   
