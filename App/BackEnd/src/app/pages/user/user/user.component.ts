@@ -41,6 +41,7 @@ export class UserComponent implements OnInit {
     );
   }
 
+
   Edit(){
     this.mainService.editUser(this.form.value)
     .subscribe(
@@ -97,5 +98,9 @@ export class UserComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.Get_Users_Subscription.unsubscribe();
-    }
+  }
+
+  activateUser(user_id:number, IS_ACTIVE:Boolean){
+     
+  }
 }
