@@ -186,7 +186,7 @@ namespace DALC
         #endregion
 
         #region DECATIVATE_USER_BY_USER_ID
-        public void DECATIVATE_USER_BY_USER_ID(long USER_ID)
+        public void DECATIVATE_USER_BY_USER_ID(long USER_ID, int Is_Active)
         {
             string query = "UPG_DECATIVATE_USER_BY_USER_ID";
 
@@ -200,6 +200,11 @@ namespace DALC
 
                     _cmd.Parameters.Add("USER_ID", SqlDbType.Int);
                     _cmd.Parameters["USER_ID"].Value = USER_ID;
+
+
+                    _cmd.Parameters.Add("@IS_ACTIVE", SqlDbType.Bit);
+                    _cmd.Parameters["@IS_ACTIVE"].Value = Is_Active;
+
 
                     _con.Open();
                     _cmd.ExecuteNonQuery();

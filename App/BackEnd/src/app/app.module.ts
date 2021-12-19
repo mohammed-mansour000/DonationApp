@@ -9,6 +9,10 @@ import { DonationComponent } from './pages/donation/donation/donation.component'
 import { ItemComponent } from './pages/item/item/item.component';
 import { UserComponent } from './pages/user/user/user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MenuComponent } from './pages/menu/menu.component';
+import { LoginComponent } from './pages/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './Material/material.module';
 
 @NgModule({
   declarations: [
@@ -16,14 +20,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CategoryComponent,
     DonationComponent,
     ItemComponent,
-    UserComponent
+    UserComponent,
+    MenuComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

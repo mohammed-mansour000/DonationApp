@@ -82,13 +82,13 @@ namespace BLC
         #endregion
 
         #region DECATIVATE_USER_BY_USER_ID
-        public void DECATIVATE_USER_BY_USER_ID(long USER_ID)
+        public void DECATIVATE_USER_BY_USER_ID(long USER_ID, int Is_Active)
         {
             if (USER_ID == null || USER_ID == 0) { throw new Exception("Primary key can't be null or empty"); }
 
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
-            oDalc.DECATIVATE_USER_BY_USER_ID(USER_ID);
+            oDalc.DECATIVATE_USER_BY_USER_ID(USER_ID, Is_Active);
         }
         #endregion
 
