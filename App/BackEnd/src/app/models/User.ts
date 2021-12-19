@@ -25,3 +25,7 @@ export interface Result_DELETE_USER_BY_USER_ID extends Action_Result{
 export interface Result_EDIT_USER extends Action_Result{
     user: User;
 }
+
+export interface Result_LOGIN_BY_EMAIL_AND_PASSWORD extends Action_Result{
+    user: User;
+}

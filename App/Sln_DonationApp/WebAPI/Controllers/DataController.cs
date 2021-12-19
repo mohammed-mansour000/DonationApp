@@ -130,13 +130,14 @@ namespace WebAPI.Controllers
 
         [Route("GET_USER_BY_EMAIL_AND_PASSWORD")]
         [HttpPost]
-        public Result_GET_USER_BY_EMAIL_AND_PASSWORD GET_USER_BY_EMAIL_AND_PASSWORD(string EMAIL, string PASSWORD)
+        public Result_GET_USER_BY_EMAIL_AND_PASSWORD GET_USER_BY_EMAIL_AND_PASSWORD(Params_GET_USER_BY_EMAIL_AND_PASSWORD o_params)
         {
             Result_GET_USER_BY_EMAIL_AND_PASSWORD oResult_GET_USER_BY_EMAIL_AND_PASSWORD = new Result_GET_USER_BY_EMAIL_AND_PASSWORD();
             try
             {
+                Console.WriteLine(o_params.EMAIL, o_params.PASSWORD);
                 oResult_GET_USER_BY_EMAIL_AND_PASSWORD.user = new User();
-                oResult_GET_USER_BY_EMAIL_AND_PASSWORD.user = _blc.GET_USER_BY_EMAIL_AND_PASSWORD(EMAIL, PASSWORD);
+                oResult_GET_USER_BY_EMAIL_AND_PASSWORD.user = _blc.GET_USER_BY_EMAIL_AND_PASSWORD(o_params.EMAIL, o_params.PASSWORD);
                 
                 return oResult_GET_USER_BY_EMAIL_AND_PASSWORD;
             }
@@ -989,4 +990,11 @@ namespace WebAPI.Controllers
         public string errorMsg { get; set; }
     }
     #endregion
+
+    public partial class Params_GET_USER_BY_EMAIL_AND_PASSWORD
+    {
+        public string EMAIL { get; set; }
+        public string PASSWORD { get; set; }
+    }
+
 }

@@ -1,9 +1,11 @@
+import { Router } from '@angular/router';
 import { User } from './../../../models/User';
 import { MainService } from './../../../services/main.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-user',
@@ -20,7 +22,8 @@ export class UserComponent implements OnInit {
   constructor(
               private mainService: MainService,
               private modalService: NgbModal,
-              private fb: FormBuilder
+              private fb: FormBuilder,
+              private location: Location
             ) { }
 
   ngOnInit(): void {
@@ -28,30 +31,14 @@ export class UserComponent implements OnInit {
   }
 
   getUsers() {
-    this.Get_Users_Subscription = this.mainService.getUsers().subscribe(
+    this.Get_Users_Subscription = this.mainService.getUsers()
+    .subscribe(
       res => {
         if(res != null){
           this.users = res;
         }
       }
-    )
-  }
-
-  
-  add(){
-    // this.fireService.addEmployee(this.form.value).then(res =>{
-    //   alert("employee added");
-    // }).catch(err => {
-    //   console.log(err)
-    // })
-  }
-
-  update(user: User){
-    // this.fireService.updateEmployee(employeeId, this.form.value).then(res =>{
-
-    // }).catch(err => {
-    //   console.log(err)
-    // })
+    );
   }
 
   Edit(){
@@ -60,6 +47,7 @@ export class UserComponent implements OnInit {
       res => {
         if(res != null){
           console.log(res)
+          this.getUsers();
         }
       }
     );
@@ -81,10 +69,10 @@ export class UserComponent implements OnInit {
   formInit(data: User | null): void {
     this.form = this.fb.group({
       USER_ID: new FormControl([data ? data.USER_ID : -1, Validators.required]).value,
-      PHONE: new FormControl([data ? data.USER_ID : "ASDASD", Validators.required]).value,
-      USER_TYPE_CODE: new FormControl([data ? data.USER_ID : "ASDASD", Validators.required]).value,
-      IS_ACTIVE: new FormControl([0, Validators.required]).value,
-      PASSWORD: new FormControl([data ? data.USER_ID : "ASDASD", Validators.required]).value,
+      PHONE: new FormControl([data ? data.USER_ID : "70121954", Validators.required]).value,
+      USER_TYPE_CODE: new FormControl([data ? data.USER_ID : "003", Validators.required]).value,
+      IS_ACTIVE: new FormControl([1, Validators.required]).value,
+      PASSWORD: new FormControl([data ? data.USER_ID : "admin123", Validators.required]).value,
       FIRST_NAME: new FormControl([data ? data.FIRST_NAME : '', Validators.required]).value,
       LAST_NAME: new FormControl([data ? data.LAST_NAME : '', Validators.required]).value,
       EMAIL: new FormControl([data ? data.EMAIL : '', Validators.required]).value,
@@ -99,6 +87,10 @@ export class UserComponent implements OnInit {
     this.modalService.open(content, { backdrop: 'static', centered: true });
   }
   
+  goBack(){
+    this.location.back();
+  }
+
   close(){
     this.modalService.dismissAll();
   }
