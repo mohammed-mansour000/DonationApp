@@ -6,14 +6,15 @@ import { CategoryComponent } from './pages/category/category/category.component'
 import { ItemComponent } from './pages/item/item/item.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path: "items", component: ItemComponent},
   {path: "categories", component: CategoryComponent},
   {path: "users", component: UserComponent},
   {path: "donations", component: DonationComponent},
+  {path: "menu", component: MenuComponent, canActivate: [AuthGuard]},
   {path: "login", component: LoginComponent},
-  {path: "menu", component: MenuComponent},
   {
     path: '',
     redirectTo: 'login',

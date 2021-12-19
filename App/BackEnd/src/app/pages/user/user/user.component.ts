@@ -70,7 +70,7 @@ export class UserComponent implements OnInit {
     this.form = this.fb.group({
       USER_ID: new FormControl([data ? data.USER_ID : -1, Validators.required]).value,
       PHONE: new FormControl([data ? data.USER_ID : "70121954", Validators.required]).value,
-      USER_TYPE_CODE: new FormControl([data ? data.USER_ID : "003", Validators.required]).value,
+      USER_TYPE_CODE: new FormControl([data ? data.USER_ID : "001", Validators.required]).value,
       IS_ACTIVE: new FormControl([1, Validators.required]).value,
       PASSWORD: new FormControl([data ? data.USER_ID : "admin123", Validators.required]).value,
       FIRST_NAME: new FormControl([data ? data.FIRST_NAME : '', Validators.required]).value,

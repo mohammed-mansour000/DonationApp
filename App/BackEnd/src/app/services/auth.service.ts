@@ -23,8 +23,8 @@ export class AuthService {
     );
   }
 
-  getLocalStorage(){
-    return localStorage.getItem("user_data");
+  getLocalStorage(): User{
+    return JSON.parse(localStorage.getItem('user_data') || '{}');
   }
   
   Handle_Exception(msg?: string) {
