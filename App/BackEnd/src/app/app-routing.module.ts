@@ -9,10 +9,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  {path: "items", component: ItemComponent},
-  {path: "categories", component: CategoryComponent},
-  {path: "users", component: UserComponent},
-  {path: "donations", component: DonationComponent},
+  {path: "items", component: ItemComponent, canActivate: [AuthGuard]},
+  {path: "categories", component: CategoryComponent, canActivate: [AuthGuard]},
+  {path: "users", component: UserComponent, canActivate: [AuthGuard]},
+  {path: "donations", component: DonationComponent, canActivate: [AuthGuard]},
   {path: "menu", component: MenuComponent, canActivate: [AuthGuard]},
   {path: "login", component: LoginComponent},
   {

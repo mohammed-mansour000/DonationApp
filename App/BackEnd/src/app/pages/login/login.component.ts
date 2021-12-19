@@ -18,6 +18,10 @@ export class LoginComponent implements OnInit {
     this.model = {};
     this.model.EMAIL = "";
     this.model.PASSWORD = "";
+
+    if(this.authService.getLocalStorage()){
+      this.router.navigate(["menu"]);
+    }
    }
 
   ngOnInit(): void {
