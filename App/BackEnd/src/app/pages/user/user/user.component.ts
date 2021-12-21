@@ -69,10 +69,10 @@ export class UserComponent implements OnInit {
   formInit(data: User | null): void {
     this.form = this.fb.group({
       USER_ID: new FormControl([data ? data.USER_ID : -1, Validators.required]).value,
-      PHONE: new FormControl([data ? data.USER_ID : "70121954", Validators.required]).value,
-      USER_TYPE_CODE: new FormControl([data ? data.USER_ID : "001", Validators.required]).value,
+      PHONE: new FormControl([data ? data.PHONE : "", Validators.required]).value,
+      USER_TYPE_CODE: new FormControl([data ? data.USER_TYPE_CODE : "", Validators.required]).value,
       IS_ACTIVE: new FormControl([1, Validators.required]).value,
-      PASSWORD: new FormControl([data ? data.USER_ID : "admin123", Validators.required]).value,
+      PASSWORD: new FormControl([""]).value,
       FIRST_NAME: new FormControl([data ? data.FIRST_NAME : '', Validators.required]).value,
       LAST_NAME: new FormControl([data ? data.LAST_NAME : '', Validators.required]).value,
       EMAIL: new FormControl([data ? data.EMAIL : '', Validators.required]).value,
@@ -97,5 +97,9 @@ export class UserComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.Get_Users_Subscription.unsubscribe();
-    }
+  }
+
+  k(){
+    console.log(this.form.value)
+  }
 }

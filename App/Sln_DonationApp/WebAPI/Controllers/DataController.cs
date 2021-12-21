@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using static DALC.IDALC;
@@ -15,11 +17,13 @@ namespace WebAPI.Controllers
     {
         IConfiguration _config;
         BLC.BLC _blc;
-        public DataController(IConfiguration config) //in order to use variables inside appsettings.json --its dependency injection
+        private readonly IWebHostEnvironment _env; //for photos
+        public DataController(IConfiguration config, IWebHostEnvironment env) //in order to use variables inside appsettings.json --its dependency injection
         {
             _config = config;
             _blc = new BLC.BLC(config);
             _blc.ConnectionString = _config.GetConnectionString("DonationAppDB");
+            _env = env;
         }
 
         [Route("Get_Users")]
@@ -768,6 +772,30 @@ namespace WebAPI.Controllers
             }
         }
 
+
+        [Route("SaveFile")]
+        [HttpPost]
+        public JsonResult SaveFile()
+        {
+            try
+            {
+                var httpRequest = Request.Form;
+                var postedFile = httpRequest.Files[0];
+                string filename = postedFile.FileName;
+                var physicalPath = _env.ContentRootPath + "/Photos/" + filename;
+
+                using (var stream = new FileStream(physicalPath, FileMode.Create))
+                {
+                    postedFile.CopyTo(stream);
+                }
+                return new JsonResult(filename);
+            }
+            catch (Exception)
+            {
+
+                return new JsonResult("user.png");
+            }
+        }
         #endregion
 
 
