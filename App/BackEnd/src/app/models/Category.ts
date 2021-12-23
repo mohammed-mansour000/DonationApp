@@ -2,8 +2,8 @@ import { UploadFile } from "./UploadFile";
 
 export interface Category{
     CATAGORY_ID: number;
-    NAME: string;
-    DESCRIPTION: string;
+    NAME?: string;
+    DESCRIPTION?: string;
     ENTRY_DATE?: Date;
     UPLOAD_FILE ?: UploadFile;
 

@@ -55,6 +55,7 @@ namespace BLC
 
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
+            i_User.ENTRY_DATE = DateTime.Today;
 
             if (!string.IsNullOrEmpty(i_User.PASSWORD))
             {
@@ -415,6 +416,7 @@ namespace BLC
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
 
+            item.ENTRY_DATE = DateTime.Today;
             int RETURNED_ITEM_ID = oDalc.EDIT_ITEM(item);
 
             return RETURNED_ITEM_ID;
@@ -545,6 +547,7 @@ namespace BLC
 
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
+
             uploadFile.ENTRY_DATE = DateTime.Today;
             int RETURNED_UPLOADED_FILE_ID = oDalc.EDIT_UPLOADED_FILE(uploadFile);
 
@@ -606,6 +609,8 @@ namespace BLC
 
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
+            category.ENTRY_DATE = DateTime.Today;
+
             int RETURNED_UPLOADED_FILE_ID = oDalc.EDIT_CATEGORY(category);
 
             return RETURNED_UPLOADED_FILE_ID;
