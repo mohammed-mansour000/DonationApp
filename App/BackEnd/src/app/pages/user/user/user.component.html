@@ -18,7 +18,7 @@
                 <div class="card-header justify-content-between d-flex align-items-center">
                     <span>User Details</span>
 
-                    <button type="button" class="btn btn-sm ms-2 " [ngStyle]="{ 'background-color': user.IS_ACTIVE ? 'blue' : 'red' }"  disabled>
+                    <button type="button" class="btn btn-sm ms-2 " [ngStyle]="{ 'background-color': user.IS_ACTIVE ? 'blue' : 'red'  , 'color':'white' }" (click)="activateUser(user.USER_ID,!user.IS_ACTIVE)">
                         {{ user.IS_ACTIVE ? 'Active' : 'DisActive' }}
                     </button>
 

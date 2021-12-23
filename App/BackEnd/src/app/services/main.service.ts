@@ -1,12 +1,14 @@
 import { Result_EDIT_UPLOADED_FILE } from './../models/UploadFile';
+
 import { Item, Result_DELETE_ITEM_BY_ITEM_ID, Result_EDIT_ITEM, Result_GET_ITEMS } from './../models/Item';
 import { Result_Get_Users, User, Result_DELETE_USER_BY_USER_ID, Result_EDIT_USER } from './../models/User';
+
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
-import { Category, Result_Get_Category } from '../models/Category';
+import { Category, Result_DELETE_CATEGORY_BY_CATEGORY_ID, Result_EDIT_CATEGORY, Result_Get_Category } from '../models/Category';
 import { UploadFile } from '../models/UploadFile';
 
 @Injectable({
@@ -22,6 +24,22 @@ export class MainService {
     return this.apiCaller.get<Result_Get_Category>(`${this.BASE_URL}/Get_Category`)
     .pipe(map(response => { this.Handle_Exception(response.errorMsg);
        return response.categories;
+      })
+    );
+  }
+
+  editCategory(category: Category): Observable<Category>{
+    return this.apiCaller.post<Result_EDIT_CATEGORY>(`${this.BASE_URL}/EDIT_CATEGORY`, category)
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+       return response.category;
+      })
+    );
+  }
+
+  deleteCategory(category_id: number): Observable<string> {
+    return this.apiCaller.post<Result_DELETE_CATEGORY_BY_CATEGORY_ID>(`${this.BASE_URL}DELETE_CATEGORY_BY_CATEGORY_ID?USER_ID=${category_id}`, category_id)
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+       return response.Msg;
       })
     );
   }
@@ -95,4 +113,16 @@ export class MainService {
   ShowMessage(message: string, d: number = 1000) {
 	  alert(message);
   }
+
+  activateUser(user_id :number ,is_Active:boolean): Observable<string>{
+    const set_is_Active = is_Active ? 1 : 0;
+    return this.apiCaller.post<Result_Activate_User>(`${this.BASE_URL}/DECATIVATE_USER_BY_USER_ID`,{USER_ID: user_id, IS_ACTIVE: set_is_Active})
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+       return response.Msg;
+      })
+    );
+  }
+
+
+  
 }
