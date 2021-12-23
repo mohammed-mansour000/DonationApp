@@ -106,13 +106,13 @@ namespace WebAPI.Controllers
 
         [Route("DECATIVATE_USER_BY_USER_ID")]
         [HttpPost]
-        public Result_DECATIVATE_USER_BY_USER_ID DECATIVATE_USER_BY_USER_ID(long USER_ID, int Is_Active)
+        public Result_DECATIVATE_USER_BY_USER_ID DECATIVATE_USER_BY_USER_ID(Params_DECATIVATE_USER_BY_USER_ID oParams_DECATIVATE_USER_BY_USER_ID)
         {
             Result_DECATIVATE_USER_BY_USER_ID oResult_DECATIVATE_USER_BY_USER_ID = new Result_DECATIVATE_USER_BY_USER_ID();
             try
             {
-                _blc.DECATIVATE_USER_BY_USER_ID(USER_ID, Is_Active);
-                if (Is_Active == 0)
+                _blc.DECATIVATE_USER_BY_USER_ID(oParams_DECATIVATE_USER_BY_USER_ID.USER_ID, oParams_DECATIVATE_USER_BY_USER_ID.IS_ACTIVE);
+                if (oParams_DECATIVATE_USER_BY_USER_ID.IS_ACTIVE == 0)
                 {
 
                     oResult_DECATIVATE_USER_BY_USER_ID.Msg = "User Deactivated!!";
@@ -1025,4 +1025,10 @@ namespace WebAPI.Controllers
         public string PASSWORD { get; set; }
     }
 
+    public partial class Params_DECATIVATE_USER_BY_USER_ID
+    {
+        public int USER_ID { get; set; }
+        public int IS_ACTIVE { get; set; }
+    }
+    
 }

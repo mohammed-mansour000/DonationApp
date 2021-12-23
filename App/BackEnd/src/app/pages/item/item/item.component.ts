@@ -27,6 +27,7 @@ export class ItemComponent implements OnInit {
   preparedFile: any;
   preparedFormData : FormData = new FormData();
   PHOTO_URL: string = environment.PHOTO_URL;
+  loading = false;
   constructor(
               private mainService: MainService,
               private modalService: NgbModal,
@@ -81,7 +82,11 @@ export class ItemComponent implements OnInit {
         if(res != null){
           console.log(res)
           // this.getItems();
-          this.prepareUploadImage(this.preparedFormData, res);
+          if(editedItem.ITEM_ID == -1){
+            this.prepareUploadImage(this.preparedFormData, res);
+          }else{
+            this.getItems();
+          }
         }
       }
     );
@@ -112,6 +117,7 @@ export class ItemComponent implements OnInit {
 
   openModal(content: TemplateRef<any>, o_item: Item | null){
     this.item = o_item
+    console.log(this.item)
     this.formInit(this.item); 
     this.modalService.open(content, { backdrop: 'static', centered: true });
   }
