@@ -1,9 +1,10 @@
-import { Result_Get_Users, User, Result_DELETE_USER_BY_USER_ID, Result_EDIT_USER } from './../models/User';
+import { Result_Get_Users, User, Result_DELETE_USER_BY_USER_ID, Result_EDIT_USER, Result_Activate_User } from './../models/User';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
+import { Category, Result_Get_Category } from '../models/Category';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,10 @@ export class MainService {
   BASE_URL: string = environment.BASE_URL;
   constructor(private apiCaller: HttpClient) { }
 
-  getCategories(){
-    return this.apiCaller.get(`${this.BASE_URL}/Get_Category`)
-    // .pipe(map(response => { this.Handle_Exception(response.errorMsg); return response.categories;}));;
-  }
+  // getCategories(){
+  //   return this.apiCaller.get(`${this.BASE_URL}/Get_Category`)
+  //   // .pipe(map(response => { this.Handle_Exception(response.errorMsg); return response.categories;}));;
+  // }
 
   getItems(){
     return this.apiCaller.get(`${this.BASE_URL}/Get_Items`);
@@ -56,4 +57,23 @@ export class MainService {
   ShowMessage(message: string, d: number = 1000) {
 	  alert(message);
   }
+
+  activateUser(user_id :number ,is_Active:boolean): Observable<string>{
+    const set_is_Active = is_Active ? 1 : 0;
+    return this.apiCaller.post<Result_Activate_User>(`${this.BASE_URL}/DECATIVATE_USER_BY_USER_ID`,{USER_ID: user_id, IS_ACTIVE: set_is_Active})
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+       return response.Msg;
+      })
+    );
+  }
+
+  getCategories(): Observable<Category[]> {
+    return this.apiCaller.get<Result_Get_Category>(`${this.BASE_URL}/Get_Category`)
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+       return response.categories;
+      })
+    );
+  }
+
+  
 }

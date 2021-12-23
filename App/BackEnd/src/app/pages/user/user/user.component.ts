@@ -1,11 +1,11 @@
-import { Router } from '@angular/router';
-import { User } from './../../../models/User';
+import {  User } from './../../../models/User';
 import { MainService } from './../../../services/main.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-user',
@@ -18,13 +18,19 @@ export class UserComponent implements OnInit {
   users: User[] = [];
   form!: FormGroup;
   user?: User | null;
+  model: any = {};
+
 
   constructor(
               private mainService: MainService,
               private modalService: NgbModal,
               private fb: FormBuilder,
               private location: Location
-            ) { }
+            ) {
+
+          
+
+             }
 
   ngOnInit(): void {
     this.getUsers();
@@ -100,7 +106,14 @@ export class UserComponent implements OnInit {
     this.Get_Users_Subscription.unsubscribe();
   }
 
-  activateUser(user_id:number, IS_ACTIVE:Boolean){
-     
+  activateUser(user_id:number ,is_Active:boolean){
+     this.mainService.activateUser(user_id,is_Active).subscribe(res=>{
+       console.log(res);
+       this.getUsers(); 
+     });
+    
+  }
+  test(){
+    console.log("sd");
   }
 }

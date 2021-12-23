@@ -29,3 +29,8 @@ export interface Result_EDIT_USER extends Action_Result{
 export interface Result_LOGIN_BY_EMAIL_AND_PASSWORD extends Action_Result{
     user: User;
 }
+
+export interface Result_Activate_User extends Action_Result{
+    Msg: string;
+}
+

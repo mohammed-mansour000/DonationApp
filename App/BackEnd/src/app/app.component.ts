@@ -16,10 +16,10 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.mainService.getCategories().subscribe(
-      res => {console.log(res)},
-      err =>{ console.log(err)},
-      )  
-    this.mainService.getItems().subscribe(res => console.log(res))  
+    // this.mainService.getCategories().subscribe(
+    //   res => {console.log(res)},
+    //   err =>{ console.log(err)},
+    //   )  
+    // this.mainService.getItems().subscribe(res => console.log(res))  
   }
 }
