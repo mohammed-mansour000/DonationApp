@@ -98,8 +98,4 @@ export class UserComponent implements OnInit {
   ngOnDestroy(): void {
     this.Get_Users_Subscription.unsubscribe();
   }
-
-  k(){
-    console.log(this.form.value)
-  }
 }
