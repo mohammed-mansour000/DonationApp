@@ -24,6 +24,8 @@ export class ItemComponent implements OnInit {
   item?: Item | null;
   PhotoFilePath?: string = "" ;
   PhotoFileName? : string = "";
+  preparedFile: any;
+  preparedFormData : FormData = new FormData();
   PHOTO_URL: string = environment.PHOTO_URL;
   constructor(
               private mainService: MainService,
@@ -62,21 +64,33 @@ export class ItemComponent implements OnInit {
   }
   
   Edit(){
-    this.mainService.editUser(this.form.value)
+    console.log(this.form.value)
+    const editedItem: Item = {
+      ITEM_ID: this.form.get("ITEM_ID")?.value,
+      NAME: this.form.get("NAME")?.value,
+      DESCRIPTION: this.form.get("DESCRIPTION")?.value,
+      IS_ACTIVE: this.form.get("IS_ACTIVE")?.value,
+      CATAGORY: {
+        CATAGORY_ID: this.form.get("CATAGORY_ID")?.value
+      }
+
+    };
+    this.mainService.editItem(editedItem)
     .subscribe(
       res => {
         if(res != null){
           console.log(res)
-          this.getItems();
+          // this.getItems();
+          this.prepareUploadImage(this.preparedFormData, res);
         }
       }
     );
   }
 
-  delete(user_id: number){
+  delete(item_id: number){
     if(confirm("are you sure?")){
-      console.log(user_id);
-      this.mainService.deleteUser(user_id)
+      console.log(item_id);
+      this.mainService.deleteItem(item_id)
       .subscribe(
         res => {
           console.log(res);
@@ -91,11 +105,9 @@ export class ItemComponent implements OnInit {
       ITEM_ID: new FormControl([data ? data.ITEM_ID : -1, Validators.required]).value,
       NAME: new FormControl([data ? data.NAME : "", Validators.required]).value,
       DESCRIPTION: new FormControl([data ? data.DESCRIPTION : "", Validators.required]).value,
-      CATEGORY: new FormControl([data ? data.CATAGORY.CATAGORY_ID : "", Validators.required]).value,
+      CATAGORY_ID: new FormControl([data ? data.CATAGORY.CATAGORY_ID : "", Validators.required]).value,
       IS_ACTIVE: new FormControl([1, Validators.required]).value
     })
-
-    console.log(this.form.value)
   }
 
   openModal(content: TemplateRef<any>, o_item: Item | null){
@@ -110,6 +122,37 @@ export class ItemComponent implements OnInit {
     this.item = i_item;
     console.log(this.PhotoFilePath)
     this.modalService.open(content, { backdrop: 'static', centered: true });
+  }
+
+  prepareImage(event: any){
+    this.preparedFile = event.target.files[0];
+    this.preparedFormData.append('uploadedFile', this.preparedFile, this.preparedFile.name)
+  }
+
+  prepareUploadImage(fd: FormData, preparedItem: Item){
+    this.mainService.uploadPhoto(fd).subscribe((res: any) => {
+      this.PhotoFileName = res.toString();
+      this.PhotoFilePath = this.PHOTO_URL + this.PhotoFileName;
+      console.log("PhotoFilePath", this.PhotoFilePath);
+      if(res.toString().length > 0){
+        const i_UploadFile: UploadFile = {
+          UPLOADED_FILE_ID: preparedItem?.UPLOAD_FILE?.UPLOADED_FILE_ID ? preparedItem?.UPLOAD_FILE?.UPLOADED_FILE_ID : -1,
+          FILE_NAME: this.PhotoFileName,
+          ITEM_ID: preparedItem?.ITEM_ID,
+          CATEGORY_ID: 0,
+          DONATION_ID: 0
+        } 
+        this.mainService.editUploadFile(i_UploadFile)
+        .subscribe(
+          res => {
+            if(res.UPLOADED_FILE_ID != null){
+              this.getItems();
+              alert("file uploaded successfully");
+            }
+          }
+        );
+      }
+    });
   }
 
   uploadPhoto(event: any){

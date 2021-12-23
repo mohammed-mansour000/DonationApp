@@ -73,10 +73,14 @@
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Category</label>
-                <select class="form-select" aria-label="Default select example" formControlName="CATEGORY">
+                <select class="form-select" aria-label="Default select example" formControlName="CATAGORY_ID">
                     <option selected>Select Category</option>
                     <option *ngFor="let category of categories" [value]="category.CATAGORY_ID">{{category.NAME}}</option>
                   </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Upload Image</label>
+                <input type="file" class="form-control" (change)="prepareImage($event)" >
               </div>
               <div class="text-center p-3">
                 <button type="submit" class="btn btn-primary btn-sm p-2 ms-2"

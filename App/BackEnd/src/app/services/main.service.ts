@@ -1,5 +1,5 @@
 import { Result_EDIT_UPLOADED_FILE } from './../models/UploadFile';
-import { Item, Result_GET_ITEMS } from './../models/Item';
+import { Item, Result_DELETE_ITEM_BY_ITEM_ID, Result_EDIT_ITEM, Result_GET_ITEMS } from './../models/Item';
 import { Result_Get_Users, User, Result_DELETE_USER_BY_USER_ID, Result_EDIT_USER } from './../models/User';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -54,6 +54,22 @@ export class MainService {
     return this.apiCaller.post<Result_EDIT_USER>(`${this.BASE_URL}/EDIT_USER`, user)
     .pipe(map(response => { this.Handle_Exception(response.errorMsg);
        return response.user;
+      })
+    );
+  }
+
+  editItem(item: Item): Observable<Item>{
+    return this.apiCaller.post<Result_EDIT_ITEM>(`${this.BASE_URL}/EDIT_ITEM`, item)
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+       return response.item;
+      })
+    );
+  }
+
+  deleteItem(item_id: number): Observable<string> {
+    return this.apiCaller.post<Result_DELETE_ITEM_BY_ITEM_ID>(`${this.BASE_URL}/DELETE_ITEM_BY_ITEM_ID?ITEM_ID=${item_id}`, item_id)
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+       return response.Msg;
       })
     );
   }
