@@ -1,0 +1,33 @@
+.container-fluid{
+    padding: 50px 100px;
+}
+
+.card:hover{
+    box-shadow: 0 .5rem 1rem rgb(107, 107, 107);
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    padding-top: 5px;
+    cursor: pointer;
+  }
+  
+  .btnE {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
