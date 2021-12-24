@@ -331,13 +331,13 @@ namespace BLC
         #endregion
 
         #region SHIP_DONATION
-        public void SHIP_DONATION(Int32 DONATION_ID)
+        public void SHIP_DONATION(Int32 DONATION_ID, int IS_SHIPPED)
         {
             if (DONATION_ID == null || DONATION_ID == 0) { throw new Exception("Primary key can't be null or empty"); }
 
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
-            oDalc.SHIP_DONATION(DONATION_ID);
+            oDalc.SHIP_DONATION(DONATION_ID, IS_SHIPPED);
         }
         #endregion
 

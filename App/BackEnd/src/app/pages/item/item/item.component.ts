@@ -27,7 +27,6 @@ export class ItemComponent implements OnInit {
   preparedFile: any;
   preparedFormData : FormData = new FormData();
   PHOTO_URL: string = environment.PHOTO_URL;
-  loading = false;
   constructor(
               private mainService: MainService,
               private modalService: NgbModal,

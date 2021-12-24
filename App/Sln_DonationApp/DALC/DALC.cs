@@ -1646,7 +1646,7 @@ namespace DALC
         #endregion
 
         #region SHIP_DONATION
-        public void SHIP_DONATION(Int32 DONATION_ID)
+        public void SHIP_DONATION(Int32 DONATION_ID, int Is_SHIPPED)
         {
             string query = "UPG_SHIP_DONATION";
 
@@ -1660,6 +1660,9 @@ namespace DALC
 
                     _cmd.Parameters.Add("DONATION_ID", SqlDbType.Int);
                     _cmd.Parameters["DONATION_ID"].Value = DONATION_ID;
+
+                    _cmd.Parameters.Add("Is_SHIPPED", SqlDbType.Bit);
+                    _cmd.Parameters["Is_SHIPPED"].Value = Is_SHIPPED;
 
                     _con.Open();
                     _cmd.ExecuteNonQuery();

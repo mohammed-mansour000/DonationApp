@@ -1,3 +1,4 @@
+import { Donation, Result_DELETE_DONATION, Result_GET_DONATIONS, Result_GET_DONATION_BY_IS_NOT_SHIPPED, Result_GET_DONATION_BY_IS_SHIPPED, Result_SHIP_DONATION } from './../models/Donation';
 import { Result_EDIT_UPLOADED_FILE } from './../models/UploadFile';
 
 import { Item, Result_DELETE_ITEM_BY_ITEM_ID, Result_EDIT_ITEM, Result_GET_ITEMS } from './../models/Item';
@@ -57,25 +58,34 @@ export class MainService {
     .pipe(map(response => { this.Handle_Exception(response.errorMsg);
        return response.users;
       })
-    );
-  }
+      );
+    }
 
   deleteUser(user_id: number): Observable<string> {
     return this.apiCaller.post<Result_DELETE_USER_BY_USER_ID>(`${this.BASE_URL}/DELETE_USER_BY_USER_ID?USER_ID=${user_id}`, user_id)
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+      return response.Msg;
+    })
+    );
+  }
+    
+  editUser(user: User): Observable<User>{
+    return this.apiCaller.post<Result_EDIT_USER>(`${this.BASE_URL}/EDIT_USER`, user)
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+      return response.user;
+    })
+    );
+  }
+
+  activateUser(user_id :number ,is_Active:boolean): Observable<string>{
+    const set_is_Active = is_Active ? 1 : 0;
+    return this.apiCaller.post<Result_Activate_User>(`${this.BASE_URL}/DECATIVATE_USER_BY_USER_ID`,{USER_ID: user_id, IS_ACTIVE: set_is_Active})
     .pipe(map(response => { this.Handle_Exception(response.errorMsg);
        return response.Msg;
       })
     );
   }
-
-  editUser(user: User): Observable<User>{
-    return this.apiCaller.post<Result_EDIT_USER>(`${this.BASE_URL}/EDIT_USER`, user)
-    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
-       return response.user;
-      })
-    );
-  }
-
+  
   editItem(item: Item): Observable<Item>{
     return this.apiCaller.post<Result_EDIT_ITEM>(`${this.BASE_URL}/EDIT_ITEM`, item)
     .pipe(map(response => { this.Handle_Exception(response.errorMsg);
@@ -86,6 +96,47 @@ export class MainService {
 
   deleteItem(item_id: number): Observable<string> {
     return this.apiCaller.post<Result_DELETE_ITEM_BY_ITEM_ID>(`${this.BASE_URL}/DELETE_ITEM_BY_ITEM_ID?ITEM_ID=${item_id}`, item_id)
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+       return response.Msg;
+      })
+    );
+  }
+
+  getDonations(): Observable<Donation[]>{
+    return this.apiCaller.get<Result_GET_DONATIONS>(`${this.BASE_URL}/GET_DONATIONS`)
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+       return response.donations;
+      })
+    );
+  }
+
+  getDonationsByIsShipped(): Observable<Donation[]>{
+    return this.apiCaller.get<Result_GET_DONATION_BY_IS_SHIPPED>(`${this.BASE_URL}/GET_DONATION_BY_IS_SHIPPED`)
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+       return response.donations;
+      })
+    );
+  }
+
+  getDonationsByIsNotShipped(): Observable<Donation[]>{
+    return this.apiCaller.get<Result_GET_DONATION_BY_IS_NOT_SHIPPED>(`${this.BASE_URL}/GET_DONATION_BY_IS_NOT_SHIPPED`)
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+       return response.donations;
+      })
+    );
+  }
+
+  deleteDonation(donation_id: number): Observable<string> {
+    return this.apiCaller.post<Result_DELETE_DONATION>(`${this.BASE_URL}/DELETE_DONATION?DONATION_ID=${donation_id}`, donation_id)
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+       return response.Msg;
+      })
+    );
+  }
+
+  IS_SHIPPED_DONATION(donation_id :number , is_Shipped:boolean): Observable<string>{
+    const set_is_sHIPPED = is_Shipped ? 1 : 0;
+    return this.apiCaller.post<Result_SHIP_DONATION>(`${this.BASE_URL}/SHIP_DONATION`,{DONATION_ID: donation_id, IS_SHIPPED: set_is_sHIPPED})
     .pipe(map(response => { this.Handle_Exception(response.errorMsg);
        return response.Msg;
       })
@@ -104,6 +155,7 @@ export class MainService {
     return this.apiCaller.post<string>(`${this.BASE_URL}/savefile`, file);
   }
 
+
   Handle_Exception(msg?: string) {
     if ((msg != null) && (msg !== '')) {
       this.ShowMessage(msg , 3000);
@@ -114,14 +166,7 @@ export class MainService {
 	  alert(message);
   }
 
-  activateUser(user_id :number ,is_Active:boolean): Observable<string>{
-    const set_is_Active = is_Active ? 1 : 0;
-    return this.apiCaller.post<Result_Activate_User>(`${this.BASE_URL}/DECATIVATE_USER_BY_USER_ID`,{USER_ID: user_id, IS_ACTIVE: set_is_Active})
-    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
-       return response.Msg;
-      })
-    );
-  }
+
 
 
   

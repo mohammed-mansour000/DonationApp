@@ -417,13 +417,24 @@ namespace WebAPI.Controllers
 
         [Route("SHIP_DONATION")]
         [HttpPost]
-        public Result_SHIP_DONATION SHIP_DONATION(Int32 DONATION_ID)
+        public Result_SHIP_DONATION SHIP_DONATION(Params_SHIP_DONATION oParams_SHIP_DONATION)
         {
             Result_SHIP_DONATION oResult_SHIP_DONATION = new Result_SHIP_DONATION();
             try
             {
-                _blc.SHIP_DONATION(DONATION_ID);
-                oResult_SHIP_DONATION.Msg = "Donation Shipped!!";
+                _blc.SHIP_DONATION(oParams_SHIP_DONATION.DONATION_ID, oParams_SHIP_DONATION.IS_SHIPPED);
+
+                if (oParams_SHIP_DONATION.IS_SHIPPED == 0)
+                {
+
+                    oResult_SHIP_DONATION.Msg = "Donation Unshipped!!";
+
+                }
+                else
+                {
+                    oResult_SHIP_DONATION.Msg = "Donation Shipped!!";
+
+                }
                 return oResult_SHIP_DONATION;
             }
             catch (Exception e)
@@ -1030,5 +1041,11 @@ namespace WebAPI.Controllers
         public int USER_ID { get; set; }
         public int IS_ACTIVE { get; set; }
     }
+
     
+    public partial class Params_SHIP_DONATION
+    {
+        public int DONATION_ID { get; set; }
+        public int IS_SHIPPED { get; set; }
+    }
 }
