@@ -14,6 +14,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './Material/material.module';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { MapsComponent } from './maps/maps.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     ItemComponent,
     UserComponent,
     MenuComponent,
-    LoginComponent
+    LoginComponent,
+    MapsComponent
   ],
   imports: [
     BrowserModule,
