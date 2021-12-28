@@ -62,6 +62,9 @@
                     <button class="btn btn-danger btn-sm ms-2 mt-lg-0 mt-md-2" (click)="delete(donation.DONATION_ID)">
                         <i class="fas fa-trash-alt"></i>
                     </button>
+                    <button class="btn btn-success btn-sm ms-2 mt-lg-0 mt-md-2" (click)="openMapModal(mapModal, donation)">
+                        <i class="fas fa-location"></i>
+                    </button>
                     <button 
                         type="button" 
                         class="btn btn-sm ms-2 text-white" 
@@ -99,6 +102,20 @@
         </div>
        
     </ngx-slick-carousel>
+
+    <div class="modal-footer">
+        <div class="d-grid gap-2 pt-1" style="width: 100%;">
+            <button type="submit" class="btn btn-secondary  btn-sm p-2" (click)="d()">Cancel</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #mapModal let-d="dismiss">
+    <div class="modal-header text-primary">
+        Donation's Location
+    </div>
+
+    <app-maps [locationList]="locationListToBePassed"></app-maps>
 
     <div class="modal-footer">
         <div class="d-grid gap-2 pt-1" style="width: 100%;">

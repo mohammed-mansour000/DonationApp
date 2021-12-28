@@ -1,3 +1,4 @@
+import { Address } from './../../../models/Address';
 import { Donation } from './../../../models/Donation';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -24,6 +25,7 @@ export class DonationComponent implements OnInit {
   PhotoFileName? : string = "";
   PHOTO_URL: string = environment.PHOTO_URL;
   selectedFilter: string = "";
+  locationListToBePassed: any[] = [];
   slideConfig = {
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -35,13 +37,13 @@ export class DonationComponent implements OnInit {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3
+          slidesToShow: 1
         }
       },
       {
         breakpoint: 985,
         settings: {
-          slidesToShow: 2
+          slidesToShow: 1
         }
       },
       {
@@ -150,6 +152,13 @@ export class DonationComponent implements OnInit {
     console.log(this.donation)
     console.log(this.PhotoFilePath)
     this.modalService.open(content, { backdrop: 'static', centered: true });
+  }
+
+  openMapModal(content: TemplateRef<any>,  i_Donation: Donation){
+    this.donation = i_Donation;
+    this.locationListToBePassed = [];
+    this.locationListToBePassed?.push({lat: this.donation.ADDRESS?.LATIDUTE, lng: this.donation.ADDRESS?.LANGITUDE})
+    this.modalService.open(content, { backdrop: 'static', centered: true, size: 'lg' });
   }
 
   goBack(){
