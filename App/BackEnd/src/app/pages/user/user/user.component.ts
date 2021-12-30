@@ -19,7 +19,8 @@ export class UserComponent implements OnInit {
   form!: FormGroup;
   user?: User | null;
   model: any = {};
-
+  locationListToBePassed: any[] = [];
+  loadingMap: boolean = false;
 
   constructor(
               private mainService: MainService,
@@ -113,7 +114,25 @@ export class UserComponent implements OnInit {
      });
     
   }
-  test(){
-    console.log("sd");
+
+  openMapModal(content: TemplateRef<any>,  user_id: number){
+    this.loadingMap = true;
+    this.locationListToBePassed = [];
+    this.mainService.getDonationsByUserId(user_id)
+    .subscribe(
+      res => {
+        if(res !=null){
+          console.log(res);
+          res.forEach(d => {
+            this.locationListToBePassed.push({ lat: d.ADDRESS?.LATIDUTE, lng: d.ADDRESS?.LANGITUDE });
+          });
+        }
+        this.loadingMap = false;
+      },
+      err => { this.loadingMap = false; }
+      ,
+      () => { this.loadingMap = false; }
+    );
+    this.modalService.open(content, { backdrop: 'static', centered: true, size: 'lg' });
   }
 }

@@ -1,4 +1,4 @@
-import { Donation, Result_DELETE_DONATION, Result_GET_DONATIONS, Result_GET_DONATION_BY_IS_NOT_SHIPPED, Result_GET_DONATION_BY_IS_SHIPPED, Result_SHIP_DONATION } from './../models/Donation';
+import { Donation, Result_DELETE_DONATION, Result_GET_DONATIONS, Result_GET_DONATION_BY_IS_NOT_SHIPPED, Result_GET_DONATION_BY_IS_SHIPPED, Result_SHIP_DONATION, Result_GET_DONATION_BY_USER_ID } from './../models/Donation';
 import { Result_EDIT_UPLOADED_FILE } from './../models/UploadFile';
 
 import { Item, Result_DELETE_ITEM_BY_ITEM_ID, Result_EDIT_ITEM, Result_GET_ITEMS } from './../models/Item';
@@ -120,6 +120,14 @@ export class MainService {
 
   getDonationsByIsNotShipped(): Observable<Donation[]>{
     return this.apiCaller.get<Result_GET_DONATION_BY_IS_NOT_SHIPPED>(`${this.BASE_URL}/GET_DONATION_BY_IS_NOT_SHIPPED`)
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+       return response.donations;
+      })
+    );
+  }
+
+  getDonationsByUserId(user_id: number): Observable<Donation[]>{
+    return this.apiCaller.post<Result_GET_DONATION_BY_USER_ID>(`${this.BASE_URL}/GET_DONATION_BY_USER_ID`, { USER_ID: user_id })
     .pipe(map(response => { this.Handle_Exception(response.errorMsg);
        return response.donations;
       })

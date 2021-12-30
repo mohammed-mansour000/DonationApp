@@ -35,7 +35,7 @@ export class MapsComponent implements OnInit {
         zoom: 6
       })
 
-      for (let i = 0; i < locationArr.length; i++) {
+      for (let i = 0; i < this.locationList.length; i++) {
         new google.maps.Marker({
           position: this.locationList[i],
           map: this.map,

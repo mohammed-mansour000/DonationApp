@@ -62,7 +62,8 @@ import {MatTreeModule} from '@angular/material/tree';
                 MatToolbarModule,
                 MatDialogModule,
                 MatTabsModule,
-                MatAutocompleteModule
+                MatAutocompleteModule,
+                MatProgressSpinnerModule
              ],
     exports: [
                 MatButtonModule,
@@ -77,7 +78,8 @@ import {MatTreeModule} from '@angular/material/tree';
                 MatToolbarModule,
                 MatDialogModule,
                 MatTabsModule,
-                MatAutocompleteModule
+                MatAutocompleteModule,
+                MatProgressSpinnerModule
              ]
 })
 export class MaterialModule {

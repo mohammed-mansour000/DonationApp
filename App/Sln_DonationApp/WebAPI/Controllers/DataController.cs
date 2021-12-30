@@ -287,13 +287,13 @@ namespace WebAPI.Controllers
 
         [Route("GET_DONATION_BY_USER_ID")]
         [HttpPost]
-        public Result_GET_DONATION_BY_USER_ID GET_DONATION_BY_USER_ID(Int32 USER_ID)
+        public Result_GET_DONATION_BY_USER_ID GET_DONATION_BY_USER_ID(Params_GET_DONATION_BY_USER_ID oParams_GET_DONATION_BY_USER_ID)
         {
             Result_GET_DONATION_BY_USER_ID oResult_GET_DONATION_BY_USER_ID = new Result_GET_DONATION_BY_USER_ID();
             try
             {
                 oResult_GET_DONATION_BY_USER_ID.donations = new List<Donation>();
-                oResult_GET_DONATION_BY_USER_ID.donations = _blc.GET_DONATION_BY_USER_ID(USER_ID);
+                oResult_GET_DONATION_BY_USER_ID.donations = _blc.GET_DONATION_BY_USER_ID(oParams_GET_DONATION_BY_USER_ID.USER_ID);
                 return oResult_GET_DONATION_BY_USER_ID;
             }
             catch (Exception e)
@@ -305,13 +305,13 @@ namespace WebAPI.Controllers
 
         [Route("GET_DONATION_BY_ITEM_ID")]
         [HttpPost]
-        public Result_GET_DONATION_BY_ITEM_ID GET_DONATION_BY_ITEM_ID(Int32 ITEM_ID)
+        public Result_GET_DONATION_BY_ITEM_ID GET_DONATION_BY_ITEM_ID(Params_GET_DONATION_BY_ITEM_ID oParams_GET_DONATION_BY_ITEM_ID)
         {
             Result_GET_DONATION_BY_ITEM_ID oResult_GET_DONATION_BY_ITEM_ID = new Result_GET_DONATION_BY_ITEM_ID();
             try
             {
                 oResult_GET_DONATION_BY_ITEM_ID.donations = new List<Donation>();
-                oResult_GET_DONATION_BY_ITEM_ID.donations = _blc.GET_DONATION_BY_ITEM_ID(ITEM_ID);
+                oResult_GET_DONATION_BY_ITEM_ID.donations = _blc.GET_DONATION_BY_ITEM_ID(oParams_GET_DONATION_BY_ITEM_ID.ITEM_ID);
                 return oResult_GET_DONATION_BY_ITEM_ID;
             }
             catch (Exception e)
@@ -323,13 +323,13 @@ namespace WebAPI.Controllers
 
         [Route("GET_DONATION_BY_ADDRESS_ID")]
         [HttpPost]
-        public Result_GET_DONATION_BY_ADDRESS_ID GET_DONATION_BY_ADDRESS_ID(Int32 ADDRESS_ID)
+        public Result_GET_DONATION_BY_ADDRESS_ID GET_DONATION_BY_ADDRESS_ID(Params_GET_DONATION_BY_ADDRESS_ID oParams_GET_DONATION_BY_ADDRESS_ID)
         {
             Result_GET_DONATION_BY_ADDRESS_ID oResult_GET_DONATION_BY_ADDRESS_ID = new Result_GET_DONATION_BY_ADDRESS_ID();
             try
             {
                 oResult_GET_DONATION_BY_ADDRESS_ID.donations = new List<Donation>();
-                oResult_GET_DONATION_BY_ADDRESS_ID.donations = _blc.GET_DONATION_BY_ADDRESS_ID(ADDRESS_ID);
+                oResult_GET_DONATION_BY_ADDRESS_ID.donations = _blc.GET_DONATION_BY_ADDRESS_ID(oParams_GET_DONATION_BY_ADDRESS_ID.ADDRESS_ID);
                 return oResult_GET_DONATION_BY_ADDRESS_ID;
             }
             catch (Exception e)
@@ -1048,4 +1048,20 @@ namespace WebAPI.Controllers
         public int DONATION_ID { get; set; }
         public int IS_SHIPPED { get; set; }
     }
+
+    public partial class Params_GET_DONATION_BY_USER_ID
+    {
+        public int USER_ID { get; set; }
+    }
+
+    public partial class Params_GET_DONATION_BY_ITEM_ID
+    {
+        public int ITEM_ID { get; set; }
+    }
+
+    public partial class Params_GET_DONATION_BY_ADDRESS_ID
+    {
+        public int ADDRESS_ID { get; set; }
+    }
+
 }

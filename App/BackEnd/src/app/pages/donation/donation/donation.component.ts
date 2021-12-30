@@ -168,4 +168,14 @@ export class DonationComponent implements OnInit {
   ngOnDestroy(): void {
     this.Get_Donations_Subscription.unsubscribe();
   }
+
+  sortResult(prop: string, asc: boolean){
+    this.donations = this.donations.sort((a,b) => {
+      if(asc){
+        return (a["SHIP_DATE"]>b["SHIP_DATE"]) ? 1 : ((a["SHIP_DATE"]<b["SHIP_DATE"]) ? -1 : 0);
+      }else{
+        return (b["SHIP_DATE"]>a["SHIP_DATE"]) ? 1 : ((b["SHIP_DATE"]<a["SHIP_DATE"]) ? -1 : 0);
+      }
+    });
+  }
 }

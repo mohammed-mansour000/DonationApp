@@ -33,6 +33,10 @@ export interface Result_GET_DONATION_BY_IS_NOT_SHIPPED extends Action_Result{
     donations: Donation[];  
 }
 
+export interface Result_GET_DONATION_BY_USER_ID extends Action_Result{
+    donations: Donation[];  
+}
+
 export interface Result_DELETE_DONATION extends Action_Result{
     Msg: string;
 }
