@@ -1,16 +1,45 @@
+import { MaterialModule } from './Material/material.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DonateNowComponent } from './pages/donate-now/donate-now.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { ItemsComponent } from './pages/item/items/items.component';
+import { ShowItemComponent } from './pages/item/show-item/show-item.component';
+import { AddDonationComponent } from './pages/donation/add-donation/add-donation.component';
+import { MyDonationsComponent } from './pages/donation/my-donations/my-donations.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DonateNowComponent,
+    CategoriesComponent,
+    ProfileComponent,
+    LoginComponent,
+    SignupComponent,
+    ItemsComponent,
+    ShowItemComponent,
+    AddDonationComponent,
+    MyDonationsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SlickCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
