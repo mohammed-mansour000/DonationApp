@@ -1,7 +1,14 @@
+import { ItemsComponent } from './pages/item/items/items.component';
+import { DonateNowComponent } from './pages/donate-now/donate-now.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: "", component: DonateNowComponent},
+  {path: "categories", component: CategoriesComponent},
+  {path: "items/:cat_id", component: ItemsComponent},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

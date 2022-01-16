@@ -131,6 +131,7 @@ export class ItemComponent implements OnInit {
 
   prepareImage(event: any){
     this.preparedFile = event.target.files[0];
+    console.log(this.preparedFile)
     this.preparedFormData.append('uploadedFile', this.preparedFile, this.preparedFile.name)
   }
 
@@ -164,7 +165,7 @@ export class ItemComponent implements OnInit {
     var file = event.target.files[0];
     const formData : FormData = new FormData();
     formData.append('uploadedFile', file, file.name)
-
+    console.log(file.name)
     this.mainService.uploadPhoto(formData).subscribe((res: any) => {
       this.PhotoFileName = res.toString();
       this.PhotoFilePath = this.PHOTO_URL + this.PhotoFileName;

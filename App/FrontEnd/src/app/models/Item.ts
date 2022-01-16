@@ -19,6 +19,10 @@ export interface Result_GET_ITEMS extends Action_Result{
     items: Item[];    
 }
 
+export interface Result_Get_Items_By_Category extends Action_Result{
+    items: Item[];    
+}
+
 export interface Result_EDIT_ITEM extends Action_Result{
     item: Item;    
 }

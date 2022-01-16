@@ -38,7 +38,7 @@ export class MainService {
   }
 
   deleteCategory(category_id: number): Observable<string> {
-    return this.apiCaller.post<Result_DELETE_CATEGORY_BY_CATEGORY_ID>(`${this.BASE_URL}DELETE_CATEGORY_BY_CATEGORY_ID?USER_ID=${category_id}`, category_id)
+    return this.apiCaller.post<Result_DELETE_CATEGORY_BY_CATEGORY_ID>(`${this.BASE_URL}/DELETE_CATEGORY_BY_CATEGORY_ID?CAT_ID=${category_id}`, category_id)
     .pipe(map(response => { this.Handle_Exception(response.errorMsg);
        return response.Msg;
       })

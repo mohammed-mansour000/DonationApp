@@ -1,1 +1,17 @@
-<p>items works!</p>
+<div class="container">
+    <div class="spinner-container" *ngIf="!items.length">
+        <mat-spinner class="loading-spinner" [diameter]="200"></mat-spinner>
+    </div>
+    
+    <div class="row" *ngIf="items.length">
+      <div class="col-6 col-md-4 example-card" *ngFor="let item of items">
+        <mat-card class="p-4">
+            <img mat-card-image src="{{PHOTO_URL}}{{item?.UPLOAD_FILE?.FILE_NAME}}">
+            <mat-card-content>
+                <h2 class="text-center">{{item.NAME}}</h2>
+                <p class="text-center">{{item.DESCRIPTION}}</p>
+            </mat-card-content>
+          </mat-card>
+      </div>
+    </div>
+</div>

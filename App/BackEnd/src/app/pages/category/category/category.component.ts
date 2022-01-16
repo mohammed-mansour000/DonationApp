@@ -45,6 +45,7 @@ export class CategoryComponent implements OnInit {
         }
       );
   }
+  
   Edit() {
     console.log(this.form.value)
     const editedCategory: Category = {
@@ -140,7 +141,6 @@ export class CategoryComponent implements OnInit {
     var file = event.target.files[0];
     const formData: FormData = new FormData();
     formData.append('uploadedFile', file, file.name)
-
     this.mainService.uploadPhoto(formData).subscribe((res: any) => {
       this.PhotoFileName = res.toString();
       this.PhotoFilePath = this.PHOTO_URL + this.PhotoFileName;

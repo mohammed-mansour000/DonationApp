@@ -14,4 +14,8 @@
     <ProjectReference Include="..\DALC\DALC.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Photos\" />
+  </ItemGroup>
+
 </Project>

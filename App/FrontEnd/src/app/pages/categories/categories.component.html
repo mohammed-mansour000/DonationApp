@@ -1,1 +1,16 @@
-<p>categories works!</p>
+<div class="container">
+    <div class="spinner-container" *ngIf="!categories.length">
+        <mat-spinner class="loading-spinner" [diameter]="200"></mat-spinner>
+    </div>
+    
+    <div class="row" *ngIf="categories.length">
+      <div class="col-6 col-md-4 example-card" *ngFor="let category of categories" (click)="navigateToItems(category.CATAGORY_ID)">
+        <mat-card class="p-4">
+            <img mat-card-image src="{{PHOTO_URL}}{{category?.UPLOAD_FILE?.FILE_NAME}}">
+            <mat-card-content>
+                <h2 class="text-center">{{category.NAME}}</h2>
+            </mat-card-content>
+          </mat-card>
+      </div>
+    </div>
+</div>
