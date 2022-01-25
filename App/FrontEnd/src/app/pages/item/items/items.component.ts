@@ -61,6 +61,12 @@ export class ItemsComponent implements OnInit {
     );
   }
 
+  donate(){
+    if(!this.mainService.isLoggedIn()){
+      this.router.navigate(["login"]);
+    }
+  }
+
   ngOnDestroy(): void {
     this.Get_Items_Subscription.unsubscribe();
   }

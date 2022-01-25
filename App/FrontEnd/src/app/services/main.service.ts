@@ -54,6 +54,14 @@ export class MainService {
     return JSON.parse(localStorage.getItem('user_data') || '{}');
   }
 
+  removeLocalStorage(){
+    localStorage.removeItem('user_data');
+  }
+
+  isLoggedIn(){
+    return !!localStorage.getItem('user_data');
+  }
+
   Handle_Exception(msg?: string) {
     if ((msg != null) && (msg !== '')) {
       this.ShowMessage(msg , 3000);

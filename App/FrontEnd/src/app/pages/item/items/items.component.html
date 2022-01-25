@@ -21,7 +21,7 @@
 <div class="card-top container-fluid">
   <div class="container d-flex">
       <div class="item" *ngFor="let category of categories">
-          <a (click)="getItemsByCategoryId(category.CATAGORY_ID)">
+          <a (click)="getItemsByCategoryId(category.CATAGORY_ID)" style="cursor: pointer;">
               <img src="{{PHOTO_URL}}{{category?.UPLOAD_FILE?.FILE_NAME}}" alt="">
               <h6>{{category.NAME}}</h6>
           </a>
@@ -41,12 +41,10 @@
               <h5 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.NAME}}</h5>
               <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.DESCRIPTION}}</p>
               <p><strong>doantion time:</strong> {{item.donationTime}}</p>
-              <button class="btn btn-primary" >donate</button>
+              <button class="btn btn-primary" (click)="donate()">donate</button>
           </div>
       </ng-container>
 
   </div>
-</div>
-
 </div>
 

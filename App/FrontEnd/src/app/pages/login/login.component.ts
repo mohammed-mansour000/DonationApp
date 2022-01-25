@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     private mainService: MainService,
     private router: Router  
   ) {
-    if(this.mainService.getLocalStorage()){
+    if(this.mainService.isLoggedIn()){
       this.router.navigate(['categories']);
     }
    }
