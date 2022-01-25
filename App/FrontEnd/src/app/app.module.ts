@@ -17,6 +17,8 @@ import { MyDonationsComponent } from './pages/donation/my-donations/my-donations
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
+ 
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    MatCarouselModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

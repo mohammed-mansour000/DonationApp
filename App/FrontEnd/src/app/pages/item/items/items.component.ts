@@ -43,4 +43,8 @@ export class ItemsComponent implements OnInit {
       }
     );
   }
+
+  ngOnDestroy(): void {
+    this.Get_Items_Subscription.unsubscribe();
+  }
 }

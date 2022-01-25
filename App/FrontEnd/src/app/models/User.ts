@@ -1,12 +1,13 @@
 export interface User{
     USER_ID: number;
     FIRST_NAME: string;
-    LAST_NAME: number;
+    LAST_NAME: string;
     EMAIL: string;
-    IS_ACTIVE: Boolean;
+    IS_ACTIVE?: Boolean;
     ENTRY_DATE?: Date;
     PHONE: string;
-    USER_TYPE_CODE: string;
+    USER_TYPE_CODE?: string;
+    PASSWORD?: string;
 
 }
 
