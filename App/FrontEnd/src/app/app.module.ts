@@ -18,6 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { HeaderComponent } from './pages/header/header.component';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
+ 
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { HeaderComponent } from './pages/header/header.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    MatCarouselModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
