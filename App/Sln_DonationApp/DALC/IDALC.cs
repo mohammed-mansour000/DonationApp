@@ -65,6 +65,7 @@ namespace DALC
             public Category CATAGORY { get; set; }
             public DateTime ENTRY_DATE { get; set; }
             public UploadFile? UPLOAD_FILE { get; set; }
+            public Int32? donationTime { get; set; }
 
         }
 
