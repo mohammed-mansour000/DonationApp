@@ -9,6 +9,7 @@ export interface Item{
     IS_ACTIVE : boolean;
     CATAGORY : Category; 
     UPLOAD_FILE ?: UploadFile;
+    donationTime ?: number;
 }
 
 export class Action_Result{

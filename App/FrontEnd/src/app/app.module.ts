@@ -17,6 +17,7 @@ import { MyDonationsComponent } from './pages/donation/my-donations/my-donations
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { HeaderComponent } from './pages/header/header.component';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
  
 
@@ -31,7 +32,8 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     ItemsComponent,
     ShowItemComponent,
     AddDonationComponent,
-    MyDonationsComponent
+    MyDonationsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

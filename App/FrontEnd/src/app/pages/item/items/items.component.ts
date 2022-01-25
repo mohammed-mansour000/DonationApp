@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Item } from 'src/app/models/Item';
 import { environment } from 'src/environments/environment';
+import { Category } from 'src/app/models/Category';
 
 
 @Component({
@@ -17,7 +18,10 @@ export class ItemsComponent implements OnInit {
   category_id: any ;
   items :Item[] = [];
   PHOTO_URL: string = environment.PHOTO_URL;
-  
+
+  Get_Category_Subscription = new Subscription();
+  categories: Category[] = [];
+
   constructor(
     private router: Router, 
     private activatedRoute:ActivatedRoute,
@@ -30,10 +34,23 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getItemsByCategoryId();
+    this.getCategories();
   }
 
-  getItemsByCategoryId() {
-    this.Get_Items_Subscription = this.mainService.getItemsByCategoryId(this.category_id)
+  getCategories() {
+    this.Get_Category_Subscription = this.mainService.getCategories()
+      .subscribe(
+        res => {
+          console.log(res);
+          if (res != null) {
+            this.categories = res;
+          }
+        }
+      );
+  }
+
+  getItemsByCategoryId(category_id?: number) {
+    this.Get_Items_Subscription = this.mainService.getItemsByCategoryId(category_id==null? this.category_id:category_id)
     .subscribe(
       res => {
         if(res != null){
