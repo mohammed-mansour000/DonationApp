@@ -37,11 +37,9 @@ import { AddDonationComponent } from './pages/donation/add-donation/add-donation
     ShowItemComponent,
     MyDonationsComponent,
     HeaderComponent,
-<<<<<<< HEAD
-    AddDonationComponent
-=======
+    AddDonationComponent,
     MapComponent
->>>>>>> f8e41268ac31a397a080e5fbcbbeec54c92e1594
+
   ],
   imports: [
     BrowserModule,
