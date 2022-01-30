@@ -1,3 +1,4 @@
+import { AddDonationComponent } from './pages/donation/add-donation/add-donation.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ItemsComponent } from './pages/item/items/items.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: "signup", component: SignupComponent},
   {path: "login", component: LoginComponent},
   {path: "profile", component: ProfileComponent},
+  {path: "items/add-donation/:item_id", component: AddDonationComponent},
 ];
 
 @NgModule({

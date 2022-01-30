@@ -61,9 +61,11 @@ export class ItemsComponent implements OnInit {
     );
   }
 
-  donate(){
+  donate = (item_id: number) => {
     if(!this.mainService.isLoggedIn()){
       this.router.navigate(["login"]);
+    }else{
+      this.router.navigate(["/items/add-donation", item_id])
     }
   }
 

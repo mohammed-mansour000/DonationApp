@@ -12,13 +12,13 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ItemsComponent } from './pages/item/items/items.component';
 import { ShowItemComponent } from './pages/item/show-item/show-item.component';
-import { AddDonationComponent } from './pages/donation/add-donation/add-donation.component';
 import { MyDonationsComponent } from './pages/donation/my-donations/my-donations.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { HeaderComponent } from './pages/header/header.component';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { AddDonationComponent } from './pages/donation/add-donation/add-donation.component';
  
 
 @NgModule({
@@ -31,9 +31,9 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     SignupComponent,
     ItemsComponent,
     ShowItemComponent,
-    AddDonationComponent,
     MyDonationsComponent,
-    HeaderComponent
+    HeaderComponent,
+    AddDonationComponent
   ],
   imports: [
     BrowserModule,

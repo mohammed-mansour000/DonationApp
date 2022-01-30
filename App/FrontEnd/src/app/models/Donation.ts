@@ -5,8 +5,8 @@ import { UploadFile } from './UploadFile';
 
 export interface Donation{
     DONATION_ID : number;
-    COLOR: string;
-    SIZE: string;
+    COLOR?: string;
+    SIZE?: string;
     ENTRY_DATE?: Date;
     QUANTITY: number;
     IS_SHIPPED: boolean;
