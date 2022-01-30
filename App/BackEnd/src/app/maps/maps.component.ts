@@ -20,10 +20,6 @@ export class MapsComponent implements OnInit {
     console.log(this.locationList)
     loader.load().then(() => {
       console.log('loaded gmaps')
-
-      // const location = { lat: 51.233334, lng: 6.783333 }
-      // const location2 = { lat: 3.233334, lng: 13.783333 }
-      // const location3 = { lat: 33.8547, lng: 35.8623 }
       const locationArr = [
         { lat: 51.233334, lng: 6.783333 },
         { lat: 3.233334, lng: 13.783333 },
