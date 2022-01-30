@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { MainService } from 'src/app/services/main.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  isLoggedIn: boolean = false;
+  
+  constructor(
+    private mainService: MainService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.mainService.isLoggedIn();
   }
 
+  logout(){
+    this.mainService.removeLocalStorage();
+    this.isLoggedIn = this.mainService.isLoggedIn();
+  }
 }

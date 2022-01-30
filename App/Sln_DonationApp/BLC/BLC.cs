@@ -55,7 +55,10 @@ namespace BLC
 
             DALC.DALC oDalc = new DALC.DALC();
             oDalc.ConnectionString = this.ConnectionString;
-            i_User.ENTRY_DATE = DateTime.Today;
+		if(i_User.USER_ID == -1){
+		  i_User.ENTRY_DATE = DateTime.Today;
+		}
+           
 
             if (!string.IsNullOrEmpty(i_User.PASSWORD))
             {

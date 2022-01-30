@@ -6,6 +6,7 @@ import { Category, Result_Get_Category } from '../models/Category';
 import {map} from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Item } from '../models/Item';
+import { Result_EDIT_USER, Result_LOGIN_BY_EMAIL_AND_PASSWORD, User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,34 @@ export class MainService {
        return response.items;
       })
     );
+  }
+
+  editUser(user: User): Observable<User>{
+    return this.apiCaller.post<Result_EDIT_USER>(`${this.BASE_URL}/EDIT_USER`, user)
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+      return response.user;
+    })
+    );
+  }
+
+  loginByEmailAndPassword(email: string, password: string): Observable<User> {
+    return this.apiCaller.post<Result_LOGIN_BY_EMAIL_AND_PASSWORD>(`${this.BASE_URL}/GET_USER_BY_EMAIL_AND_PASSWORD`, {EMAIL:email, PASSWORD:password})
+    .pipe(map(response => { this.Handle_Exception(response.errorMsg);
+       return response.user;
+      })
+    );
+  }
+
+  getLocalStorage(): User{
+    return JSON.parse(localStorage.getItem('user_data') || '{}');
+  }
+
+  removeLocalStorage(){
+    localStorage.removeItem('user_data');
+  }
+
+  isLoggedIn(){
+    return !!localStorage.getItem('user_data');
   }
 
   Handle_Exception(msg?: string) {
