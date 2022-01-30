@@ -5,6 +5,10 @@
     "outDir": "./out-tsc/spec",
     "types": [
       "jasmine",
+<<<<<<< HEAD
+=======
+      "googlemaps"
+>>>>>>> f8e41268ac31a397a080e5fbcbbeec54c92e1594
     ]
   },
   "files": [

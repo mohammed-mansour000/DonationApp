@@ -650,7 +650,6 @@ namespace DALC
                             oItem.DESCRIPTION = item["ItemDescription"].ToString();
                             oItem.ENTRY_DATE = Convert.ToDateTime(item["ItemEntryDate"]);
                             oItem.IS_ACTIVE = (bool?)item["IS_ACTIVE"];
-                            oItem.donationTime = Convert.ToInt32(item["timeNumber"]);
 
                             oItem.CATAGORY = new Category();
                             oItem.CATAGORY.CATAGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
@@ -662,8 +661,6 @@ namespace DALC
                             oItem.UPLOAD_FILE.UPLOADED_FILE_ID = Convert.ToInt32(item["UPLOADED_FILE_ID"]);
                             oItem.UPLOAD_FILE.FILE_NAME = item["FILE_NAME"].ToString();
                             oItem.UPLOAD_FILE.ENTRY_DATE = Convert.ToDateTime(item["UPLOAD_FILE_ENTRY_DATE"]);
-
-                            
 
                             oList.Add(oItem);
                         }
@@ -708,9 +705,6 @@ namespace DALC
                             oItem.DESCRIPTION = item["ItemDescription"].ToString();
                             oItem.ENTRY_DATE = Convert.ToDateTime(item["ItemEntryDate"]);
                             oItem.IS_ACTIVE = (bool?)item["IS_ACTIVE"];
-                            oItem.donationTime = Convert.ToInt32(item["timeNumber"]);
-
-
                             oItem.CATAGORY = new Category();
                             oItem.CATAGORY.CATAGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
                             oItem.CATAGORY.NAME = item["CatagoryName"].ToString();
@@ -764,8 +758,6 @@ namespace DALC
                             oItem.DESCRIPTION = item["ItemDescription"].ToString();
                             oItem.ENTRY_DATE = Convert.ToDateTime(item["ItemEntryDate"]);
                             oItem.IS_ACTIVE = (bool?)item["IS_ACTIVE"];
-                            oItem.donationTime = Convert.ToInt32(item["timeNumber"]);
-
                             oItem.CATAGORY = new Category();
                             oItem.CATAGORY.CATAGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
                             oItem.CATAGORY.NAME = item["CatagoryName"].ToString();
@@ -822,8 +814,6 @@ namespace DALC
                             oItem.DESCRIPTION = item["ItemDescription"].ToString();
                             oItem.ENTRY_DATE = Convert.ToDateTime(item["ItemEntryDate"]);
                             oItem.IS_ACTIVE = (bool?)item["IS_ACTIVE"];
-                            oItem.donationTime = Convert.ToInt32(item["timeNumber"]);
-
                             oItem.CATAGORY = new Category();
                             oItem.CATAGORY.CATAGORY_ID = Convert.ToInt32(item["CATEGORY_ID"]);
                             oItem.CATAGORY.NAME = item["CatagoryName"].ToString();
