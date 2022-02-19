@@ -1,0 +1,48 @@
+.form-control {
+    border-radius: 3px;
+    width: 500px;
+    margin-left: 20px;
+}
+
+@media (max-width: 860px) {
+    .form-control{
+        width: 200px;
+    }
+}
+
+@media (max-width: 991px) {
+    .form-control{
+        width: 300px;
+    }
+}
+
+@media (max-width: 991px) {
+    .form-control{
+        width: 150px;
+    }
+}
+
+@media (max-width: 476px) {
+   
+}
+
+
+.search-icon {
+    /* position: absolute;
+    z-index: 10;
+    right: 37%;
+    top: 20px;
+    color: blue; */
+}
+.donately{
+    margin-top: 7px;
+    font-size: 30px;
+    margin-right: 20px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+@media (max-width: 476px) {
+   .donately {
+       font-size: 20px;
+   }
+}
