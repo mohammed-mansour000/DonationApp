@@ -6,15 +6,15 @@
   </div>
   <div class="accordion" id="accordionExample" *ngIf="donations.length" >
     <div class="accordion-item" *ngFor="let donation of donations">
-      <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-          aria-expanded="true" aria-controls="collapseOne">
+      <h2 class="accordion-header" id="{{donation.DONATION_ID}}">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" attr.data-bs-target="#collapse{{donation.DONATION_ID}}"
+          aria-expanded="true" attr.aria-controls="collapse{{donation.DONATION_ID}}">
          <span class="name"> {{donation.ITEM?.NAME}} </span>
          <span class="date"> {{donation.ENTRY_DATE | date: 'medium'}}</span>
          <span class="isShipped">{{donation.IS_SHIPPED?"Shipped":"Not Shipped"}}</span>
         </button>
       </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+      <div id="collapse{{donation.DONATION_ID}}" class="accordion-collapse collapse show" [attr.aria-labelledby]="donation.DONATION_ID"
         data-bs-parent="#accordionExample">
         <div class="accordion-body">
           <div class="card">
