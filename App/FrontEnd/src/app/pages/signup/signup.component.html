@@ -1,0 +1,109 @@
+<section class="min-vh-100 gradient-custom">
+    <div class="container py-5 ">
+        <div class="row justify-content-center align-items-center ">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+                        <form #f="ngForm" (ngSubmit)="f.form.valid && signup()" novalidate>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+
+                                    <div class="form-outline">
+                                        <input type="text" id="firstName" class="form-control form-control-lg"
+                                            name='FIRST_NAME' [(ngModel)]="signupData.FIRST_NAME" #FIRST_NAME="ngModel"
+                                            required />
+                                        <label class="form-label" for="firstName">First Name</label>
+                                    </div>
+                                    <mat-error *ngIf="f.submitted && !FIRST_NAME.valid">First Name is required
+                                    </mat-error>
+
+                                </div>
+                                <div class="col-md-6 mb-4">
+
+                                    <div class="form-outline">
+                                        <input type="text" id="lastName" class="form-control form-control-lg"
+                                            name='LAST_NAME' [(ngModel)]="signupData.LAST_NAME" #LAST_NAME="ngModel"
+                                            required />
+                                        <label class="form-label" for="lastName">Last Name</label>
+                                    </div>
+                                    <mat-error *ngIf="f.submitted && !LAST_NAME.valid">Last Name is required</mat-error>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        <input type="text" id="email" class="form-control form-control-lg" name='EMAIL'
+                                            [(ngModel)]="signupData.EMAIL" #EMAIL="ngModel" required />
+                                        <label class="form-label" for="emailAddress">Email</label>
+                                    </div>
+                                    <mat-error *ngIf="f.submitted && !EMAIL.valid">Email is required</mat-error>
+
+                                </div>
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        <input type="tel" id="tel" class="form-control form-control-lg" name='PHONE'
+                                            [(ngModel)]="signupData.PHONE" #PHONE="ngModel" required />
+                                        <label class="form-label" for="phoneNumber">Phone Number</label>
+                                    </div>
+                                    <mat-error *ngIf="f.submitted && !PHONE.valid">Phone Number is required</mat-error>
+
+                                </div>
+
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        <input type="tel" id="tel" class="form-control form-control-lg" name='PASSWORD'
+                                            [(ngModel)]="signupData.PASSWORD" #PASSWORD="ngModel" required />
+                                        <label class="form-label" for="phoneNumber">Password</label>
+                                    </div>
+                                    <mat-error *ngIf="f.submitted && !PASSWORD.valid">Password is required</mat-error>
+
+                                </div>
+
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        <input type="tel" id="tel" class="form-control form-control-lg"
+                                            name='CONFIRM_PASSWORD' [(ngModel)]="signupData.CONFIRM_PASSWORD"
+                                            #CONFIRM_PASSWORD="ngModel" (keyup)=checkConfirmPassword() required />
+                                        <label class="form-label" for="phoneNumber">Confirm Password</label>
+                                    </div>
+                                    <mat-error *ngIf="f.submitted && !CONFIRM_PASSWORD.valid">Confirm Password is
+                                        required</mat-error>
+                                    <mat-error *ngIf="!checkConfirmPassword() && CONFIRM_PASSWORD.touched">Password
+                                        doesn't match</mat-error>
+
+                                </div>
+                            </div>
+
+                            <div class="mt-2 pt-1">
+                                <button class="btn btn-primary btn-lg" type="submit">
+                                    Register
+                                </button>
+                            </div>
+
+
+
+                        </form>
+                        <p *ngIf="!loading" class="text-center text-muted mt-5 mb-0">
+                            Have already an account?
+                            <a 
+                                (click)="goToLogin()" 
+                                style="cursor: pointer;" 
+                                class="fw-bold text-body">
+                                <u>Login here</u>
+                            </a>
+                        </p>
+                        <mat-spinner *ngIf="loading" class="mx-auto mt-3"></mat-spinner>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
