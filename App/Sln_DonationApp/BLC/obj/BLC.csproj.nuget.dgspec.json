@@ -1,0 +1,183 @@
+{
+  "format": 1,
+  "restore": {
+<<<<<<< HEAD
+    "E:\\Training\\DonationApp\\App\\Sln_DonationApp\\BLC\\BLC.csproj": {}
+  },
+  "projects": {
+    "E:\\Training\\DonationApp\\App\\Sln_DonationApp\\BLC\\BLC.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Training\\DonationApp\\App\\Sln_DonationApp\\BLC\\BLC.csproj",
+        "projectName": "BLC",
+        "projectPath": "E:\\Training\\DonationApp\\App\\Sln_DonationApp\\BLC\\BLC.csproj",
+        "packagesPath": "C:\\Users\\Hamzi\\.nuget\\packages\\",
+        "outputPath": "E:\\Training\\DonationApp\\App\\Sln_DonationApp\\BLC\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Hamzi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+    "C:\\Users\\Bashar\\OneDrive\\Documents\\GitHub\\DonationApp\\DonationApp\\App\\Sln_DonationApp\\BLC\\BLC.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Bashar\\OneDrive\\Documents\\GitHub\\DonationApp\\DonationApp\\App\\Sln_DonationApp\\BLC\\BLC.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Bashar\\OneDrive\\Documents\\GitHub\\DonationApp\\DonationApp\\App\\Sln_DonationApp\\BLC\\BLC.csproj",
+        "projectName": "BLC",
+        "projectPath": "C:\\Users\\Bashar\\OneDrive\\Documents\\GitHub\\DonationApp\\DonationApp\\App\\Sln_DonationApp\\BLC\\BLC.csproj",
+        "packagesPath": "C:\\Users\\Bashar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bashar\\OneDrive\\Documents\\GitHub\\DonationApp\\DonationApp\\App\\Sln_DonationApp\\BLC\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Bashar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> origin/temp004
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+<<<<<<< HEAD
+              "E:\\Training\\DonationApp\\App\\Sln_DonationApp\\DALC\\DALC.csproj": {
+                "projectPath": "E:\\Training\\DonationApp\\App\\Sln_DonationApp\\DALC\\DALC.csproj"
+=======
+              "C:\\Users\\Bashar\\OneDrive\\Documents\\GitHub\\DonationApp\\DonationApp\\App\\Sln_DonationApp\\DALC\\DALC.csproj": {
+                "projectPath": "C:\\Users\\Bashar\\OneDrive\\Documents\\GitHub\\DonationApp\\DonationApp\\App\\Sln_DonationApp\\DALC\\DALC.csproj"
+>>>>>>> origin/temp004
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+<<<<<<< HEAD
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+=======
+>>>>>>> origin/temp004
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.211\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Training\\DonationApp\\App\\Sln_DonationApp\\DALC\\DALC.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Training\\DonationApp\\App\\Sln_DonationApp\\DALC\\DALC.csproj",
+        "projectName": "DALC",
+        "projectPath": "E:\\Training\\DonationApp\\App\\Sln_DonationApp\\DALC\\DALC.csproj",
+        "packagesPath": "C:\\Users\\Hamzi\\.nuget\\packages\\",
+        "outputPath": "E:\\Training\\DonationApp\\App\\Sln_DonationApp\\DALC\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Hamzi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Bashar\\OneDrive\\Documents\\GitHub\\DonationApp\\DonationApp\\App\\Sln_DonationApp\\DALC\\DALC.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Bashar\\OneDrive\\Documents\\GitHub\\DonationApp\\DonationApp\\App\\Sln_DonationApp\\DALC\\DALC.csproj",
+        "projectName": "DALC",
+        "projectPath": "C:\\Users\\Bashar\\OneDrive\\Documents\\GitHub\\DonationApp\\DonationApp\\App\\Sln_DonationApp\\DALC\\DALC.csproj",
+        "packagesPath": "C:\\Users\\Bashar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bashar\\OneDrive\\Documents\\GitHub\\DonationApp\\DonationApp\\App\\Sln_DonationApp\\DALC\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Bashar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> origin/temp004
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+<<<<<<< HEAD
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.211\\RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+>>>>>>> origin/temp004
+        }
+      }
+    }
+  }
+}

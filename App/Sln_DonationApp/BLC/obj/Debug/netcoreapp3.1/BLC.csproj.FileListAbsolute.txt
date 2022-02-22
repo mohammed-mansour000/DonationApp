@@ -1,0 +1,28 @@
+E:\Training\DonationApp\App\Sln_DonationApp\BLC\bin\Debug\netcoreapp3.1\BLC.deps.json
+E:\Training\DonationApp\App\Sln_DonationApp\BLC\bin\Debug\netcoreapp3.1\BLC.dll
+E:\Training\DonationApp\App\Sln_DonationApp\BLC\bin\Debug\netcoreapp3.1\BLC.pdb
+E:\Training\DonationApp\App\Sln_DonationApp\BLC\bin\Debug\netcoreapp3.1\DALC.dll
+E:\Training\DonationApp\App\Sln_DonationApp\BLC\bin\Debug\netcoreapp3.1\DALC.pdb
+E:\Training\DonationApp\App\Sln_DonationApp\BLC\obj\Debug\netcoreapp3.1\BLC.csprojAssemblyReference.cache
+E:\Training\DonationApp\App\Sln_DonationApp\BLC\obj\Debug\netcoreapp3.1\BLC.AssemblyInfoInputs.cache
+E:\Training\DonationApp\App\Sln_DonationApp\BLC\obj\Debug\netcoreapp3.1\BLC.AssemblyInfo.cs
+E:\Training\DonationApp\App\Sln_DonationApp\BLC\obj\Debug\netcoreapp3.1\BLC.csproj.CoreCompileInputs.cache
+E:\Training\DonationApp\App\Sln_DonationApp\BLC\obj\Debug\netcoreapp3.1\BLC.csproj.CopyComplete
+E:\Training\DonationApp\App\Sln_DonationApp\BLC\obj\Debug\netcoreapp3.1\BLC.dll
+E:\Training\DonationApp\App\Sln_DonationApp\BLC\obj\Debug\netcoreapp3.1\BLC.pdb
+<<<<<<< HEAD
+=======
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\DonationApp\App\Sln_DonationApp\BLC\bin\Debug\netcoreapp3.1\BLC.deps.json
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\DonationApp\App\Sln_DonationApp\BLC\bin\Debug\netcoreapp3.1\BLC.dll
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\DonationApp\App\Sln_DonationApp\BLC\bin\Debug\netcoreapp3.1\BLC.pdb
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\DonationApp\App\Sln_DonationApp\BLC\bin\Debug\netcoreapp3.1\DALC.dll
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\DonationApp\App\Sln_DonationApp\BLC\bin\Debug\netcoreapp3.1\DALC.pdb
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\DonationApp\App\Sln_DonationApp\BLC\obj\Debug\netcoreapp3.1\BLC.csproj.AssemblyReference.cache
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\DonationApp\App\Sln_DonationApp\BLC\obj\Debug\netcoreapp3.1\BLC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\DonationApp\App\Sln_DonationApp\BLC\obj\Debug\netcoreapp3.1\BLC.AssemblyInfoInputs.cache
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\DonationApp\App\Sln_DonationApp\BLC\obj\Debug\netcoreapp3.1\BLC.AssemblyInfo.cs
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\DonationApp\App\Sln_DonationApp\BLC\obj\Debug\netcoreapp3.1\BLC.csproj.CoreCompileInputs.cache
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\DonationApp\App\Sln_DonationApp\BLC\obj\Debug\netcoreapp3.1\BLC.csproj.CopyComplete
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\DonationApp\App\Sln_DonationApp\BLC\obj\Debug\netcoreapp3.1\BLC.dll
+C:\Users\Bashar\OneDrive\Documents\GitHub\DonationApp\DonationApp\App\Sln_DonationApp\BLC\obj\Debug\netcoreapp3.1\BLC.pdb
+>>>>>>> origin/temp004

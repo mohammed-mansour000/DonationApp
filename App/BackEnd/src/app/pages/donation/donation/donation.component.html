@@ -1,0 +1,148 @@
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class=" mb-4">
+            <button class="btn btn-primary" (click)="goBack()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+        </div>
+        <div class=" mb-4">
+            <button class="btn btn-primary">
+                
+                <div class="form-group">
+                    <label for="exampleInputPassword1"><i class="fas fa-filter"></i></label>
+                    <select class="form-select" aria-label="Default select example"  (change)="handleFilterChange()" [(ngModel)]="selectedFilter">
+                        <option value="">Filter donations</option>
+                        <option value="shipped">Shipped</option>
+                        <option value="notShipped">Not Shipped</option>
+                        <option value="all">All</option>
+                      </select>
+                  </div>
+            </button>
+<<<<<<< HEAD
+                <!-- <button class="btn btn-primary" (click)="sortResult('DepartmentName', false)">
+=======
+                <button class="btn btn-primary" (click)="sortResult('DepartmentName', false)">
+>>>>>>> origin/temp004
+                    <i class="fas fa-sort-up"></i>
+                </button>
+               
+                <button class="btn btn-primary" (click)="sortResult('DepartmentName', true)">
+                    <i class="fas fa-sort-down"></i>
+<<<<<<< HEAD
+                </button> -->
+=======
+                </button>
+>>>>>>> origin/temp004
+        </div>
+    </div>
+    <h3 class="text-center text-white" *ngIf="!donations.length">Fetching Data...</h3>
+    <div class="row" *ngIf="donations.length">
+        <div class="col-md-3 mt-3" *ngFor="let donation of donations">
+            <div class="card">
+                <div class="card-header justify-content-between d-flex align-items-center">
+                    <span> Donation Details</span>
+
+                    <button type="button" class="btn btn-sm btn-dark" (click)="openImageModal(imageModal, donation)">
+                        show img
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                        <span class="fw-bold">Item Name: </span>
+                        <span class="ps-2">{{ donation.ITEM?.NAME }}</span>
+                    </div>
+                    <hr>
+                    <div class="card-text">
+                        <span class="fw-bold">Donor: </span>
+                        <span class="ps-2">{{ donation.USER?.FIRST_NAME }} {{ donation.USER?.LAST_NAME }}</span>
+                    </div>
+                    <hr>
+                    <div class="card-text">
+                        <span class="fw-bold">Entry Date: </span>
+                        <span class="ps-2">{{ donation.ENTRY_DATE | date }}</span>
+                    </div>
+                    <hr>
+                    <div class="card-text">
+                        <span class="fw-bold">Ship Date: </span>
+                        <span class="ps-2">{{ donation.SHIP_DATE | date :'dd-MMM-yy h:mm:ss a '}}</span>
+                    </div>
+                    <hr>
+                    <div class="card-text">
+                        <span class="fw-bold">Color: </span>
+                        <span class="ps-2">{{ donation.COLOR }}</span>
+                    </div>
+                    <hr>
+                    <div class="card-text">
+                        <span class="fw-bold">Quantity: </span>
+                        <span class="ps-2">{{ donation.QUANTITY }}</span>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-danger btn-sm ms-2 mt-lg-0 mt-md-2" (click)="delete(donation.DONATION_ID)">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="btn btn-success btn-sm ms-2 mt-lg-0 mt-md-2" (click)="openMapModal(mapModal, donation)">
+                        <i class="fas fa-location"></i>
+                    </button>
+                    <button 
+                        type="button" 
+                        class="btn btn-sm ms-2 text-white" 
+                        [ngStyle]="{ 'background-color': donation.IS_SHIPPED ? 'blue' : 'red'  , 'color':'white' }" 
+<<<<<<< HEAD
+                        (click)="IS_SHIPPED_DONATION(donation.DONATION_ID,!donation.IS_SHIPPED, donation)"
+=======
+                        (click)="IS_SHIPPED_DONATION(donation.DONATION_ID,!donation.IS_SHIPPED)"
+>>>>>>> origin/temp004
+                    >
+                        {{ donation.IS_SHIPPED ? 'SHIPPED' : 'NOT SHIPPED' }}
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<ng-template #imageModal let-d="dismiss">
+    <div class="modal-header text-primary">
+        Donation's Image
+    </div>
+
+    <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let uploadedFile of donation?.UPLOADED_FILES" class="slide p-sm-3">
+            <div class="text-center card" style="border: none !important;" *ngIf="uploadedFile">
+                <div class="">
+                    <a>
+                        <img 
+                            src="{{PHOTO_URL}}{{uploadedFile.FILE_NAME}}" 
+                            class=" ng-lazyloading"
+                            style="width: 100%; border-radius: 10px; border: solid 1px #6f6f6f;" 
+                            alt=""
+                        >
+                    </a>
+                </div>
+            </div>  
+        </div>
+       
+    </ngx-slick-carousel>
+
+    <div class="modal-footer">
+        <div class="d-grid gap-2 pt-1" style="width: 100%;">
+            <button type="submit" class="btn btn-secondary  btn-sm p-2" (click)="d()">Cancel</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #mapModal let-d="dismiss">
+    <div class="modal-header text-primary">
+        Donation's Location
+    </div>
+
+    <app-maps [locationList]="locationListToBePassed"></app-maps>
+
+    <div class="modal-footer">
+        <div class="d-grid gap-2 pt-1" style="width: 100%;">
+            <button type="submit" class="btn btn-secondary  btn-sm p-2" (click)="d()">Cancel</button>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,152 @@
+<section class="section about-section gray-bg" id="about">
+    <div class="container">
+        <div class="row align-items-center flex-row-reverse">
+            <div class="col-lg-8 mx-auto">
+                <div class="about-text go-to">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                        <h3 class="dark-color">About Me</h3>
+                        <button class="btn btn-lg btn-info text-white" (click)="openModal(edit)">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </div>
+                    <div class="row about-list">
+                        <div class="col-md-6">
+                            <div class="media mb-5">
+                                <label>Name</label>
+                                <p>{{user?.FIRST_NAME}} {{user?.LAST_NAME}}</p>
+                            </div>
+                            <div class="media mb-5">
+                                <label>Joined Date</label>
+                                <p>{{user?.ENTRY_DATE | date:'longDate'}}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="media mb-5">
+                                <label>E-mail</label>
+                                <p>{{user?.EMAIL}}</p>
+                            </div>
+                            <div class="media mb-5">
+                                <label>Phone</label>
+                                <p>{{user?.PHONE}}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-lg-6">
+                <div class="about-avatar">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" title="" alt="">
+                </div>
+            </div> -->
+        </div>
+        <div class="counter mt-5">
+            <div class="row">
+                <div class="col-6 col-lg-3 mb-4 mb-lg-0">
+                    <div class="count-data text-center">
+                        <h6 class="count h2" data-to="500" data-speed="500">500</h6>
+                        <p class="m-0px font-w-600 t">Happy Families</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 mb-4 mb-lg-0">
+
+                    <div class="count-data text-center" routerLink="/myDonation">
+                        <h6 class="count h2" data-to="150" data-speed="150">150</h6>
+                        <p class="m-0px font-w-600 t">Shipped donation</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2" data-to="850" data-speed="850">850</h6>
+                        <p class="m-0px font-w-600 t">non-Shipped Donation</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="count-data text-center">
+                        <h6 class="count h2" data-to="190" data-speed="190">190</h6>
+                        <p class="m-0px font-w-600 t">Telephonic Talk</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<ng-template #edit let-d="dismiss">
+    <div class="modal-header text-primary">
+        Edit Profile
+    </div>
+
+    <div class="modal-body">
+        <form #f="ngForm" (ngSubmit)="f.form.valid && editProfile()" novalidate>
+            <div class="form-group">
+                <label>First Name</label>
+                <input 
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="profileData.FIRST_NAME"
+                    [value]="profileData.FIRST_NAME"
+                    #FIRST_NAME="ngModel"
+                    name="FIRST_NAME"
+                    required
+                >
+                <mat-error *ngIf="f.submitted && !FIRST_NAME.valid">First Name is required</mat-error>
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input 
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="profileData.LAST_NAME"
+                    [value]="profileData.LAST_NAME"
+                    #LAST_NAME="ngModel"
+                    name="LAST_NAME"
+                    required
+                >
+                <mat-error *ngIf="f.submitted && !LAST_NAME.valid">Last Name is required</mat-error>
+            </div>
+            <div class="form-group">
+                <label >Email</label>
+                <input 
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="profileData.EMAIL"
+                    [value]="profileData.EMAIL"
+                    #EMAIL="ngModel"
+                    name="EMAIL"
+                    required
+                >
+                <mat-error *ngIf="f.submitted && !LAST_NAME.valid">Email is required</mat-error>
+            </div>
+            <div class="form-group">
+                <label >Phone</label>
+                <input 
+                    type="text" 
+                    class="form-control"
+                    [(ngModel)]="profileData.PHONE"
+                    [value]="profileData.PHONE"
+                    #PHONE="ngModel"
+                    name="PHONE"
+                    required
+                >
+                <mat-error *ngIf="f.submitted && !LAST_NAME.valid">Phone is required</mat-error>
+            </div>
+            <div class="text-center p-3">
+                <button
+                    type="submit" 
+                    class="btn btn-primary btn-sm p-2 ms-2"
+                >
+                    Save
+                </button>
+                <button 
+                    class="btn btn-secondary  btn-sm p-2 ms-2" 
+                    (click)="d()"  
+                >
+                    Cancel
+                </button>
+            </div>
+
+        </form>
+    </div>
+</ng-template>

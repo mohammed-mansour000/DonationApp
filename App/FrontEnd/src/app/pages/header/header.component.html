@@ -1,0 +1,44 @@
+<header> 
+    <div class="navbar navbar-dark bg-primary shadow-sm">
+        <div class="container justify-content-between">
+
+        <div class="navbar-brand align-item-center d-flex">
+           
+            <strong class="donately" routerLink="/categories" style="cursor: pointer;"> Donately </strong>
+ 
+            <!-- <div class="form-group">
+                <input type="text" class="form-control" placeholder="search products">
+            </div> -->
+
+            <div class="input-group">
+                <div class="form-outline">
+                  <input type="search" id="form1" class="form-control" placeholder="search items"/>
+                </div>
+                <button type="button" class="btn btn-dark">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            <!-- <span class="fas fa-search search-icon" style="cursor: pointer;"></span> -->
+
+
+        </div>
+
+        <button class="btn btn-dark" *ngIf="!isLoggedIn" routerLink="/login">
+            <i style="font-size: 30px;" class="fas fa-sign-in-alt"></i>
+        </button>
+       
+        <div class="dropdown" *ngIf="isLoggedIn">
+            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <i  class="fas fa-user"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
+              <li (click)="logout()" style="cursor: pointer;"><a class="dropdown-item" >Logout</a></li>
+            </ul>
+        </div>
+          
+    </div>
+    </div>
+</header>
+
+

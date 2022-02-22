@@ -1,0 +1,24 @@
+.menu_entry
+{
+    font-size:96px;
+    text-align: center;     
+    border:2px solid white;
+    background-color: rgba(0,0,0,0.2);
+    margin:50px;
+    border-radius: 10px; 
+    color:white;  
+    padding: 20px;
+<<<<<<< HEAD
+    cursor: pointer;
+=======
+>>>>>>> origin/temp004
+}
+
+.menu_entry_title
+{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color:white;
+    padding-top: 40px;
+}

@@ -1,0 +1,53 @@
+<!-- <div class="container">
+    <div class="spinner-container" *ngIf="!items.length">
+        <mat-spinner class="loading-spinner" [diameter]="200"></mat-spinner>
+    </div>
+    
+    <div class="row" *ngIf="items.length">
+      <div class="col-6 col-md-4 example-card" *ngFor="let item of items">
+        <mat-card class="p-4">
+            <img mat-card-image src="{{PHOTO_URL}}{{item?.UPLOAD_FILE?.FILE_NAME}}">
+            <mat-card-content>
+                <h2 class="text-center">{{item.NAME}}</h2>
+                <p class="text-center">{{item.DESCRIPTION}}</p>
+            </mat-card-content>
+          </mat-card>
+      </div>
+    </div>
+</div> -->
+
+<app-header></app-header>
+
+
+<div class="card-top container-fluid">
+  <div class="container d-flex">
+      <div class="item" *ngFor="let category of categories">
+          <a (click)="getItemsByCategoryId(category.CATAGORY_ID)" style="cursor: pointer;">
+              <img src="{{PHOTO_URL}}{{category?.UPLOAD_FILE?.FILE_NAME}}" alt="">
+              <h6>{{category.NAME}}</h6>
+          </a>
+      </div>
+  </div>
+</div>
+
+
+<div class="container">
+
+    <div class="spinner-container" *ngIf="!items.length">
+        <mat-spinner class="loading-spinner" [diameter]="200"></mat-spinner>
+    </div>
+  <div class="row" *ngIf="items.length">
+      <ng-container >
+          <div class="card col-md-3"  *ngFor="let item of items" >
+              <img src="{{PHOTO_URL}}{{item?.UPLOAD_FILE?.FILE_NAME}}" alt="">
+              <h5 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;" class="fw-bold fs-6">{{item.NAME}}</h5>
+              <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.DESCRIPTION}}</p>
+              <!-- <p><strong>doantion time:</strong> {{item.donationTime}}</p> -->
+
+              <button class="btn btn-primary" (click)="donate(item.ITEM_ID)">donate</button>
+          </div>
+      </ng-container>
+
+  </div>
+</div>
+

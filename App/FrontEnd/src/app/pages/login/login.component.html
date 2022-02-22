@@ -1,0 +1,62 @@
+<section class="min-vh-100 gradient-custom">
+    <div class="container py-5 ">
+        <div class="row justify-content-center align-items-center ">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Login Form</h3>
+                        <form #f="ngForm" (ngSubmit)="f.form.valid && login()" novalidate>
+
+                            <div class="row">
+                                <div class="col-md-12 mb-4">
+
+                                    <div class="form-outline">
+                                        <input type="text" id="email" class="form-control form-control-lg" name='EMAIL'
+                                            [(ngModel)]="loginData.EMAIL" #EMAIL="ngModel" required autocomplete="off" />
+
+                                        <label class="form-label" for="emailAddress">Email</label>
+                                    </div>
+                                    <mat-error *ngIf="f.submitted && !EMAIL.valid">Email is required</mat-error>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-12 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        <input type="password" id="tel" class="form-control form-control-lg" name='PASSWORD'
+                                            [(ngModel)]="loginData.PASSWORD" #PASSWORD="ngModel" required autocomplete="off" />
+
+                                        <label class="form-label" for="phoneNumber">Password</label>
+                                    </div>
+                                    <mat-error *ngIf="f.submitted && !PASSWORD.valid">Password is required</mat-error>
+
+                                </div>
+                            </div>
+
+                            <div class="mt-2 pt-1">
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-success btn-lg btn-block" type="submit">
+                                        Login
+                                    </button>
+                                </div>
+                            </div>
+
+
+
+                        </form>
+                        <p *ngIf="!loading" class="text-center text-muted mt-5 mb-0">
+                            Don't Have an account?
+                            <a (click)="goToSignup()" style="cursor: pointer;" class="fw-bold text-body">
+                                <u>Signup here</u>
+                            </a>
+                        </p>
+                        <mat-spinner *ngIf="loading" class="mx-auto mt-3"></mat-spinner>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

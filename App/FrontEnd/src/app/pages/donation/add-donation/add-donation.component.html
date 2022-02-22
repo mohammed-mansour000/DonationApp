@@ -1,0 +1,174 @@
+<section class="min-vh-100 gradient-custom">
+    <div class="container py-5 ">
+        <div class="row justify-content-center align-items-center ">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                    <div class="card-body p-4 p-md-5">
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Add Donation</h3>
+                       
+                       <!-- first form -->
+
+                        <form 
+                            *ngIf="showFirstForm"
+                            (ngSubmit)="f1.form.valid && goSecondForm()" 
+                            #f1="ngForm"
+                            novalidate
+                        >
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+
+                                    <div class="form-outline">
+                                        <input 
+                                            type="number" 
+                                            min="1"
+                                            class="form-control form-control-lg" 
+                                            name='QUANTITY' 
+                                            [(ngModel)]="donationData.QUANTITY" 
+                                            #QUANTITY="ngModel"
+                                            required
+                                            />
+                                        <label class="form-label">Quantity</label>
+                                    </div>
+                                    <mat-error *ngIf="f1.submitted && !QUANTITY.valid">Quantity is required</mat-error>
+
+                                </div>
+                                <div class="col-md-6 mb-4">
+
+                                    <div class="form-outline">
+                                        <input 
+                                            type="color" 
+                                            id="color"
+                                            class="form-control form-control-lg"
+                                            (change)="print()"
+                                            [(ngModel)]="donationData.COLOR"
+                                            name="COLOR"
+                                            #COLOR="ngModel"
+                                        />
+                                        <label class="form-label" for="color">Color(<small>Optional</small>)</label>
+
+                                    </div>
+                                    <!-- <mat-error *ngIf="f.submitted && !LAST_NAME.valid">Last Name is required</mat-error> -->
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        <input 
+                                            type="text" 
+                                            id="size" 
+                                            class="form-control form-control-lg" 
+                                            name='SIZE' 
+                                            [(ngModel)]="donationData.SIZE" 
+                                            #SIZE="ngModel"
+                                        />
+                                        <label class="form-label" for="size">size</label>
+                                    </div>
+                                    <!-- <mat-error *ngIf="f.submitted && !EMAIL.valid">Email is required</mat-error> -->
+
+                                </div>
+
+                                <div class="col-md-6 mb-4 pb-2">
+
+                                    <div class="form-outline">
+                                        <input 
+                                            type="date" 
+                                            id="ship_date" 
+                                            class="form-control form-control-lg" 
+                                            name='SHIP_DATE' 
+                                            [(ngModel)]="donationData.SHIP_DATE" 
+                                            #SHIP_DATE="ngModel"
+                                            required
+                                        />
+                                        <label class="form-label" for="ship_date">Ship Date</label>
+                                    </div>
+                                    <mat-error *ngIf="f1.submitted && !SHIP_DATE.valid">Ship Date is required</mat-error>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="file">File</label>
+                                    <input 
+                                        id="file" 
+                                        type="file" 
+                                        class="form-control"
+                                        multiple="" 
+                                        (change)="onFileChange($event)"
+
+                                    >
+                                </div>
+                               
+                               <div class="d-flex justify-content-around mt-4">
+                                    <div class="image-container position-relative" *ngFor='let url of images; let i = index;'>
+                                        <img  class="img-thumbnail" [src]="url" height="120px" width="120px" >
+                                        <span (click)="removeImage(i)" style="cursor: pointer;" class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                                            <i class="fas fa-times text-white"></i>
+                                            <span class="visually-hidden">New alerts</span>
+                                        </span>
+                                    </div>
+                               </div>
+
+                            </div>
+
+                            <div class="mt-2 pt-1 d-flex justify-content-center ">
+                                <button 
+                                    class="btn btn-primary btn-lg" 
+                                    type="submit" (click)="goSecondForm()" 
+                                    [disabled]="!f1.form.valid || !myFiles.length">
+                                    Next
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                                
+                            </div>
+
+
+
+                        </form>
+
+
+                        <!-- second form -->
+                        <form 
+                            *ngIf="showSecondForm"
+                            (ngSubmit)="f2.form.valid && donate()" 
+                            #f2="ngForm"
+                            novalidate
+                        >
+
+                            <div class="row">
+                                <div class="col-md-12 mb-4">
+                                    <app-map
+                                        (emitLocationData)="setLocationData($event)"
+                                    ></app-map>
+                                </div>
+                            </div>
+
+                            <div class="mt-2 pt-1 d-flex justify-content-between ">
+                                <button class="btn btn-primary btn-lg"  (click)="goFirstForm()">
+                                    <i class="fas fa-arrow-left"></i>
+                                    Back
+                                </button>
+<<<<<<< HEAD
+                                <button class="btn btn-success btn-lg" type="submit" *ngIf="!isloading">
+                                    donate
+                                </button>
+                                <mat-spinner *ngIf="isloading" ></mat-spinner>
+=======
+                                <button class="btn btn-success btn-lg" type="submit">
+                                    donate
+                                </button>
+>>>>>>> origin/temp004
+                                
+                            </div>
+
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
